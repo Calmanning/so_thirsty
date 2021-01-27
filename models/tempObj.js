@@ -1917,6 +1917,7 @@ const temp = {
         trefle_id: 157544,
         watering_frequency: 7,
         last_watered: new Date(),
+        is_watered: true,
         notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit scelerisque in dictum non consectetur a erat nam. Quis auctor elit sed vulputate mi. Vel pharetra vel turpis nunc eget lorem. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Erat nam at lectus urna duis convallis convallis. Consequat id porta nibh venenatis cras sed felis eget. Malesuada fames ac turpis egestas integer. Ipsum nunc aliquet bibendum enim facilisis. Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. Scelerisque eu ultrices vitae auctor eu augue. Adipiscing commodo elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Sit amet luctus venenatis lectus magna fringilla urna. Amet consectetur adipiscing elit duis tristique sollicitudin nibh. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Habitant morbi tristique senectus et netus et. Enim diam vulputate ut pharetra sit amet aliquam id. Aliquam sem et tortor consequat id porta nibh venenatis cras. Dui vivamus arcu felis bibendum ut tristique et egestas. Erat velit scelerisque in dictum non consectetur a.",
         conditions: "elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui",
     },
@@ -1930,39 +1931,217 @@ const temp = {
         user_name: "Drantho",
         name: "Anthony Mitchell",
         password: "password",
-        plants: [{
-            id: 1,
-            user_id: 1,
-            nickname: "Stinky",
-            common_name: "Corpse Flower",
-            scientific_name: "Monotropa uniflora",
-            trefle_id: 157544,
-            watering_frequency: 7,
-            last_watered: new Date(),
-            notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit scelerisque in dictum non consectetur a erat nam. Quis auctor elit sed vulputate mi. Vel pharetra vel turpis nunc eget lorem. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Erat nam at lectus urna duis convallis convallis. Consequat id porta nibh venenatis cras sed felis eget. Malesuada fames ac turpis egestas integer. Ipsum nunc aliquet bibendum enim facilisis. Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. Scelerisque eu ultrices vitae auctor eu augue. Adipiscing commodo elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Sit amet luctus venenatis lectus magna fringilla urna. Amet consectetur adipiscing elit duis tristique sollicitudin nibh. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Habitant morbi tristique senectus et netus et. Enim diam vulputate ut pharetra sit amet aliquam id. Aliquam sem et tortor consequat id porta nibh venenatis cras. Dui vivamus arcu felis bibendum ut tristique et egestas. Erat velit scelerisque in dictum non consectetur a.",
-            conditions: "elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui",
-        photos: [
+        plants: [
             {
                 id: 1,
-                plant_id: 1,
-                url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                user_id: 1,
+                nickname: "Stinky",
+                common_name: "Corpse Flower",
+                scientific_name: "Monotropa uniflora",
+                trefle_id: 157544,
+                watering_frequency: 7,
+                last_watered: new Date(),
+                is_watered: true,
+                notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit scelerisque in dictum non consectetur a erat nam. Quis auctor elit sed vulputate mi. Vel pharetra vel turpis nunc eget lorem. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Erat nam at lectus urna duis convallis convallis. Consequat id porta nibh venenatis cras sed felis eget. Malesuada fames ac turpis egestas integer. Ipsum nunc aliquet bibendum enim facilisis. Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. Scelerisque eu ultrices vitae auctor eu augue. Adipiscing commodo elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Sit amet luctus venenatis lectus magna fringilla urna. Amet consectetur adipiscing elit duis tristique sollicitudin nibh. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Habitant morbi tristique senectus et netus et. Enim diam vulputate ut pharetra sit amet aliquam id. Aliquam sem et tortor consequat id porta nibh venenatis cras. Dui vivamus arcu felis bibendum ut tristique et egestas. Erat velit scelerisque in dictum non consectetur a.",
+                conditions: "elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui",
+                photos: [
+                    {
+                        id: 1,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    },
+                    {
+                        id: 2,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    },
+                    {
+                        id: 3,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    },
+                    {
+                        id: 4,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    }
+                ]
             },
             {
                 id: 2,
-                plant_id: 1,
-                url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                user_id: 1,
+                nickname: "Stinky",
+                common_name: "Corpse Flower",
+                scientific_name: "Monotropa uniflora",
+                trefle_id: 157544,
+                watering_frequency: 7,
+                last_watered: new Date(),
+                is_watered: true,
+                notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit scelerisque in dictum non consectetur a erat nam. Quis auctor elit sed vulputate mi. Vel pharetra vel turpis nunc eget lorem. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Erat nam at lectus urna duis convallis convallis. Consequat id porta nibh venenatis cras sed felis eget. Malesuada fames ac turpis egestas integer. Ipsum nunc aliquet bibendum enim facilisis. Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. Scelerisque eu ultrices vitae auctor eu augue. Adipiscing commodo elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Sit amet luctus venenatis lectus magna fringilla urna. Amet consectetur adipiscing elit duis tristique sollicitudin nibh. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Habitant morbi tristique senectus et netus et. Enim diam vulputate ut pharetra sit amet aliquam id. Aliquam sem et tortor consequat id porta nibh venenatis cras. Dui vivamus arcu felis bibendum ut tristique et egestas. Erat velit scelerisque in dictum non consectetur a.",
+                conditions: "elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui",
+                photos: [
+                    {
+                        id: 1,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    },
+                    {
+                        id: 2,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    },
+                    {
+                        id: 3,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    },
+                    {
+                        id: 4,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    }
+                ]
             },
             {
                 id: 3,
-                plant_id: 1,
-                url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                user_id: 1,
+                nickname: "Stinky",
+                common_name: "Corpse Flower",
+                scientific_name: "Monotropa uniflora",
+                trefle_id: 157544,
+                watering_frequency: 7,
+                last_watered: new Date(),
+                is_watered: true,
+                notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit scelerisque in dictum non consectetur a erat nam. Quis auctor elit sed vulputate mi. Vel pharetra vel turpis nunc eget lorem. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Erat nam at lectus urna duis convallis convallis. Consequat id porta nibh venenatis cras sed felis eget. Malesuada fames ac turpis egestas integer. Ipsum nunc aliquet bibendum enim facilisis. Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. Scelerisque eu ultrices vitae auctor eu augue. Adipiscing commodo elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Sit amet luctus venenatis lectus magna fringilla urna. Amet consectetur adipiscing elit duis tristique sollicitudin nibh. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Habitant morbi tristique senectus et netus et. Enim diam vulputate ut pharetra sit amet aliquam id. Aliquam sem et tortor consequat id porta nibh venenatis cras. Dui vivamus arcu felis bibendum ut tristique et egestas. Erat velit scelerisque in dictum non consectetur a.",
+                conditions: "elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui",
+                photos: [
+                    {
+                        id: 1,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    },
+                    {
+                        id: 2,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    },
+                    {
+                        id: 3,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    },
+                    {
+                        id: 4,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    }
+                ]
             },
             {
                 id: 4,
-                plant_id: 1,
-                url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
-            }
-        ]},
+                user_id: 1,
+                nickname: "Stinky",
+                common_name: "Corpse Flower",
+                scientific_name: "Monotropa uniflora",
+                trefle_id: 157544,
+                watering_frequency: 7,
+                last_watered: new Date(),
+                is_watered: true,
+                notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit scelerisque in dictum non consectetur a erat nam. Quis auctor elit sed vulputate mi. Vel pharetra vel turpis nunc eget lorem. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Erat nam at lectus urna duis convallis convallis. Consequat id porta nibh venenatis cras sed felis eget. Malesuada fames ac turpis egestas integer. Ipsum nunc aliquet bibendum enim facilisis. Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. Scelerisque eu ultrices vitae auctor eu augue. Adipiscing commodo elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Sit amet luctus venenatis lectus magna fringilla urna. Amet consectetur adipiscing elit duis tristique sollicitudin nibh. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Habitant morbi tristique senectus et netus et. Enim diam vulputate ut pharetra sit amet aliquam id. Aliquam sem et tortor consequat id porta nibh venenatis cras. Dui vivamus arcu felis bibendum ut tristique et egestas. Erat velit scelerisque in dictum non consectetur a.",
+                conditions: "elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui",
+                photos: [
+                    {
+                        id: 1,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    },
+                    {
+                        id: 2,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    },
+                    {
+                        id: 3,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    },
+                    {
+                        id: 4,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    }
+                ]
+            },
+            {
+                id: 5,
+                user_id: 1,
+                nickname: "Stinky",
+                common_name: "Corpse Flower",
+                scientific_name: "Monotropa uniflora",
+                trefle_id: 157544,
+                watering_frequency: 7,
+                last_watered: new Date(),
+                is_watered: true,
+                notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit scelerisque in dictum non consectetur a erat nam. Quis auctor elit sed vulputate mi. Vel pharetra vel turpis nunc eget lorem. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Erat nam at lectus urna duis convallis convallis. Consequat id porta nibh venenatis cras sed felis eget. Malesuada fames ac turpis egestas integer. Ipsum nunc aliquet bibendum enim facilisis. Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. Scelerisque eu ultrices vitae auctor eu augue. Adipiscing commodo elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Sit amet luctus venenatis lectus magna fringilla urna. Amet consectetur adipiscing elit duis tristique sollicitudin nibh. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Habitant morbi tristique senectus et netus et. Enim diam vulputate ut pharetra sit amet aliquam id. Aliquam sem et tortor consequat id porta nibh venenatis cras. Dui vivamus arcu felis bibendum ut tristique et egestas. Erat velit scelerisque in dictum non consectetur a.",
+                conditions: "elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui",
+                photos: [
+                    {
+                        id: 1,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    },
+                    {
+                        id: 2,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    },
+                    {
+                        id: 3,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    },
+                    {
+                        id: 4,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    }
+                ]
+            },
+            {
+                id: 6,
+                user_id: 1,
+                nickname: "Stinky",
+                common_name: "Corpse Flower",
+                scientific_name: "Monotropa uniflora",
+                trefle_id: 157544,
+                watering_frequency: 7,
+                last_watered: new Date(),
+                is_watered: true,
+                notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit scelerisque in dictum non consectetur a erat nam. Quis auctor elit sed vulputate mi. Vel pharetra vel turpis nunc eget lorem. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Erat nam at lectus urna duis convallis convallis. Consequat id porta nibh venenatis cras sed felis eget. Malesuada fames ac turpis egestas integer. Ipsum nunc aliquet bibendum enim facilisis. Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. Scelerisque eu ultrices vitae auctor eu augue. Adipiscing commodo elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Sit amet luctus venenatis lectus magna fringilla urna. Amet consectetur adipiscing elit duis tristique sollicitudin nibh. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Habitant morbi tristique senectus et netus et. Enim diam vulputate ut pharetra sit amet aliquam id. Aliquam sem et tortor consequat id porta nibh venenatis cras. Dui vivamus arcu felis bibendum ut tristique et egestas. Erat velit scelerisque in dictum non consectetur a.",
+                conditions: "elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui",
+                photos: [
+                    {
+                        id: 1,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    },
+                    {
+                        id: 2,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    },
+                    {
+                        id: 3,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    },
+                    {
+                        id: 4,
+                        plant_id: 1,
+                        url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
+                    }
+                ]
+            },
         ]
     }
 
