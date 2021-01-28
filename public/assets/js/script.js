@@ -30,6 +30,12 @@ $(document).ready(function () {
     // TODO: Fill create form
 
 
+    function frequencyMap(precipitation){
 
+        let frequency = (1/precipitation) * 800;
+        frequency = Math.round(frequency);
+
+        return frequency;
+    }
 
 });
