@@ -20,6 +20,7 @@ $(document).ready(function () {
     $("#new-user").on("Submit", function (event) {
         event.preventDefault();
         if (userName.val() && password.val() && confirmPass.val()) {
+            console.log("testing on script.js. the user name: " + userName)
             $.ajax({
                 method: "POST",
                 url: "/api/user",
@@ -49,7 +50,7 @@ $(document).ready(function () {
     //     };
     // });
 
-    // // TODO: Get user info
+    // TODO: Get user info
     // $("#user-info").on("Submit")
 
 
@@ -67,10 +68,24 @@ $(document).ready(function () {
         });
     });
 
-
     // TODO: Upload photo
 
-
     // TODO: Fill create form
+
+    frequencyMap = precipitation => {
+
+        let frequency;
+
+        if (precipitation) {
+
+            frequency = (1 / precipitation) * 800;
+            frequency = Math.round(frequency);
+
+        }
+        else {
+            frequency = 3;
+        }
+        return Math.max(1, frequency);
+    }
 
 });

@@ -1,3 +1,5 @@
+const moment = require("moment")
+
 const temp = {
     apiSearch: {
         "data": [
@@ -1902,22 +1904,21 @@ const temp = {
             "last_modified": "2020-10-29T02:33:26.121Z"
         }
     },
-    user: {
+    user: [{
         id: 1,
         user_name: "Drantho",
         name: "Anthony Mitchell",
         password: "password"
-    },
+    }],
     plant: {
         id: 1,
         user_id: 1,
-        nickname: "Stinky",
+        nickname: "Super Stinky",
         common_name: "Corpse Flower",
         scientific_name: "Monotropa uniflora",
         trefle_id: 157544,
         watering_frequency: 7,
-        last_watered: new Date(),
-        is_watered: true,
+        last_watered:  moment().add(7, 'days'),
         notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit scelerisque in dictum non consectetur a erat nam. Quis auctor elit sed vulputate mi. Vel pharetra vel turpis nunc eget lorem. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Erat nam at lectus urna duis convallis convallis. Consequat id porta nibh venenatis cras sed felis eget. Malesuada fames ac turpis egestas integer. Ipsum nunc aliquet bibendum enim facilisis. Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. Scelerisque eu ultrices vitae auctor eu augue. Adipiscing commodo elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Sit amet luctus venenatis lectus magna fringilla urna. Amet consectetur adipiscing elit duis tristique sollicitudin nibh. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Habitant morbi tristique senectus et netus et. Enim diam vulputate ut pharetra sit amet aliquam id. Aliquam sem et tortor consequat id porta nibh venenatis cras. Dui vivamus arcu felis bibendum ut tristique et egestas. Erat velit scelerisque in dictum non consectetur a.",
         conditions: "elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui",
     },
@@ -1940,8 +1941,7 @@ const temp = {
                 scientific_name: "Monotropa uniflora",
                 trefle_id: 157544,
                 watering_frequency: 7,
-                last_watered: new Date(),
-                is_watered: true,
+                last_watered:   moment().add(7, 'days'),
                 notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit scelerisque in dictum non consectetur a erat nam. Quis auctor elit sed vulputate mi. Vel pharetra vel turpis nunc eget lorem. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Erat nam at lectus urna duis convallis convallis. Consequat id porta nibh venenatis cras sed felis eget. Malesuada fames ac turpis egestas integer. Ipsum nunc aliquet bibendum enim facilisis. Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. Scelerisque eu ultrices vitae auctor eu augue. Adipiscing commodo elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Sit amet luctus venenatis lectus magna fringilla urna. Amet consectetur adipiscing elit duis tristique sollicitudin nibh. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Habitant morbi tristique senectus et netus et. Enim diam vulputate ut pharetra sit amet aliquam id. Aliquam sem et tortor consequat id porta nibh venenatis cras. Dui vivamus arcu felis bibendum ut tristique et egestas. Erat velit scelerisque in dictum non consectetur a.",
                 conditions: "elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui",
                 photos: [
@@ -1970,13 +1970,12 @@ const temp = {
             {
                 id: 2,
                 user_id: 1,
-                nickname: "Stinky",
+                nickname: "Dry and Stinky",
                 common_name: "Corpse Flower",
                 scientific_name: "Monotropa uniflora",
                 trefle_id: 157544,
                 watering_frequency: 7,
-                last_watered: new Date(),
-                is_watered: true,
+                last_watered: moment().subtract(57, 'days'),
                 notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit scelerisque in dictum non consectetur a erat nam. Quis auctor elit sed vulputate mi. Vel pharetra vel turpis nunc eget lorem. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Erat nam at lectus urna duis convallis convallis. Consequat id porta nibh venenatis cras sed felis eget. Malesuada fames ac turpis egestas integer. Ipsum nunc aliquet bibendum enim facilisis. Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. Scelerisque eu ultrices vitae auctor eu augue. Adipiscing commodo elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Sit amet luctus venenatis lectus magna fringilla urna. Amet consectetur adipiscing elit duis tristique sollicitudin nibh. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Habitant morbi tristique senectus et netus et. Enim diam vulputate ut pharetra sit amet aliquam id. Aliquam sem et tortor consequat id porta nibh venenatis cras. Dui vivamus arcu felis bibendum ut tristique et egestas. Erat velit scelerisque in dictum non consectetur a.",
                 conditions: "elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui",
                 photos: [
@@ -2010,7 +2009,7 @@ const temp = {
                 scientific_name: "Monotropa uniflora",
                 trefle_id: 157544,
                 watering_frequency: 7,
-                last_watered: new Date(),
+                last_watered: moment(),
                 is_watered: true,
                 notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit scelerisque in dictum non consectetur a erat nam. Quis auctor elit sed vulputate mi. Vel pharetra vel turpis nunc eget lorem. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Erat nam at lectus urna duis convallis convallis. Consequat id porta nibh venenatis cras sed felis eget. Malesuada fames ac turpis egestas integer. Ipsum nunc aliquet bibendum enim facilisis. Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. Scelerisque eu ultrices vitae auctor eu augue. Adipiscing commodo elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Sit amet luctus venenatis lectus magna fringilla urna. Amet consectetur adipiscing elit duis tristique sollicitudin nibh. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Habitant morbi tristique senectus et netus et. Enim diam vulputate ut pharetra sit amet aliquam id. Aliquam sem et tortor consequat id porta nibh venenatis cras. Dui vivamus arcu felis bibendum ut tristique et egestas. Erat velit scelerisque in dictum non consectetur a.",
                 conditions: "elit at imperdiet. Ac odio tempor orci dapibus ultrices. Eu ultrices vitae auctor eu augue. Vitae suscipit tellus mauris a diam. Diam quis enim lobortis scelerisque fermentum dui",
