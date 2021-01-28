@@ -1,0 +1,13 @@
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(173, 187, 162) ;
+    color: rgb(104,123,136);
+    text-align: center;
+  }
+
+  .top-bar {
+    background-color: rgb(173, 187, 162) ;
+  }
