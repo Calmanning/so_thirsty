@@ -1,4 +1,4 @@
-const { search } = require("../../../controllers/thirsty_controller");
+// const { search } = require("../../../controllers/thirsty_controller");
 
 // Client js api calls
 $(document).ready(function () {
@@ -59,12 +59,22 @@ $(document).ready(function () {
 
     // TODO: Create plant
     searchBtn.on("click", function () {
+        console.log("testing");
         $.ajax({
             method: "GET",
             url: "/api/search/" + searchBox.val()
         }).then(function (data) {
-            var results = $("<p>").text(data.common_name)
-            resultsBox.append(results)
+            console.log(data.data);
+            for (let i = 0; i < data.data.length; i++) {
+                $("<p>").text(data.data[i].common_name).appendTo(resultsBox)
+                $("<p>").text(data.data[i].genus).appendTo(resultsBox)
+                $("<p>").text(data.data[i].scientific_name).appendTo(resultsBox)
+                for (let j = 0; j < data.data[i].synonyms.length; j++) {
+                    $("<p>").text(data.data[i].synonyms[j]).appendTo(resultsBox)
+                };
+                $("<img>").attr("src", data.data[i].image_url).appendTo(resultsBox)
+                $("<button>").text(data.data[i].id).appendTo(resultsBox)
+            }
         });
     });
 
