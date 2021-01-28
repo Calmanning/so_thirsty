@@ -44,7 +44,7 @@ $(document).ready(function () {
         {
             frequency = 3;
         }
-        return frequency;
+        return Math.max(1, frequency);
     }
 
 });
