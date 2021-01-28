@@ -11,6 +11,11 @@ const helpers = require("../helpers/helpers");
 const temp = require("../tempObj");
 
 // Routes
+
+router.get("/addplant", function (req, res) {
+    res.render("new-plant");
+})
+
 //home page
 router.get("/", function (req, res) {
     const hBarObj = {
@@ -41,14 +46,12 @@ router.post("/api/user", function (req, res) {
     res.json(newUser)
 })
 //api call for plant info
-router.get("/api/search/:plantName", function(req, res) {
+router.get("/api/search/:plantName", function (req, res) {
     res.json(tempData.apiSearch)
 })
 
 // route for add plant page
-router.get("/addplant", function(req, res){
-    res.render("new-plant");
-})
+
 
 //test axios api
 router.get("/test", function(req, res) {
@@ -74,7 +77,7 @@ router.post("/api/plant", function (req, res) {
 
 //Adding a plant photo...kinda
 router.post("/api/:plant/:img", function (req, res) {
-   
+
     return res.send("Hey, that's a great photo")
 })
 
