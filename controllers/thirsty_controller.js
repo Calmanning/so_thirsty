@@ -7,28 +7,29 @@ var db = require("../models");
 
 const tempData = require("../tempObj")
 
+const helpers = require("../helpers/helpers");
+
 // Routes
 
-router.get("/", function(req,res) {
+router.get("/", function (req, res) {
     const hBarObj = {
 
     }
     res.render("register", hBarObj);
 })
 
-router.get("/:user", function(req,res) {
+router.get("/:user", function (req, res) {
     res.render("index", tempData.user.find(searchUser => {
         return searchUser.userName = req.params.user
     }))
 })
 
-router.get("/:user/:plant", function(req,res) {
-    res.json(tempData.userPlantPhotos.plants.find(plant=> {
-        return req.params.plant = plant.id
-    }))
+router.get("/:user/plant/:plant", function (req, res) {
+    console.log(req.params.plant);
+    res.json(helpers.addWatered(tempData.userPlantPhotos.plants[1]))
 })
 
-router.post("/api/user", function(req, res) {
+router.post("/api/user", function (req, res) {
     const newUser = req.body;
     newUser.id = tempData.user.length + 1
     tempData.user.push(newUser);
@@ -36,7 +37,7 @@ router.post("/api/user", function(req, res) {
     res.json(newUser)
 })
 
-router.post("/api/plant", function(req,res){
+router.post("/api/plant", function (req, res) {
     tempData.userPlantPhotos.plants.push(req.body);
     res.json(tempData.userPlantPhotos);
 })
