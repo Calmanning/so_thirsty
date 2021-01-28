@@ -8,7 +8,7 @@ $(document).ready(function () {
         event.preventDefault()
         console.log("error checking")
         if (userName.val() && password.val() && confirmPass.val()) {
-           console.log("testing on script.js. the user name: "+userName)
+            console.log("testing on script.js. the user name: " + userName)
             $.ajax({
                 method: "POST",
                 url: "/api/user",
@@ -16,8 +16,8 @@ $(document).ready(function () {
                     userName: userName.val(),
                     password: password.val()
                 }
-            }).then(function(user) {
-                console.log("user name: "+ user)
+            }).then(function (user) {
+                console.log("user name: " + user)
                 window.location.href = "/" + user.userName
             })
         };
@@ -30,11 +30,20 @@ $(document).ready(function () {
     // TODO: Fill create form
 
 
-    function frequencyMap(precipitation){
+    function frequencyMap(precipitation) {
 
-        let frequency = (1/precipitation) * 800;
-        frequency = Math.round(frequency);
+        let frequency;
 
+        if (precipitation) {
+
+            frequency = (1 / precipitation) * 800;
+            frequency = Math.round(frequency);
+
+        }
+        else
+        {
+            frequency = 3
+        }
         return frequency;
     }
 
