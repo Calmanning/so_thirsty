@@ -1902,12 +1902,12 @@ const temp = {
             "last_modified": "2020-10-29T02:33:26.121Z"
         }
     },
-    user: {
+    user: [{
         id: 1,
         user_name: "Drantho",
         name: "Anthony Mitchell",
         password: "password"
-    },
+    }],
     plant: {
         id: 1,
         user_id: 1,

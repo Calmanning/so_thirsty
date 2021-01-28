@@ -4,8 +4,11 @@ $(document).ready(function () {
     var password = $("#password");
     var confirmPass = $("#confirm-password")
     // TODO: Register user
-    $("#user-input").on("Submit", function () {
+    $("#user-input").on("submit", function (event) {
+        event.preventDefault()
+        console.log("error checking")
         if (userName.val() && password.val() && confirmPass.val()) {
+           console.log("testing on script.js. the user name: "+userName)
             $.ajax({
                 method: "POST",
                 url: "/api/user",
@@ -13,8 +16,9 @@ $(document).ready(function () {
                     userName: userName.val(),
                     password: password.val()
                 }
-            }).then(function () {
-                window.location.href = "/" + userName.val()
+            }).then(function(user) {
+                console.log("user name: "+ user)
+                window.location.href = "/" + user.userName
             })
         };
     });
