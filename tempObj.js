@@ -1927,7 +1927,7 @@ const temp = {
         plant_id: 1,
         url: "https://bs.floristic.org/image/o/8a2162195755e3cbafc77e6bf9e394b471b94247"
     },
-    userPlantPhotos: {
+    userPlantPhotos: [{
         id: 1,
         user_name: "Drantho",
         name: "Anthony Mitchell",
@@ -2142,7 +2142,7 @@ const temp = {
                 ]
             },
         ]
-    }
+    }]
 
 
 }
