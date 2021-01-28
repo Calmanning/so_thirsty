@@ -57,15 +57,13 @@ $(document).ready(function () {
     // TODO: Treffle API plant search
 
 
-    // TODO: Create plant
+    // Create plant
     searchBtn.on("click", function () {
-        console.log("testing");
         $.ajax({
             method: "GET",
             url: "/api/search/" + searchBox.val()
         }).then(function (data) {
             console.log(data.data);
-
             for (let i = 0; i < data.data.length; i++) {
                 var container = $("<div>").addClass("searchContainer");
                 $("<p>").text(data.data[i].common_name).appendTo(container);
@@ -75,15 +73,28 @@ $(document).ready(function () {
                     $("<p>").text(data.data[i].synonyms[j]).appendTo(container)
                 };
                 $("<img>").attr("src", data.data[i].image_url).appendTo(container);
-                $("<button>").text(data.data[i].id).appendTo(container);
+                $("<button>").text("Select this plant").attr("data-id", data.data[i].id).appendTo(container).addClass("resultsButton");
                 resultsBox.append(container);
             };
         });
     });
 
+    $(document).on("click", ".resultsButton", function (target) {
+        $.ajax({
+            method: "GET",
+            url: "/api/search/" + target.data("id")
+        }).then(function (data) {
+            console.log(data);
+        })
+    })
+
     // TODO: Upload photo
 
     // TODO: Fill create form
+    // resultsBox.on("click" function () {
+
+    // })
+
 
     frequencyMap = precipitation => {
 
