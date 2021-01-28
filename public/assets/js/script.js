@@ -30,7 +30,7 @@ $(document).ready(function () {
     // TODO: Fill create form
 
 
-    function frequencyMap(precipitation) {
+    frequencyMap = precipitation => {
 
         let frequency;
 
@@ -42,7 +42,7 @@ $(document).ready(function () {
         }
         else
         {
-            frequency = 3
+            frequency = 3;
         }
         return frequency;
     }
