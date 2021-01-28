@@ -45,6 +45,11 @@ router.get("/api/search/:plantName", function(req, res) {
     res.json(tempData.apiSearch)
 })
 
+// route for add plant page
+router.get("/addplant", function(req, res){
+    res.render("new-plant");
+})
+
 //CREATE a new plant for the user
 router.post("/api/plant", function (req, res) {
     tempData.userPlantPhotos.plants.push(req.body);
