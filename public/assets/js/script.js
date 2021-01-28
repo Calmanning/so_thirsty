@@ -65,16 +65,19 @@ $(document).ready(function () {
             url: "/api/search/" + searchBox.val()
         }).then(function (data) {
             console.log(data.data);
+
             for (let i = 0; i < data.data.length; i++) {
-                $("<p>").text(data.data[i].common_name).appendTo(resultsBox)
-                $("<p>").text(data.data[i].genus).appendTo(resultsBox)
-                $("<p>").text(data.data[i].scientific_name).appendTo(resultsBox)
+                var container = $("<div>").addClass("searchContainer");
+                $("<p>").text(data.data[i].common_name).appendTo(container);
+                $("<p>").text(data.data[i].genus).appendTo(container);
+                $("<p>").text(data.data[i].scientific_name).appendTo(container);
                 for (let j = 0; j < data.data[i].synonyms.length; j++) {
-                    $("<p>").text(data.data[i].synonyms[j]).appendTo(resultsBox)
+                    $("<p>").text(data.data[i].synonyms[j]).appendTo(container)
                 };
-                $("<img>").attr("src", data.data[i].image_url).appendTo(resultsBox)
-                $("<button>").text(data.data[i].id).appendTo(resultsBox)
-            }
+                $("<img>").attr("src", data.data[i].image_url).appendTo(container);
+                $("<button>").text(data.data[i].id).appendTo(container);
+                resultsBox.append(container);
+            };
         });
     });
 
