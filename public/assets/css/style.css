@@ -8,6 +8,18 @@
     text-align: center;
   }
 
-  #header {
+  .top-bar.topbar-sticky-shrink{
     background-color: rgb(173, 187, 162) ;
+    color: rgb(104,123,136);
+  }
+
+  .register{
+      width: 50%;
+      display: block;
+      margin: 0 auto;
+  }
+
+  #startButton {
+      display: block;
+      margin: 0 auto;
   }
