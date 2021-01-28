@@ -26,7 +26,9 @@ router.get("/:user", function (req, res) {
 
 router.get("/:user/plant/:plant", function (req, res) {
     console.log(req.params.plant);
-    res.json(helpers.addWatered(tempData.userPlantPhotos.plants[1]))
+    res.json(helpers.addWatered(tempData.userPlantPhotos.plants.find(plant => {
+        return plant.id = req.params.plant
+    })))
 })
 
 router.post("/api/user", function (req, res) {
@@ -45,5 +47,11 @@ router.post("/api/plant", function (req, res) {
 //     console.log("trouble creating plant profile" +err.message)
 //     res.status(500).send(err.message);
 // })
+router.delete("/api/:user/plant/:plant", function (req, res) {
+    tempData.userPlantPhotos.plants = tempData.userPlantPhotos.plants.filter(plant => {
+        return plant.id != req.params.plant;
+    })
+    res.json(tempData.userPlantPhotos.plants)
+})
 
 module.exports = router;
