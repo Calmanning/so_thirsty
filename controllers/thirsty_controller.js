@@ -50,6 +50,18 @@ router.get("/addplant", function(req, res){
     res.render("new-plant");
 })
 
+//test axios api
+router.get("/test", function(req, res) {
+    axios.get('https://api.github.com/users/mapbox')
+  .then((response) => {
+    console.log(response.data);
+    console.log(response.status);
+    console.log(response.statusText);
+    console.log(response.headers);
+    console.log(response.config);
+  });
+})
+
 //CREATE a new plant for the user
 router.post("/api/plant", function (req, res) {
     tempData.userPlantPhotos.plants.push(req.body);
