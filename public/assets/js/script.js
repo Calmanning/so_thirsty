@@ -51,7 +51,6 @@ $(document).ready(function () {
     // });
 
     // TODO: Get user info
-    // $("#user-info").on("Submit")
 
 
     // TODO: Treffle API plant search
