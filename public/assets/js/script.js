@@ -20,7 +20,6 @@ $(document).ready(function () {
     // Register user
     $("#newUser").on("submit", function (event) {
         event.preventDefault();
-        alert("HELLOOOO?")
         if (userName.val() && password.val() && confirmPass.val()) {
             console.log("testing on script.js. the user name: " + userName)
             $.ajax({

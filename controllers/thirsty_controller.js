@@ -51,18 +51,17 @@ router.get("/addplant", ensureAuthenticated, function (req, res) {
 
 //home page
 router.get("/", function (req, res) {
-    const hBarObj = {
-
-    }
-    res.render("register", hBarObj);
+    res.render("register");
 })
+
 //Welcome user page. Need to make a call to grab user's plants
 router.get("/:user", ensureAuthenticated, function (req, res) {    
     db.User.findOne(
         {
             where:{
                 userName: req.session.user.userName
-            }
+            },
+            include: [db.Plant]
         }).then(data => {
             console.log('db data: ', data.dataValues);
             res.render("index", data.dataValues)
@@ -72,9 +71,16 @@ router.get("/:user", ensureAuthenticated, function (req, res) {
 // READ/get user's specific plants
 router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
     console.log(req.params.plant);
-    res.render("plant-profile", helpers.addWatered(tempData.userPlantPhotos[0].plants.find(plant => {
-        return plant.id = req.params.plant
-    })))
+    // res.render("plant-profile", helpers.addWatered(tempData.userPlantPhotos[0].plants.find(plant => {
+    //     return plant.id = req.params.plant
+    // })))
+    db.Plant.findAll({
+        where:{
+            UserId: req.session.id
+        }
+    }).then(function(data){
+        res.render("plant-profile", data);
+    })
 })
 //UPDATE Plant info
 router.put("/:user/plant/:plant/", function (req, res) {
@@ -147,9 +153,25 @@ function getPlantByID(plantId) {
 
 
 //CREATE a new plant for the user
-router.post("/api/plant", ensureAuthenticated, function (req, res) {
-    tempData.userPlantPhotos.plants.push(req.body);
-    res.json(tempData.userPlantPhotos);
+router.post("/api/plant", ensureAuthenticated, async function (req, res) {
+    // tempData.userPlantPhotos.plants.push(req.body);
+    // res.json(tempData.userPlantPhotos);
+    db.Plant.create({
+        UserId: req.session.user.id,
+        commonName: req.body.commonName,
+        nickname: req.body.nickname,
+        scientificName: req.body.scientificName,
+        notes: req.body.notes,
+        waterFrequency: parseInt(req.body.waterFrequency),
+        lastWatered: moment(),
+        trefleId: req.body.trefleId
+    }).then(async function(data){
+        if(req.body.treflePhoto){
+            const photoData = await addPhoto(data.insertId, req.body.treflePhoto);
+            data.photo = photoData;
+        }
+        res.json(data)
+    })
 })
 // .catch(err => {
 //     console.log("trouble creating plant profile" +err.message)
@@ -157,17 +179,22 @@ router.post("/api/plant", ensureAuthenticated, function (req, res) {
 // })
 
 //Adding a plant photo...kinda
-router.post("/api/:plant/:img", ensureAuthenticated, function (req, res) {
-
-    return res.send("Hey, that's a great photo")
+router.post("/api/plant/:plant/img", ensureAuthenticated,  async function (req, res) {
+    const data = await addPhoto(req.params.plant, req.body.image)
 })
 
 //DELETE a plant
 router.delete("/api/:user/plant/:plant", ensureAuthenticated, function (req, res) {
-    tempData.userPlantPhotos.plants = tempData.userPlantPhotos.plants.filter(plant => {
-        return plant.id != req.params.plant;
+    // tempData.userPlantPhotos.plants = tempData.userPlantPhotos.plants.filter(plant => {
+    //     return plant.id != req.params.plant;
+    // })
+    db.Plant.destroy({
+        where: {
+            id: req.params.plant
+        }
+    }).then(function(data){
+        res.json(data)
     })
-    res.json(tempData.userPlantPhotos.plants)
 })
 
 function ensureAuthenticated(req, res, next) {
@@ -182,6 +209,15 @@ function ensureAuthenticated(req, res, next) {
         res.redirect("/signin")
     }
 
+}
+
+async function addPhoto(id, url){
+    const data = await constdb.Photo.create({
+        PlantId: id,
+        url: url
+    })
+
+    return data;
 }
 
 module.exports = router;
