@@ -106,31 +106,44 @@ router.post("/api/user", function (req, res) {
 
 
 
-
-//api call for plant info
+const plantId = ""
+//api call for to get plant info by name (and it's trefle ID)
 router.get("/api/search/:plantName", ensureAuthenticated, function (req, res) {
-    res.json(tempData.apiSearch)
+    const key = "RFxyA90U90mDUshDMP8y-PiyRafTF254xr72BbWqlPQ"
+    const plantName = req.params.val
+    
+    axios.get(`https://trefle.io/api/v1/plants/search?q=${plantName}&token=${key}`)
+    .then((response) => {
+        console.log(response.data);
+        console.log(response.status);
+        console.log(response.statusText);
+        console.log(response.headers);
+        console.log(response.config);
+        res.json(response);
+    })
 })
 
 
 
 
 //axios get request to trefle based on plant id
-router.get("/api/search", ensureAuthenticated, function (req, res) {
-    const trefKEY = "RFxyA90U90mDUshDMP8y-PiyRafTF254xr72BbWqlPQ"
-    const plantId = req.params.id
+function getPlantByID(plantId) {
+ router.get("/api/searchById", ensureAuthenticated, function (req, res) {
+    const key = "RFxyA90U90mDUshDMP8y-PiyRafTF254xr72BbWqlPQ"
+    // const plantId = req.params.id
     //"139820"
 
-    axios.get(`https://trefle.io/api/v1/plants/${plantId}?token=${trefKEY}`)
+    axios.get(`https://trefle.io/api/v1/plants/${plantId}?token=${key}`)
         .then((response) => {
             console.log(response.data);
             console.log(response.status);
             console.log(response.statusText);
             console.log(response.headers);
             console.log(response.config);
-            res.status(200).send(response.data);
+            res.status(200).send(res.json(response));
         });
 })
+}
 
 
 //CREATE a new plant for the user
@@ -149,6 +162,7 @@ router.post("/api/:plant/:img", ensureAuthenticated, function (req, res) {
     return res.send("Hey, that's a great photo")
 })
 
+//DELETE a plant
 router.delete("/api/:user/plant/:plant", ensureAuthenticated, function (req, res) {
     tempData.userPlantPhotos.plants = tempData.userPlantPhotos.plants.filter(plant => {
         return plant.id != req.params.plant;
