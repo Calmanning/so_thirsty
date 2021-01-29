@@ -105,7 +105,7 @@ frequencyMap = precipitation => {
 const filterObj = objToFilter => {
 
     let newObj = {}
-    function iterate(obj, parent = "") {
+    const iterate = (obj, parent = "") => {
         for (var property in obj) {
             if (obj.hasOwnProperty(property)) {
                 if (typeof obj[property] != "object") {
