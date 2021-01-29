@@ -8,20 +8,21 @@ $(document).ready(function () {
     var confirmPass = $("#confirmPassword");
     // Text boxes in new plant page
     var nickname = $("#nickname");
-    var commonName = $("#commonName")
-    var scientificName = $("#scientificName")
-    var waterFreq = $("#waterFreq")
-    var conditions = $("#conditions")
-    var plantNotes = $("#plantNotes")
-    var searchBox = $("#searchBox")
-    var searchBtn = $("#searchBtn")
-    var resultsBox = $("#resultsBox")
-    var selectPlant = $("#selectPlant")
+    var commonName = $("#commonName");
+    var scientificName = $("#scientificName");
+    var waterFreq = $("#waterFreq");
+    var conditions = $("#conditions");
+    var plantNotes = $("#plantNotes");
+    var searchBox = $("#searchBox");
+    var searchBtn = $("#searchBtn");
+    var resultsBox = $("#resultsBox");
+    var selectPlant = $("#selectPlant");
+    var trefleId = $("#trefleId");
 
     // Register user
     $("#newUser").on("submit", function (event) {
         event.preventDefault();
-        alert("HELLOOOO?")
+        alert("Logging in...?")
         if (userName.val() && password.val() && confirmPass.val()) {
             console.log("testing on script.js. the user name: " + userName)
             $.ajax({
@@ -58,6 +59,7 @@ $(document).ready(function () {
 
 
     // TODO: Treffle API plant search
+    
 
 
     // Search for a plant by name
@@ -93,6 +95,7 @@ $(document).ready(function () {
             scientificName.val(data.data.scientific_name);
             waterFreq.val(frequencyMap(data.data.main_species.growth.minimum_precipitation));
             conditions.val(filterObj(data.data.growth));
+            trefleId.val(data.data.id);
         });
     });
 
