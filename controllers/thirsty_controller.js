@@ -129,7 +129,7 @@ router.get("/api/search", ensureAuthenticated, function (req, res) {
 
 
 //CREATE a new plant for the user
-router.post("/api/plant", ensureAuthenticated, function (req, res) {
+router.post("/api/plant", ensureAuthenticated, async function (req, res) {
     // tempData.userPlantPhotos.plants.push(req.body);
     // res.json(tempData.userPlantPhotos);
     db.Plant.create({
@@ -141,7 +141,11 @@ router.post("/api/plant", ensureAuthenticated, function (req, res) {
         waterFrequency: parseInt(req.body.waterFrequency),
         lastWatered: moment(),
         trefleId: req.body.trefleId
-    }).then(function(data){
+    }).then(async function(data){
+        if(req.body.treflePhoto){
+            const photoData = await addPhoto(data.insertId, req.body.treflePhoto);
+            data.photo = photoData;
+        }
         res.json(data)
     })
 })
@@ -151,9 +155,8 @@ router.post("/api/plant", ensureAuthenticated, function (req, res) {
 // })
 
 //Adding a plant photo...kinda
-router.post("/api/:plant/:img", ensureAuthenticated, function (req, res) {
-
-    return res.send("Hey, that's a great photo")
+router.post("/api/plant/:plant/img", ensureAuthenticated,  async function (req, res) {
+    const data = await addPhoto(req.params.plant, req.body.image)
 })
 
 router.delete("/api/:user/plant/:plant", ensureAuthenticated, function (req, res) {
@@ -181,6 +184,15 @@ function ensureAuthenticated(req, res, next) {
         res.redirect("/signin")
     }
 
+}
+
+async function addPhoto(id, url){
+    const data = await constdb.Photo.create({
+        PlantId: id,
+        url: url
+    })
+
+    return data;
 }
 
 module.exports = router;
