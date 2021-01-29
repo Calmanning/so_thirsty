@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
     scientificName: DataTypes.STRING,
     waterFrequency: DataTypes.INTEGER,
     notes: DataTypes.TEXT,
-    trefleId: DataTypes.STRING    
+    trefleId: DataTypes.STRING,
+    lastWatered: DataTypes.DATE    
   });
 
   Plant.associate = function(models){

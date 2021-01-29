@@ -51,18 +51,17 @@ router.get("/addplant", ensureAuthenticated, function (req, res) {
 
 //home page
 router.get("/", function (req, res) {
-    const hBarObj = {
-
-    }
-    res.render("register", hBarObj);
+    res.render("register");
 })
+
 //Welcome user page. Need to make a call to grab user's plants
 router.get("/:user", ensureAuthenticated, function (req, res) {    
     db.User.findOne(
         {
             where:{
                 userName: req.session.user.userName
-            }
+            },
+            include: [db.Plant]
         }).then(data => {
             console.log('db data: ', data.dataValues);
             res.render("index", data.dataValues)
@@ -72,9 +71,16 @@ router.get("/:user", ensureAuthenticated, function (req, res) {
 // READ/get user's specific plants
 router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
     console.log(req.params.plant);
-    res.render("plant-profile", helpers.addWatered(tempData.userPlantPhotos[0].plants.find(plant => {
-        return plant.id = req.params.plant
-    })))
+    // res.render("plant-profile", helpers.addWatered(tempData.userPlantPhotos[0].plants.find(plant => {
+    //     return plant.id = req.params.plant
+    // })))
+    db.Plant.findAll({
+        where:{
+            UserId: req.session.id
+        }
+    }).then(function(data){
+        res.render("plant-profile", data);
+    })
 })
 //CREATE a new user name
 router.post("/api/user", function (req, res) {
