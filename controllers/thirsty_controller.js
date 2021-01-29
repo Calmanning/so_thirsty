@@ -62,7 +62,9 @@ router.get("/api/search/:plantName", function (req, res) {
 //axios get request to trefle based on plant id
 router.get("/api/search", function (req, res) {
     const trefKEY = "RFxyA90U90mDUshDMP8y-PiyRafTF254xr72BbWqlPQ"
-    const plantId = "139820"
+    const plantId = req.params.id;
+    // 139820
+
 
     axios.get(`https://trefle.io/api/v1/plants/${plantId}?token=${trefKEY}`)
         .then((response) => {
