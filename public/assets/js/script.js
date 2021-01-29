@@ -83,22 +83,42 @@ $(document).ready(function () {
 
     // TODO: Upload photo
 
-    // TODO: Fill create form
-
-    frequencyMap = precipitation => {
-
-        let frequency;
-
-        if (precipitation) {
-
-            frequency = (1 / precipitation) * 800;
-            frequency = Math.round(frequency);
-
-        }
-        else {
-            frequency = 3;
-        }
-        return Math.max(1, frequency);
-    }
+    // TODO: Fill create form    
 
 });
+
+frequencyMap = precipitation => {
+
+    let frequency;
+
+    if (precipitation) {
+
+        frequency = (1 / precipitation) * 800;
+        frequency = Math.round(frequency);
+
+    }
+    else {
+        frequency = 3;
+    }
+    return Math.max(1, frequency);
+}
+const filterObj = objToFilter => {
+
+    let newObj = {}
+    function iterate(obj, parent = "") {
+        for (var property in obj) {
+            if (obj.hasOwnProperty(property)) {
+                if (typeof obj[property] != "object") {
+                    newObj[parent + property] = obj[property];
+                } else {
+                    iterate(obj[property], parent + property + " ");
+                }
+            }
+        }
+        return obj;
+    }
+    iterate(objToFilter)
+    let returnString = JSON.stringify(newObj, null, 1)
+    returnString = returnString.substring(2, returnString.length-1) 
+    return returnString;
+}
