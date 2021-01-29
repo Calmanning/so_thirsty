@@ -15,6 +15,7 @@ $(document).ready(function () {
     var searchBox = $("#searchBox")
     var searchBtn = $("#searchBtn")
     var resultsBox = $("#resultsBox")
+    var selectPlant = $("#selectPlant")
 
     // Register user
     $("#new-user").on("Submit", function (event) {
@@ -56,7 +57,7 @@ $(document).ready(function () {
     // TODO: Treffle API plant search
 
 
-    // Create plant
+    // Search for a plant by name
     searchBtn.on("click", function () {
         $.ajax({
             method: "GET",
@@ -78,20 +79,30 @@ $(document).ready(function () {
         });
     });
 
+    // Populate Create Plant form
     $(document).on("click", ".resultsButton", function (target) {
         $.ajax({
             method: "GET",
             url: "/api/search/" + target.data("id")
         }).then(function (data) {
             console.log(data);
-        })
-    })
+            commonName.val(data.data.common_name);
+            scientificName.val(data.data.scientific_name);
+            waterFreq.val(frequencyMap(data.data.main_species.growth.minimum_precipitation));
+            conditions.val(data.data.growth)
+        });
+    });
 
     // TODO: Upload photo
 
-    // TODO: Fill create form
-    // resultsBox.on("click" function () {
-
+    // resultsBox.on("click", function () {
+    //     $.ajax({
+    //         method: "GET",
+    //         url: "/api/search/" + selectPlant.val()
+    //     }).then(function (data) {
+    //         console.log(data);
+    //         $(commonName).push(common_name).val();
+    //     })
     // })
 
 
