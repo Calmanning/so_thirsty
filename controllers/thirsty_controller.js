@@ -15,7 +15,7 @@ const axios = require('axios')
 // Routes
 
 
-//test axios api
+
 
 
 router.get("/addplant", function (req, res) {
@@ -39,7 +39,7 @@ router.get("/:user", function (req, res) {
 // READ/get user's specific plants
 router.get("/:user/plant/:plant", function (req, res) {
     console.log(req.params.plant);
-    res.json(helpers.addWatered(tempData.userPlantPhotos.plants.find(plant => {
+    res.render("plant-profile", helpers.addWatered(tempData.userPlantPhotos[0].plants.find(plant => {
         return plant.id = req.params.plant
     })))
 })
