@@ -157,10 +157,16 @@ router.post("/api/:plant/:img", ensureAuthenticated, function (req, res) {
 })
 
 router.delete("/api/:user/plant/:plant", ensureAuthenticated, function (req, res) {
-    tempData.userPlantPhotos.plants = tempData.userPlantPhotos.plants.filter(plant => {
-        return plant.id != req.params.plant;
+    // tempData.userPlantPhotos.plants = tempData.userPlantPhotos.plants.filter(plant => {
+    //     return plant.id != req.params.plant;
+    // })
+    db.Plant.destroy({
+        where: {
+            id: req.params.plant
+        }
+    }).then(function(data){
+        res.json(data)
     })
-    res.json(tempData.userPlantPhotos.plants)
 })
 
 function ensureAuthenticated(req, res, next) {
