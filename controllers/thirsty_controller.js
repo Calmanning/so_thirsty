@@ -10,7 +10,13 @@ const tempData = require("../tempObj")
 const helpers = require("../helpers/helpers");
 const temp = require("../tempObj");
 
+const axios = require('axios')
+
 // Routes
+
+
+//test axios api
+
 
 router.get("/addplant", function (req, res) {
     res.render("new-plant");
@@ -53,6 +59,23 @@ router.get("/api/search/:plantName", function (req, res) {
 // route for add plant page
 
 
+//axios get request to trefle based on plant id
+router.get("/api/trefGet", function(req, res) {
+    const trefKEY = "RFxyA90U90mDUshDMP8y-PiyRafTF254xr72BbWqlPQ"
+    const plantId = "139820"
+
+    axios.get(`https://trefle.io/api/v1/plants/${plantId}?token=${trefKEY}`)
+    .then((response) => {
+        console.log(response.data);
+        console.log(response.status);
+        console.log(response.statusText);
+        console.log(response.headers);
+        console.log(response.config);
+        res.status(200).send(response.data);
+  });
+})
+
+
 //CREATE a new plant for the user
 router.post("/api/plant", function (req, res) {
     tempData.userPlantPhotos.plants.push(req.body);
@@ -75,5 +98,6 @@ router.delete("/api/:user/plant/:plant", function (req, res) {
     })
     res.json(tempData.userPlantPhotos.plants)
 })
+
 
 module.exports = router;
