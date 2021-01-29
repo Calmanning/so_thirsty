@@ -1,3 +1,8 @@
+* {
+  border-radius: 3px
+}
+
+
 .footer {
     position: fixed;
     left: 0;
@@ -5,9 +10,18 @@
     width: 100%;
     background-color: rgb(173, 187, 162) ;
     color: rgb(104,123,136);
-    text-align: center;
   }
 
+.footer-li {
+  text-align: center;
+  display: inline;
+  padding: 15px;
+  margin: 10%;
+}
+
+#footer-ul{
+  padding: 1%;
+}
   .top-bar.topbar-sticky-shrink{
     background-color: rgb(173, 187, 162) ;
     color: rgb(104,123,136);
@@ -26,4 +40,12 @@
 
  .science-name {
     text-align: center;
+  }
+
+  .card-section {
+    border-radius: 3px
+  }
+
+  .grid-container {
+    border-radius: 3px
   }
