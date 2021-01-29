@@ -1,15 +1,20 @@
+<form action="/api/plant" method="Post">
+
+    <input id="searchBox" placeholder="Enter Your Search">
+    <div id="resultsBox">
+    </div>
+
+    <input id="nickname" name="nickname" placeholder="nickname"></input><br>
+    <input id="commonName" name="commonName" placeholder="commoname"></input><br>
+    <input id="scientificName" name="scientificName" placeholder="scientific name"></input><br>
+    <input id="waterFreq" name="waterFrequency" placeholder="water frequency"></input><br>
+    <input id="notes" name="notes" placeholder="notes"></input><br>
+    <input id="trefleId" name="trefleId" type="hidden"></input>
+    <input id="treflePhoto" name="treflePhoto" type="hidden"></input>
 
 
-<input id="searchBox" placeholder="Enter Your Search">
-<div id="resultsBox">
-</div>
-
-<input id="nickname" placeholder="nickname"></input><br>
-<input id="commonName" placeholder="commoname"></input><br>
-<input id="scientificName" placeholder="scientific name"></input><br>
-<input id="waterFreq" placeholder="water frequency"></input><br>
-<input id="conditions" placeholder="conditions"></input><br>
-<input id="notes" placeholder="notes"></input><br>
+    <button id="searchBtn">Search for a plant!</button>
+    <button id="addBtn" type="Submit">Add a plant!</button>
 
 
-<button id="searchBtn">Search for a plant!</button>
+</form>

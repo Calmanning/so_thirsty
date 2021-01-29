@@ -59,11 +59,12 @@ $(document).ready(function () {
 
 
     // TODO: Treffle API plant search
-    
+
 
 
     // Search for a plant by name
-    searchBtn.on("click", function () {
+    searchBtn.on("click", function (event) {
+        event.preventDefault();
         $.ajax({
             method: "GET",
             url: "/api/search/" + searchBox.val()

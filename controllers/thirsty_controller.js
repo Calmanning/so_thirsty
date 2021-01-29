@@ -34,7 +34,7 @@ router.post("/signin", function (req, res) {
                     name: data.name,
                     userName: data.userName
                 }
-                res.redirect("/"+ req.session.user.userName)
+                res.redirect("/" + req.session.user.userName)
                 // res.redirect("/"+ req.userName)
             }
             else {
@@ -57,16 +57,16 @@ router.get("/", function (req, res) {
     res.render("register", hBarObj);
 })
 //Welcome user page. Need to make a call to grab user's plants
-router.get("/:user", ensureAuthenticated, function (req, res) {    
+router.get("/:user", ensureAuthenticated, function (req, res) {
     db.User.findOne(
         {
-            where:{
+            where: {
                 userName: req.session.user.userName
             }
         }).then(data => {
             console.log('db data: ', data.dataValues);
             res.render("index", data.dataValues)
-        })    
+        })
 })
 
 // READ/get user's specific plants
@@ -81,7 +81,7 @@ router.put("/:user/plant/:plant/", function (req, res) {
     console.log("making an update.");
     tempData.userPlantPhotos.plants = tempData.userPlantPhotos.plants.filter(plant => {
         return plant.id === req.params.plant;
-       
+
     })
     res.render("plant-profile", tempData.userPlantPhotos.plants)
 })
@@ -111,35 +111,26 @@ const plantId = ""
 router.get("/api/search/:plantName", ensureAuthenticated, function (req, res) {
     const key = "RFxyA90U90mDUshDMP8y-PiyRafTF254xr72BbWqlPQ"
     const plantName = req.params.val
-    
+
     axios.get(`https://trefle.io/api/v1/plants/search?q=${plantName}&token=${key}`)
-    .then((response) => {
-        console.log(response.data);
-        console.log(response.status);
-        console.log(response.statusText);
-        console.log(response.headers);
-        console.log(response.config);
-        res.json(response);
-    })
+        .then((response) => {
+            console.log(response.data);
+            console.log(response.status);
+            console.log(response.statusText);
+            console.log(response.headers);
+            console.log(response.config);
+            res.json(response);
+        })
 })
 
 
 
 
 //axios get request to trefle based on plant id
-<<<<<<< HEAD
-router.get("/api/search", ensureAuthenticated, function (req, res) {
-    const trefKEY = "RFxyA90U90mDUshDMP8y-PiyRafTF254xr72BbWqlPQ"
-    const plantId = req.params.id;
-    // 139820
-
-=======
-function getPlantByID(plantId) {
- router.get("/api/searchById", ensureAuthenticated, function (req, res) {
+router.get("/api/searchById", ensureAuthenticated, function (req, res) {
     const key = "RFxyA90U90mDUshDMP8y-PiyRafTF254xr72BbWqlPQ"
-    // const plantId = req.params.id
+    const plantId = req.params.id
     //"139820"
->>>>>>> 424e944865c118543d04fc0ed74bc62b58c7393c
 
     axios.get(`https://trefle.io/api/v1/plants/${plantId}?token=${key}`)
         .then((response) => {
@@ -151,7 +142,7 @@ function getPlantByID(plantId) {
             res.status(200).send(res.json(response));
         });
 })
-}
+
 
 
 //CREATE a new plant for the user
