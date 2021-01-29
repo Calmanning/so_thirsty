@@ -39,11 +39,7 @@ router.get("/:user", function (req, res) {
 // READ/get user's specific plants
 router.get("/:user/plant/:plant", function (req, res) {
     console.log(req.params.plant);
-<<<<<<< HEAD
-    res.json(helpers.addWatered(tempData.userPlantPhotos[0].plants.find(plant => {
-=======
     res.render("plant-profile", helpers.addWatered(tempData.userPlantPhotos[0].plants.find(plant => {
->>>>>>> b5e6a1be9762a02c724fc05c6547ef38fd300741
         return plant.id = req.params.plant
     })))
 })
