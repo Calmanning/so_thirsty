@@ -130,8 +130,20 @@ router.get("/api/search", ensureAuthenticated, function (req, res) {
 
 //CREATE a new plant for the user
 router.post("/api/plant", ensureAuthenticated, function (req, res) {
-    tempData.userPlantPhotos.plants.push(req.body);
-    res.json(tempData.userPlantPhotos);
+    // tempData.userPlantPhotos.plants.push(req.body);
+    // res.json(tempData.userPlantPhotos);
+    db.Plant.create({
+        UserId: req.session.user.id,
+        commonName: req.body.commonName,
+        nickname: req.body.nickname,
+        scientificName: req.body.scientificName,
+        notes: req.body.notes,
+        waterFrequency: parseInt(req.body.waterFrequency),
+        lastWatered: moment(),
+        trefleId: req.body.trefleId
+    }).then(function(data){
+        res.json(data)
+    })
 })
 // .catch(err => {
 //     console.log("trouble creating plant profile" +err.message)
