@@ -89,7 +89,7 @@ $(document).ready(function () {
             commonName.val(data.data.common_name);
             scientificName.val(data.data.scientific_name);
             waterFreq.val(frequencyMap(data.data.main_species.growth.minimum_precipitation));
-            conditions.val(data.data.growth)
+            conditions.val(filterObj(data.data.growth));
         });
     });
 
@@ -140,6 +140,6 @@ const filterObj = objToFilter => {
     }
     iterate(objToFilter)
     let returnString = JSON.stringify(newObj, null, 1)
-    returnString = returnString.substring(2, returnString.length-1) 
+    returnString = returnString.substring(2, returnString.length - 1)
     return returnString;
 }
