@@ -49,3 +49,11 @@
   .grid-container {
     border-radius: 3px
   }
+
+  .btn {
+    border-radius: 3px;
+    border: solid 2px rgb(104,123,136);
+    padding: 4px;
+    background-color: rgb(173, 187, 162);
+    color: rgb(104,123,136)
+  }
