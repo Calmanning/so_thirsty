@@ -36,13 +36,24 @@ router.get("/:user", function (req, res) {
     }))
 })
 
-// READ/get user's specific plants
+// READ -- get user's specific plants
 router.get("/:user/plant/:plant", function (req, res) {
     console.log(req.params.plant);
     res.render("plant-profile", helpers.addWatered(tempData.userPlantPhotos[0].plants.find(plant => {
         return plant.id = req.params.plant
     })))
 })
+//UPDATE Plant info
+router.put("/:user/plant/:plant/", function (req, res) {
+    console.log("making an update.");
+    tempData.userPlantPhotos.plants = tempData.userPlantPhotos.plants.filter(plant => {
+        return plant.id === req.params.plant;
+       
+    })
+    res.render("plant-profile", tempData.userPlantPhotos.plants)
+})
+
+
 //CREATE a new user name
 router.post("/api/user", function (req, res) {
     const newUser = req.body;
@@ -56,7 +67,7 @@ router.get("/api/search/:plantName", function (req, res) {
     res.json(tempData.apiSearch)
 })
 
-// route for add plant page
+
 
 
 //axios get request to trefle based on plant id
@@ -87,12 +98,12 @@ router.post("/api/plant", function (req, res) {
 //     res.status(500).send(err.message);
 // })
 
-//Adding a plant photo...kinda
+//POSTING a plant photo...kinda
 router.post("/api/:plant/:img", function (req, res) {
 
     return res.send("Hey, that's a great photo")
 })
-
+//DELETE a plant
 router.delete("/api/:user/plant/:plant", function (req, res) {
     tempData.userPlantPhotos.plants = tempData.userPlantPhotos.plants.filter(plant => {
         return plant.id != req.params.plant;
