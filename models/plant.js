@@ -4,9 +4,14 @@ module.exports = function(sequelize, DataTypes) {
     commonName: DataTypes.STRING,
     scientificName: DataTypes.STRING,
     waterFrequency: DataTypes.INTEGER,
-    conditions: DataTypes.TEXT,
     notes: DataTypes.TEXT,
     trefleId: DataTypes.STRING    
   });
+
+  Plant.associate = function(models){
+    Plant.belongsTo(models.User);
+    Plant.hasMany(models.Photo)
+  }
+
   return Plant;
 };
