@@ -39,7 +39,7 @@ router.get("/:user", function (req, res) {
 // READ/get user's specific plants
 router.get("/:user/plant/:plant", function (req, res) {
     console.log(req.params.plant);
-    res.json(helpers.addWatered(tempData.userPlantPhotos.plants.find(plant => {
+    res.render("plant-profile", helpers.addWatered(tempData.userPlantPhotos.plants.find(plant => {
         return plant.id = req.params.plant
     })))
 })
@@ -60,7 +60,7 @@ router.get("/api/search/:plantName", function (req, res) {
 
 
 //axios get request to trefle based on plant id
-router.get("/api/trefGet", function(req, res) {
+router.get("/api/search", function(req, res) {
     const trefKEY = "RFxyA90U90mDUshDMP8y-PiyRafTF254xr72BbWqlPQ"
     const plantId = "139820"
 
