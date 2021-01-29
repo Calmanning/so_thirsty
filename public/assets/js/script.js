@@ -2,6 +2,7 @@
 
 // Client js api calls
 $(document).ready(function () {
+    var name = $("#name")
     var userName = $("#userName");
     var password = $("#password");
     var confirmPass = $("#confirmPassword");
@@ -17,14 +18,16 @@ $(document).ready(function () {
     var resultsBox = $("#resultsBox")
 
     // Register user
-    $("#new-user").on("Submit", function (event) {
+    $("#newUser").on("submit", function (event) {
         event.preventDefault();
+        alert("HELLOOOO?")
         if (userName.val() && password.val() && confirmPass.val()) {
             console.log("testing on script.js. the user name: " + userName)
             $.ajax({
                 method: "POST",
                 url: "/api/user",
                 data: {
+                    name: name.val(),
                     userName: userName.val(),
                     password: password.val()
                 }
