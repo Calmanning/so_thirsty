@@ -58,11 +58,8 @@ $(document).ready(function () {
     // TODO: Get user info
 
 
-    // TODO: Treffle API plant search
-
-
-
-    // Search for a plant by name
+    // Treffle API plant search
+    // Search for a plant by it's common name
     searchBtn.on("click", function (event) {
         event.preventDefault();
         console.log(searchBox.val());
@@ -119,7 +116,6 @@ $(document).ready(function () {
 });
 
 frequencyMap = precipitation => {
-    // return 3;
     let frequency = 3;
 
     if (typeof precipitation === "number") {
