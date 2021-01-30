@@ -12,6 +12,8 @@ const temp = require("../tempObj");
 
 const axios = require('axios')
 
+const cloudinary = require("cloudinary");
+
 require('dotenv').config()
 
 // =========================================================================
@@ -145,9 +147,46 @@ router.delete("/api/:user/plant/:plant", ensureAuthenticated, function (req, res
 // Photo Routes
 // =======================================================================
 
-//Adding a plant photo...kinda
-router.post("/api/plant/:plant/img", ensureAuthenticated, async function (req, res) {
-    const data = await addPhoto(req.params.plant, req.body.image)
+// get photo to upload
+router.get("/:user/plant/:plant/addphoto", ensureAuthenticated, function(req, res){
+    db.Plant.findOne({
+        where:{
+            id: req.params.plant
+        }
+    }).then(data => {
+        // console.log('plant data: ', data);
+        res.render("addphoto", data);
+    })
+    
+})
+
+//Adding a plant photo
+router.post("/api/plant/img", ensureAuthenticated, async function (req, res) {
+    console.log('hello from post /api/uploadimg');
+
+    try{
+        const file = req.body.data;
+
+        cloudinary.config({
+            cloud_name: "drantho",
+            api_key: process.env.CLOUDINARY_API_KEY,
+            api_secret: process.env.CLOUDINARY_API_SECRET
+        });
+
+        const uploadedResponse = await cloudinary.uploader.upload(file);        
+
+        console.log('uploadedResponse: ', uploadedResponse);
+
+        console.log(await addPhoto(req.session.user.id, uploadedResponse.url))
+
+        console.log(`attempting to redirect to /${req.session.user.userName}/plant/${req.body.id}`);
+        return res.json({href: `/${req.session.user.userName}/plant/${req.body.id}`});
+    }catch(err){
+        console.log(err);
+        return res.status(500).json(err)
+    }
+
+    // const data = await addPhoto(req.params.plant, req.body.image)
 })
 
 async function addPhoto(id, url) {
