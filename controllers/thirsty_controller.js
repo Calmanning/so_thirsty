@@ -110,9 +110,9 @@ router.post("/api/plant", ensureAuthenticated, async function (req, res) {
 
 // View single plant
 router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
-    db.Plant.findAll({
+    db.Plant.findOne({
         where: {
-            UserId: req.session.id
+            UserId: req.body.Plant
         }
     }).then(function (data) {
         res.render("plant-profile", data);
