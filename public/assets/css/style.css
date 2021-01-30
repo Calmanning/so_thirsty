@@ -2,6 +2,10 @@
   border-radius: 3px
 }
 
+#body {
+  background-color: rgb(173, 187, 162, 0.2)
+}
+
 
 .footer {
     position: fixed;
@@ -10,6 +14,7 @@
     width: 100%;
     background-color: rgb(173, 187, 162) ;
     color: rgb(104,123,136);
+    
   }
 
 .footer-li {
@@ -25,6 +30,7 @@
   .top-bar.topbar-sticky-shrink{
     background-color: rgb(173, 187, 162) ;
     color: rgb(104,123,136);
+    
   }
 
   .register{
@@ -43,7 +49,8 @@
   }
 
   .card-section {
-    border-radius: 3px
+    border-radius: 3px;
+    box-shadow: 2px 5px 5px 1px;
   }
 
   .grid-container {
@@ -54,6 +61,19 @@
     border-radius: 3px;
     border: solid 2px rgb(104,123,136);
     padding: 4px;
-    background-color: rgb(173, 187, 162);
-    color: rgb(104,123,136)
+    background-color: rgb(173, 187, 162, 0.2);
+    color: rgb(93, 100, 87);
+    box-shadow: 1px 1px 1px;
+  }
+
+  .btn:hover {background-color: #99b49a}
+
+  .btn:active {
+    background-color: #697a6a;
+    box-shadow: 0 5px #666;
+  }
+
+  .img {
+    width: 200px;
+    height: 200px;
   }

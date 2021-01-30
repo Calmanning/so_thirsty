@@ -17,19 +17,26 @@
   </li>
 </ul>
 
+
+<br>
 <div class="grid-container">
   <div class="grid-x grid-margin-x small-up-2 medium-up-3">
+    {{#each Plants}}
     <div class="cell medium-2 small-2">
       <div class="card">
-        <h4>Name</h4>
-         <div class="card-section">
-        <a href="../plant-profile.handlebars"><img src="https://place-puppy.com/150x150"></a>
+        <h4>{{dataValues.nickname}}</h4>
+        <div class="card-section">
+          <a href="../plant-profile.handlebars">
+          {{#each Photos}}
+            <img class ="img" src={{dataValues.url}}>
+            {{/each}}</a>
         </div>
         <div class="card-section">
-            <button class="btn">Just watered!</button>
+          <button class="btn">Just watered!</button>
         </div>
       </div>
-    </div> 
+    </div>
+{{/each}}
   </div>
 </div>
 
@@ -37,6 +44,10 @@
 
 </h1>
 
+{{!-- {{#each Plants}}
+{{dataValues.nickname}}<br>
+{{dataValues.commonName}}<br>
+{{dataValues.scientificName}}<br>
 {{#each Plants}}
 <hr>
 <strong>Nickname: </strong>{{dataValues.nickname}}<br>
@@ -53,4 +64,4 @@
 {{#each Photos}}
 <img src="{{dataValues.url}}" style="width: 200px" alt="">
 {{/each}}
-{{/each}}
+{{/each}} --}}
