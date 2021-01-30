@@ -115,8 +115,10 @@ router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
     db.Plant.findOne({
         where: {
             id: req.params.plant
-        }
+        },
+        include: [db.Photo, db.User]
     }).then(function (data) {
+        console.log("plant-data", data);
         res.render("plant-profile", data);
     })
 })
@@ -182,7 +184,7 @@ router.get("/:user/plant/:plant/addphoto", ensureAuthenticated, function(req, re
 
 //Adding a plant photo
 router.post("/api/plant/img", ensureAuthenticated, async function (req, res) {
-    console.log('hello from post /api/uploadimg');
+    // console.log('hello from post /api/uploadimg');
 
     try{
         const file = req.body.data;
@@ -197,7 +199,7 @@ router.post("/api/plant/img", ensureAuthenticated, async function (req, res) {
 
         console.log('uploadedResponse: ', uploadedResponse);
 
-        console.log(await addPhoto(req.session.user.id, uploadedResponse.url))
+        console.log(await addPhoto(uploadedResponse.id, uploadedResponse.url))
 
         console.log(`attempting to redirect to /${req.session.user.userName}/plant/${req.body.id}`);
         return res.json({href: `/${req.session.user.userName}/plant/${req.body.id}`});
@@ -210,6 +212,7 @@ router.post("/api/plant/img", ensureAuthenticated, async function (req, res) {
 })
 
 async function addPhoto(id, url) {
+    // console.log(`addPhoto(${id}, ${url}) fires`);
     const data = await db.Photo.create({
         PlantId: id,
         url: url
@@ -261,7 +264,7 @@ router.get("/:user", ensureAuthenticated, function (req, res) {
         }).then(data => {
             // console.log('db data: ', data.dataValues);
             const dataToSend = helpers.addWatered(data.dataValues)
-            console.log('Formatted data: ', dataToSend);
+            // console.log('Formatted data: ', dataToSend);
             res.render("index", dataToSend)
         })
 })

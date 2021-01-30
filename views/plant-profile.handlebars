@@ -26,6 +26,10 @@
   <h5>Recommended Enviromental Conditions:</h5>
 </div>
 
+<div class="callout small">
+  <h5><a href="/{{{dataValues.User.dataValues.userName}}}/plant/{{{dataValues.id}}}/addphoto">Add photo</a></h5>
+</div>
+
 <div class="grid-container">
   <div class="grid-x grid-margin-x small-up-2 medium-up-3">
     <div class="cell">
@@ -39,7 +43,7 @@
     </div>
   </div>
 </div>
-{{#each Photos}}
+{{#each dataValues.Photos}}
 <div class="grid-container">
   <div class="grid-x grid-margin-x small-up-2 medium-up-3">
     <div class="cell">
