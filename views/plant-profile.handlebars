@@ -1,32 +1,25 @@
 <div class="callout">
-  <h5 id="science-name">{{scientificName}} scientific name</h5>
+  <h5 id="science-name"> Scientific Name: {{dataValues.scientificName}}</h5>
 </div>
 
 <div class="callout small">
-  <h5>Last watered:</h5>
+  <h5>Last Watered: {{dataValues.lastWatered}}</h5>
 </div>
 
 <button class="btn">Just watered!</button>
 
 <div class="card" style="width: 75%;">
   <div class="card-divider">
-    <h4>Care Instructions</h4>
-  </div>
-  <div class="card-section">
-    <p>[care instructions]</p>
-    <p>[care instructions]</p>
-    <p>[care instructions]</p>
-    <p>[care instructions]</p>
-    <p>[care instructions]</p>
-    <p>[care instructions]</p>
-    <p>[care instructions]</p>
-    <p>[care instructions]</p>
-    <p>[care instructions]</p>
+    <h4>Notes & Care Instructions</h4>
+    <textarea id="notes" name="notes" rows="4" cols="50">
+      {{dataValues.notes}}
+  </textarea>
+    <br>
   </div>
 </div>
 
 <div class="callout small">
-  <h5>Recommended Water Frequency:</h5>
+  <h5>Recommended Water Frequency: Every {{dataValues.waterFrequency}} days</h5>
 </div>
 
 <div class="callout small">
@@ -39,10 +32,27 @@
       <div class="card">
         <img src="https://place-puppy.com/150x150">
         <div class="card-section">
-        <h4>Date of Picture taken</h4>
+          <h4>Date of Picture taken</h4>
           <p>Possible notes added to each picture upload?</p>
         </div>
       </div>
     </div>
   </div>
 </div>
+{{#each Photos}}
+<div class="grid-container">
+  <div class="grid-x grid-margin-x small-up-2 medium-up-3">
+    <div class="cell">
+      <div class="card">
+        <img src="{{dataValues.url}}" style="width: 200px" alt="">
+        <div class="card-section">
+          {{!-- Wel'll need to see about adding that information from the "photos" table in the DB.  --}}
+          <h4>Date of Picture taken</h4>
+          {{!-- I believe we'll want to add a STRING col to the "photos" table in the DB, for this. --}}
+          <p>Possible notes added to each picture upload?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}

@@ -13,13 +13,15 @@ app.use(express.json());
 
 var exphbs = require("express-handlebars");
 
+require('dotenv').config()
+
 app.engine("handlebars", exphbs({
   defaultLayout: "main"
 }));
 app.set("view engine", "handlebars");
 
 app.use(session({
-  secret: "this is a secret you know what i mean",
+  secret: process.env.USER_SECRET,
   // TODO replace with environment variable for production
   resave: false,
   saveUninitialized: false,
