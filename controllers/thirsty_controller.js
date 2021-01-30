@@ -12,6 +12,8 @@ const temp = require("../tempObj");
 
 const axios = require('axios')
 
+const cloudinary = require("cloudinary");
+
 require('dotenv').config()
 
 // =========================================================================
@@ -110,24 +112,31 @@ router.post("/api/plant", ensureAuthenticated, async function (req, res) {
 
 // View single plant
 router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
-    db.Plant.findAll({
+    db.Plant.findOne({
         where: {
-            UserId: req.session.id
-        }
+            id: req.params.plant
+        },
+        include: [db.Photo, db.User]
     }).then(function (data) {
+        console.log("plant-data", data);
         res.render("plant-profile", data);
     })
 })
 
 //UPDATE a Plant
-router.put("/:user/plant/:plant/", function (req, res) {
-    console.log("making an update.");
-    tempData.userPlantPhotos.plants = tempData.userPlantPhotos.plants.filter(plant => {
-        return plant.id === req.params.plant;
+router.put("/:user/plant/:plant/", function(req, res) {
+    console.log(req.body);
+    db.Plant.update(req.body,
+        {
+            where: {
+                id:req.params.plant
+            }
+        }).
+        then(updatedPlant => {
+            res.render("plant-profile", updatedPlant)        
+        })
 
     })
-    res.render("plant-profile", tempData.userPlantPhotos.plants)
-})
 
 //DELETE a plant
 router.delete("/api/:user/plant/:plant", ensureAuthenticated, function (req, res) {
@@ -145,12 +154,50 @@ router.delete("/api/:user/plant/:plant", ensureAuthenticated, function (req, res
 // Photo Routes
 // =======================================================================
 
-//Adding a plant photo...kinda
-router.post("/api/plant/:plant/img", ensureAuthenticated, async function (req, res) {
-    const data = await addPhoto(req.params.plant, req.body.image)
+// get photo to upload
+router.get("/:user/plant/:plant/addphoto", ensureAuthenticated, function(req, res){
+    db.Plant.findOne({
+        where:{
+            id: req.params.plant
+        }
+    }).then(data => {
+        // console.log('plant data: ', data);
+        res.render("addphoto", data);
+    })
+    
+})
+
+//Adding a plant photo
+router.post("/api/plant/img", ensureAuthenticated, async function (req, res) {
+    // console.log('hello from post /api/uploadimg');
+
+    try{
+        const file = req.body.data;
+
+        cloudinary.config({
+            cloud_name: "drantho",
+            api_key: process.env.CLOUDINARY_API_KEY,
+            api_secret: process.env.CLOUDINARY_API_SECRET
+        });
+
+        const uploadedResponse = await cloudinary.uploader.upload(file);        
+
+        console.log('uploadedResponse: ', uploadedResponse);
+
+        console.log(await addPhoto(uploadedResponse.id, uploadedResponse.url))
+
+        console.log(`attempting to redirect to /${req.session.user.userName}/plant/${req.body.id}`);
+        return res.json({href: `/${req.session.user.userName}/plant/${req.body.id}`});
+    }catch(err){
+        console.log(err);
+        return res.status(500).json(err)
+    }
+
+    // const data = await addPhoto(req.params.plant, req.body.image)
 })
 
 async function addPhoto(id, url) {
+    // console.log(`addPhoto(${id}, ${url}) fires`);
     const data = await db.Photo.create({
         PlantId: id,
         url: url
@@ -202,7 +249,7 @@ router.get("/:user", ensureAuthenticated, function (req, res) {
         }).then(data => {
             // console.log('db data: ', data.dataValues);
             const dataToSend = helpers.addWatered(data.dataValues)
-            console.log('Formatted data: ', dataToSend);
+            // console.log('Formatted data: ', dataToSend);
             res.render("index", dataToSend)
         })
 })

@@ -1,0 +1,49 @@
+<h1>Add a photo for
+    {{{dataValues.nickname}}}
+</h1>
+
+<form>
+
+    <input id="photoInput" type="file" name="image">
+    <input type="hidden" id="hdnId" name="hdnId" value="{{{dataValues.id}}}">
+    <button id="photoBtn" type="button">upload</button>
+</form>
+<img id="preview" alt="preview">
+
+<script>
+    $("#photoBtn").click((e) => {
+        e.preventDefault();
+        const file = $("#photoInput").prop('files')[0];
+        console.log(file)
+
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            uploadPhoto(reader.result)
+        }
+    })
+
+    $("#photoInput").on("change", () => {
+        const file = $("#photoInput").prop('files')[0];
+        console.log(file)
+
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            $("#preview").attr("src", reader.result)
+        }
+    })
+
+    const uploadPhoto = file => {
+        
+        //console.log('reader result in uploadPhoto()')
+        $.post("/api/plant/img",{
+            data: file, 
+            id: $("#hdnId").val()
+        }).then(response => {
+            window.location.href = response.href;
+        }).fail(err => {
+            console.log(err);
+        })
+    }
+</script>
