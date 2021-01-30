@@ -2,7 +2,7 @@
 
 
 
-{{!-- 
+{{!--
 
 <ul class="accordion" data-accordion>
   <li class="accordion-item is-active" data-accordion-item>
@@ -42,33 +42,33 @@
     <div class="cell medium-2 small-2">
       <div class="card">
         <h4>Name</h4>
-         <div class="card-section">
-        <img src="https://place-puppy.com/150x150">
+        <div class="card-section">
+          <img src="https://place-puppy.com/150x150">
         </div>
         <div class="card-section">
-            <button>Just watered!</button>
+          <button>Just watered!</button>
         </div>
       </div>
     </div>
     <div class="cell">
       <div class="card">
-          <h4>Name</h4>
-          <div class="card-section">
-        <img src="https://place-puppy.com/150x150">
+        <h4>Name</h4>
+        <div class="card-section">
+          <img src="https://place-puppy.com/150x150">
         </div>
         <div class="card-section">
-            <button>Just watered!</button>
+          <button>Just watered!</button>
         </div>
       </div>
     </div>
     <div class="cell">
       <div class="card">
-          <h4>Name</h4>
-         <div class="card-section">
-        <img src="https://place-puppy.com/150x150">
+        <h4>Name</h4>
+        <div class="card-section">
+          <img src="https://place-puppy.com/150x150">
         </div>
         <div class="card-section">
-            <button>Just watered!</button>
+          <button>Just watered!</button>
         </div>
       </div>
     </div>
@@ -79,33 +79,33 @@
     <div class="cell">
       <div class="card">
         <h4>Name</h4>
-         <div class="card-section">
-        <img src="https://place-puppy.com/150x150">
+        <div class="card-section">
+          <img src="https://place-puppy.com/150x150">
         </div>
         <div class="card-section">
-            <button>Just watered!</button>
+          <button>Just watered!</button>
         </div>
       </div>
     </div>
     <div class="cell">
       <div class="card">
-          <h4>Name</h4>
+        <h4>Name</h4>
         <div class="card-section">
-        <img src="https://place-puppy.com/150x150">
+          <img src="https://place-puppy.com/150x150">
         </div>
         <div class="card-section">
-            <button>Just watered!</button>
+          <button>Just watered!</button>
         </div>
       </div>
     </div>
     <div class="cell">
       <div class="card">
-          <h4>Name</h4>
-         <div class="card-section">
-        <img src="https://place-puppy.com/150x150">
+        <h4>Name</h4>
+        <div class="card-section">
+          <img src="https://place-puppy.com/150x150">
         </div>
         <div class="card-section">
-            <button>Just watered!</button>
+          <button>Just watered!</button>
         </div>
       </div>
     </div>
@@ -113,11 +113,14 @@
 </div> --}}
 
 <h1>
-  
+
 </h1>
 
 {{#each Plants}}
-  {{dataValues.nickname}}<br>
-  {{dataValues.commonName}}<br>
-  {{dataValues.scientificName}}<br>
+{{dataValues.nickname}}<br>
+{{dataValues.commonName}}<br>
+{{dataValues.scientificName}}<br>
+{{#each Photos}}
+<img src="{{dataValues.url}}" alt="">
+{{/each}}
 {{/each}}

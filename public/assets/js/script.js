@@ -18,6 +18,7 @@ $(document).ready(function () {
     var resultsBox = $("#resultsBox");
     var selectPlant = $("#selectPlant");
     var trefleId = $("#trefleId");
+    var treflePhoto = $("#treflePhoto");
 
     // Register user
     $("#newUser").on("submit", function (event) {
@@ -64,11 +65,12 @@ $(document).ready(function () {
     // Search for a plant by name
     searchBtn.on("click", function (event) {
         event.preventDefault();
+        console.log(searchBox.val());
         $.ajax({
             method: "GET",
             url: "/api/search/" + searchBox.val()
         }).then(function (data) {
-            console.log(data.data);
+            console.log(data);
             for (let i = 0; i < data.data.length; i++) {
                 var container = $("<div>").addClass("searchContainer");
                 $("<p>").text(data.data[i].common_name).appendTo(container);
@@ -85,17 +87,19 @@ $(document).ready(function () {
     });
 
     // Populate Create Plant form
-    $(document).on("click", ".resultsButton", function (target) {
+    $(document).on("click", ".resultsButton", function (event) {
+        event.preventDefault();
         $.ajax({
             method: "GET",
-            url: "/api/search/" + target.data("id")
+            url: "/api/searchById/" + $(this).data("id")
         }).then(function (data) {
-            console.log(data);
+            console.log("=====================", data);
             commonName.val(data.data.common_name);
             scientificName.val(data.data.scientific_name);
             waterFreq.val(frequencyMap(data.data.main_species.growth.minimum_precipitation));
-            conditions.val(filterObj(data.data.growth));
+            conditions.val(filterObj(data.data.main_species.growth));
             trefleId.val(data.data.id);
+            treflePhoto.val(data.data.image_url);
         });
     });
 
@@ -115,11 +119,11 @@ $(document).ready(function () {
 });
 
 frequencyMap = precipitation => {
+    // return 3;
+    let frequency = 3;
 
-    let frequency;
-
-    if (precipitation) {
-
+    if (typeof precipitation === "number") {
+        console.log("this should not be happening!");
         frequency = (1 / precipitation) * 800;
         frequency = Math.round(frequency);
 
@@ -127,7 +131,8 @@ frequencyMap = precipitation => {
     else {
         frequency = 3;
     }
-    return Math.max(1, frequency);
+    console.log(frequency);
+    return frequency;
 }
 const filterObj = objToFilter => {
 
