@@ -1,28 +1,51 @@
-<div class="grid-y">
-     <div class="cell small-6">6 cells
-<form action="/api/plant" method="Post">
-</div>
- <div class="cell small-6">6 cells
-    <input id="searchBox" placeholder="Enter Your Search">
+<div class-"grid-container">
+    <div class="grid-y grid-frame">
+        <form action="/api/plant" method="Post">
+            <div class="cell medium-4">*
+                <input id="searchBox" placeholder="Enter Your Search">
+            </div>
+            <div class="cell medium-4 medium-cell-block-y">*
+                <div id="resultsBox">
+                    {{dataValues.commonName}}<br>
+                    {{dataValues.scientificName}}<br>
+                </div>
+                <div class="cell medium-4">*
+                    <button id="searchBtn" class="btn">Search for a plant!</button>
+                </div>
+
+            </div>
     </div>
 </div>
 
-<div class="grid-y">
-    <input id="nickname" name="nickname" placeholder="nickname"></input><br>
-    <input id="commonName" name="commonName" placeholder="commoname"></input><br>
-    <input id="scientificName" name="scientificName" placeholder="scientific name"></input><br>
-    <input id="waterFreq" name="waterFrequency" placeholder="water frequency"></input><br>
-    <input id="notes" name="notes" placeholder="notes"></input><br>
-    <input id="trefleId" name="trefleId" type="hidden"></input>
-    <input id="treflePhoto" name="treflePhoto" type="hidden"></input>
+
+{{!-- <div class-"grid-container">
+    <div class="grid-y grid-frame">
+        <div class="cell small-2">*
+            <input id="nickname" name="nickname" placeholder="nickname"></input><br>
+        </div>
+        <div class="cell small-2">*
+            <input id="commonName" name="commonName" placeholder="commoname"></input><br>
+        </div>
+        <div class="cell small-2">*
+            <input id="scientificName" name="scientificName" placeholder="scientific name"></input><br>
+        </div>
+        <div class="cell small-2">*
+            <input id="waterFreq" name="waterFrequency" placeholder="water frequency"></input><br>
+        </div>
+        <div class="cell small-2">*
+            <input id="notes" name="notes" placeholder="notes"></input><br>
+        </div>
+        <div class="cell small-2">*
+            <input id="trefleId" name="trefleId" type="hidden"></input>
+            <input id="treflePhoto" name="treflePhoto" type="hidden"></input>
+        </div>
+        <div class="cell small-2">*
+            <button id="addBtn" type="Submit" class="btn">Add a plant!</button>
+        </div> --}}
 
 
-    <button id="searchBtn" class="btn">Search for a plant!</button>
-    <button id="addBtn" type="Submit" class="btn">Add a plant!</button>
+        </form>
 
-    <div id="resultsBox">
 
     </div>
-
-</form>
 </div>
