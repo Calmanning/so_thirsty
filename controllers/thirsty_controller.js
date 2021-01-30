@@ -13,6 +13,7 @@ const temp = require("../tempObj");
 const axios = require('axios')
 
 const cloudinary = require("cloudinary");
+const { string } = require("underscore");
 
 require('dotenv').config()
 
@@ -125,7 +126,6 @@ router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
 
 //UPDATE a Plant's name and notes
 router.put("/:user/plant/:plant/", function(req, res) {
-    console.log(req.body);
     db.Plant.update(req.body,
         {
             where: {
@@ -139,10 +139,14 @@ router.put("/:user/plant/:plant/", function(req, res) {
     })
 
 //UPDATE a plants watered status on PLANT-Profile page
-router.put("/:user/plant/:plant/", (req, res) => {
-    const time = moments 
-    db.Plant.update(req.params.lastWatered,
+router.put("/:user/plant/:plant/water", (req, res) => {
+    let time = moment(); 
+    console.log("time " + time)
+    db.Plant.update({
+        lastWatered: time
+        },
         {
+            
             where: {
                 id:req.params.plant
             }

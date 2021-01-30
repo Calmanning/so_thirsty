@@ -83,7 +83,7 @@ $(document).ready(function () {
                 $("<button>").text("Select this plant").attr("data-id", data.data[i].id).appendTo(container).addClass("resultsButton");
                 resultsBox.append(container);
             };
-        });
+         });
     });
 
     // Populate Create Plant form
