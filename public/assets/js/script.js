@@ -71,11 +71,12 @@ $(document).ready(function () {
             for (let i = 0; i < data.data.length; i++) {
                 var container = $("<div>").addClass("searchContainer");
                 $("<p>").text(data.data[i].common_name).appendTo(container);
-                $("<p>").text(data.data[i].genus).appendTo(container);
                 $("<p>").text(data.data[i].scientific_name).appendTo(container);
-                for (let j = 0; j < data.data[i].synonyms.length; j++) {
-                    $("<p>").text(data.data[i].synonyms[j]).appendTo(container)
-                };
+                $("<p>").text(data.data[i].genus).appendTo(container);
+                $("<p>").text(data.data[i].family).appendTo(container);
+                // for (let j = 0; j < data.data[i].synonyms.length; j++) {
+                //     $("<p>").text(data.data[i].synonyms[j]).appendTo(container)
+                // };
                 $("<img>").attr("src", data.data[i].image_url).appendTo(container);
                 $("<button>").text("Select this plant").attr("data-id", data.data[i].id).appendTo(container).addClass("resultsButton");
                 resultsBox.append(container);
