@@ -200,8 +200,10 @@ router.get("/:user", ensureAuthenticated, function (req, res) {
                 { model: db.Plant, include: [db.Photo] }
             ],
         }).then(data => {
-            console.log('db data: ', data.dataValues);
-            res.render("index", data.dataValues)
+            // console.log('db data: ', data.dataValues);
+            const dataToSend = helpers.addWatered(data.dataValues)
+            console.log('Formatted data: ', dataToSend);
+            res.render("index", dataToSend)
         })
 })
 
