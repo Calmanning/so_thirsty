@@ -72,3 +72,8 @@
     background-color: #697a6a;
     box-shadow: 0 5px #666;
   }
+
+  .img {
+    width: 200px;
+    height: 200px;
+  }
