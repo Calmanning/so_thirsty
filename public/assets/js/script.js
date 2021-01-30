@@ -8,14 +8,17 @@ $(document).ready(function () {
     var confirmPass = $("#confirmPassword");
     // Text boxes in new plant page
     var nickname = $("#nickname");
-    var commonName = $("#commonName")
-    var scientificName = $("#scientificName")
-    var waterFreq = $("#waterFreq")
-    var conditions = $("#conditions")
-    var plantNotes = $("#plantNotes")
-    var searchBox = $("#searchBox")
-    var searchBtn = $("#searchBtn")
-    var resultsBox = $("#resultsBox")
+    var commonName = $("#commonName");
+    var scientificName = $("#scientificName");
+    var waterFreq = $("#waterFreq");
+    var conditions = $("#conditions");
+    var plantNotes = $("#plantNotes");
+    var searchBox = $("#searchBox");
+    var searchBtn = $("#searchBtn");
+    var resultsBox = $("#resultsBox");
+    var selectPlant = $("#selectPlant");
+    var trefleId = $("#trefleId");
+    var treflePhoto = $("#treflePhoto");
 
     // Register user
     $("#newUser").on("submit", function (event) {
@@ -53,21 +56,21 @@ $(document).ready(function () {
     // });
 
     // TODO: Get user info
-    // $("#user-info").on("Submit")
 
 
     // TODO: Treffle API plant search
 
 
-    // TODO: Create plant
-    searchBtn.on("click", function () {
-        console.log("testing");
+
+    // Search for a plant by name
+    searchBtn.on("click", function (event) {
+        event.preventDefault();
+        console.log(searchBox.val());
         $.ajax({
             method: "GET",
             url: "/api/search/" + searchBox.val()
         }).then(function (data) {
-            console.log(data.data);
-
+            console.log(data);
             for (let i = 0; i < data.data.length; i++) {
                 var container = $("<div>").addClass("searchContainer");
                 $("<p>").text(data.data[i].common_name).appendTo(container);
@@ -77,24 +80,50 @@ $(document).ready(function () {
                     $("<p>").text(data.data[i].synonyms[j]).appendTo(container)
                 };
                 $("<img>").attr("src", data.data[i].image_url).appendTo(container);
-                $("<button>").text(data.data[i].id).appendTo(container);
+                $("<button>").text("Select this plant").attr("data-id", data.data[i].id).appendTo(container).addClass("resultsButton");
                 resultsBox.append(container);
             };
         });
     });
 
+    // Populate Create Plant form
+    $(document).on("click", ".resultsButton", function (event) {
+        event.preventDefault();
+        $.ajax({
+            method: "GET",
+            url: "/api/searchById/" + $(this).data("id")
+        }).then(function (data) {
+            console.log("=====================", data);
+            commonName.val(data.data.common_name);
+            scientificName.val(data.data.scientific_name);
+            waterFreq.val(frequencyMap(data.data.main_species.growth.minimum_precipitation));
+            conditions.val(filterObj(data.data.main_species.growth));
+            trefleId.val(data.data.id);
+            treflePhoto.val(data.data.image_url);
+        });
+    });
+
     // TODO: Upload photo
 
-    // TODO: Fill create form    
+    // resultsBox.on("click", function () {
+    //     $.ajax({
+    //         method: "GET",
+    //         url: "/api/search/" + selectPlant.val()
+    //     }).then(function (data) {
+    //         console.log(data);
+    //         $(commonName).push(common_name).val();
+    //     })
+    // })
+
 
 });
 
 frequencyMap = precipitation => {
+    // return 3;
+    let frequency = 3;
 
-    let frequency;
-
-    if (precipitation) {
-
+    if (typeof precipitation === "number") {
+        console.log("this should not be happening!");
         frequency = (1 / precipitation) * 800;
         frequency = Math.round(frequency);
 
@@ -102,7 +131,8 @@ frequencyMap = precipitation => {
     else {
         frequency = 3;
     }
-    return Math.max(1, frequency);
+    console.log(frequency);
+    return frequency;
 }
 const filterObj = objToFilter => {
 
@@ -121,6 +151,6 @@ const filterObj = objToFilter => {
     }
     iterate(objToFilter)
     let returnString = JSON.stringify(newObj, null, 1)
-    returnString = returnString.substring(2, returnString.length-1) 
+    returnString = returnString.substring(2, returnString.length - 1)
     return returnString;
 }

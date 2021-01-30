@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 var express = require("express");
 var router = express.Router();
+const moment = require("moment");
 
 var db = require("../models");
 
@@ -34,7 +35,7 @@ router.post("/signin", function (req, res) {
                     name: data.name,
                     userName: data.userName
                 }
-                res.redirect("/"+ req.session.user.userName)
+                res.redirect("/" + req.session.user.userName)
                 // res.redirect("/"+ req.userName)
             }
             else {
@@ -55,17 +56,19 @@ router.get("/", function (req, res) {
 })
 
 //Welcome user page. Need to make a call to grab user's plants
-router.get("/:user", ensureAuthenticated, function (req, res) {    
+router.get("/:user", ensureAuthenticated, function (req, res) {
     db.User.findOne(
         {
-            where:{
+            where: {
                 userName: req.session.user.userName
             },
-            include: [db.Plant]
+            include: [
+                { model: db.Plant, include: [db.Photo] }
+            ],
         }).then(data => {
             console.log('db data: ', data.dataValues);
             res.render("index", data.dataValues)
-        })    
+        })
 })
 
 // READ/get user's specific plants
@@ -75,10 +78,10 @@ router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
     //     return plant.id = req.params.plant
     // })))
     db.Plant.findAll({
-        where:{
+        where: {
             UserId: req.session.id
         }
-    }).then(function(data){
+    }).then(function (data) {
         res.render("plant-profile", data);
     })
 })
@@ -87,7 +90,7 @@ router.put("/:user/plant/:plant/", function (req, res) {
     console.log("making an update.");
     tempData.userPlantPhotos.plants = tempData.userPlantPhotos.plants.filter(plant => {
         return plant.id === req.params.plant;
-       
+
     })
     res.render("plant-profile", tempData.userPlantPhotos.plants)
 })
@@ -116,27 +119,28 @@ const plantId = ""
 //api call for to get plant info by name (and it's trefle ID)
 router.get("/api/search/:plantName", ensureAuthenticated, function (req, res) {
     const key = "RFxyA90U90mDUshDMP8y-PiyRafTF254xr72BbWqlPQ"
-    const plantName = req.params.val
-    
+    const plantName = req.params.plantName
+
     axios.get(`https://trefle.io/api/v1/plants/search?q=${plantName}&token=${key}`)
-    .then((response) => {
-        console.log(response.data);
-        console.log(response.status);
-        console.log(response.statusText);
-        console.log(response.headers);
-        console.log(response.config);
-        res.json(response);
-    })
+        .then((response) => {
+            console.log("=============================================");
+            console.log(response.data);
+            console.log("=============================================");
+            console.log(response.status);
+            console.log(response.statusText);
+            console.log(response.headers);
+            console.log(response.config);
+            res.json(response.data);
+        })
 })
 
 
 
 
 //axios get request to trefle based on plant id
-function getPlantByID(plantId) {
- router.get("/api/searchById", ensureAuthenticated, function (req, res) {
+router.get("/api/searchById/:id", ensureAuthenticated, function (req, res) {
     const key = "RFxyA90U90mDUshDMP8y-PiyRafTF254xr72BbWqlPQ"
-    // const plantId = req.params.id
+    const plantId = req.params.id
     //"139820"
 
     axios.get(`https://trefle.io/api/v1/plants/${plantId}?token=${key}`)
@@ -146,10 +150,10 @@ function getPlantByID(plantId) {
             console.log(response.statusText);
             console.log(response.headers);
             console.log(response.config);
-            res.status(200).send(res.json(response));
+            res.json(response.data);
         });
 })
-}
+
 
 
 //CREATE a new plant for the user
@@ -165,8 +169,8 @@ router.post("/api/plant", ensureAuthenticated, async function (req, res) {
         waterFrequency: parseInt(req.body.waterFrequency),
         lastWatered: moment(),
         trefleId: req.body.trefleId
-    }).then(async function(data){
-        if(req.body.treflePhoto){
+    }).then(async function (data) {
+        if (req.body.treflePhoto) {
             const photoData = await addPhoto(data.insertId, req.body.treflePhoto);
             data.photo = photoData;
         }
@@ -179,7 +183,7 @@ router.post("/api/plant", ensureAuthenticated, async function (req, res) {
 // })
 
 //Adding a plant photo...kinda
-router.post("/api/plant/:plant/img", ensureAuthenticated,  async function (req, res) {
+router.post("/api/plant/:plant/img", ensureAuthenticated, async function (req, res) {
     const data = await addPhoto(req.params.plant, req.body.image)
 })
 
@@ -192,7 +196,7 @@ router.delete("/api/:user/plant/:plant", ensureAuthenticated, function (req, res
         where: {
             id: req.params.plant
         }
-    }).then(function(data){
+    }).then(function (data) {
         res.json(data)
     })
 })
@@ -211,8 +215,8 @@ function ensureAuthenticated(req, res, next) {
 
 }
 
-async function addPhoto(id, url){
-    const data = await constdb.Photo.create({
+async function addPhoto(id, url) {
+    const data = await db.Photo.create({
         PlantId: id,
         url: url
     })

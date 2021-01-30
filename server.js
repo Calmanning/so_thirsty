@@ -24,7 +24,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 1000*60*60*2
+    maxAge: 1000 * 60 * 60 * 2
     //TODO add secure cookie for production
   }
 }))
@@ -36,8 +36,8 @@ app.use(routes);
 
 
 var PORT = process.env.PORT || 3000;
-db.sequelize.sync({force: false}).then(function() {
-  app.listen(PORT, function() {
+db.sequelize.sync({ force: false }).then(function () {
+  app.listen(PORT, function () {
     console.log(`App now listening on port: ${PORT} view at: http://localhost:${PORT}`);
   });
 });
