@@ -18,7 +18,7 @@ const axios = require('axios')
 
 
 // =========================================================================
-// User Routes
+// User Account Routes
 // =========================================================================
 
 // sign in 
@@ -79,101 +79,16 @@ router.post("/api/user", function (req, res) {
     })
 })
 
+// =======================================================================
+// Plant routes
+// =======================================================================
 
-
+// add plant
 router.get("/addplant", ensureAuthenticated, function (req, res) {
     res.render("new-plant");
 })
 
-
-
-//Welcome user page. Need to make a call to grab user's plants
-router.get("/:user", ensureAuthenticated, function (req, res) {
-    db.User.findOne(
-        {
-            where: {
-                userName: req.session.user.userName
-            },
-            include: [
-                { model: db.Plant, include: [db.Photo] }
-            ],
-        }).then(data => {
-            console.log('db data: ', data.dataValues);
-            res.render("index", data.dataValues)
-        })
-})
-
-// READ/get user's specific plants
-router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
-    // console.log(req.params.plant);
-    // res.render("plant-profile", helpers.addWatered(tempData.userPlantPhotos[0].plants.find(plant => {
-    //     return plant.id = req.params.plant
-    // })))
-    db.Plant.findAll({
-        where: {
-            UserId: req.session.id
-        }
-    }).then(function (data) {
-        res.render("plant-profile", data);
-    })
-})
-//UPDATE Plant info
-router.put("/:user/plant/:plant/", function (req, res) {
-    console.log("making an update.");
-    tempData.userPlantPhotos.plants = tempData.userPlantPhotos.plants.filter(plant => {
-        return plant.id === req.params.plant;
-
-    })
-    res.render("plant-profile", tempData.userPlantPhotos.plants)
-})
-
-
-
-
-
-
-const plantId = ""
-//api call for to get plant info by name (and it's trefle ID)
-router.get("/api/search/:plantName", ensureAuthenticated, function (req, res) {
-    const key = "RFxyA90U90mDUshDMP8y-PiyRafTF254xr72BbWqlPQ"
-    const plantName = req.params.plantName
-
-    axios.get(`https://trefle.io/api/v1/plants/search?q=${plantName}&token=${key}`)
-        .then((response) => {
-            console.log("=============================================");
-            console.log(response.data);
-            console.log("=============================================");
-            console.log(response.status);
-            console.log(response.statusText);
-            console.log(response.headers);
-            console.log(response.config);
-            res.json(response.data);
-        })
-})
-
-
-
-
-//axios get request to trefle based on plant id
-router.get("/api/searchById/:id", ensureAuthenticated, function (req, res) {
-    const key = "RFxyA90U90mDUshDMP8y-PiyRafTF254xr72BbWqlPQ"
-    const plantId = req.params.id
-    //"139820"
-
-    axios.get(`https://trefle.io/api/v1/plants/${plantId}?token=${key}`)
-        .then((response) => {
-            console.log(response.data);
-            console.log(response.status);
-            console.log(response.statusText);
-            console.log(response.headers);
-            console.log(response.config);
-            res.json(response.data);
-        });
-})
-
-
-
-//CREATE a new plant for the user
+//CREATE a new plant
 router.post("/api/plant", ensureAuthenticated, async function (req, res) {
     // tempData.userPlantPhotos.plants.push(req.body);
     // res.json(tempData.userPlantPhotos);
@@ -195,14 +110,26 @@ router.post("/api/plant", ensureAuthenticated, async function (req, res) {
         res.redirect("/" + req.session.user.userName)
     })
 })
-// .catch(err => {
-//     console.log("trouble creating plant profile" +err.message)
-//     res.status(500).send(err.message);
-// })
 
-//Adding a plant photo...kinda
-router.post("/api/plant/:plant/img", ensureAuthenticated, async function (req, res) {
-    const data = await addPhoto(req.params.plant, req.body.image)
+// View single plant
+router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
+    db.Plant.findAll({
+        where: {
+            UserId: req.session.id
+        }
+    }).then(function (data) {
+        res.render("plant-profile", data);
+    })
+})
+
+//UPDATE a Plant
+router.put("/:user/plant/:plant/", function (req, res) {
+    console.log("making an update.");
+    tempData.userPlantPhotos.plants = tempData.userPlantPhotos.plants.filter(plant => {
+        return plant.id === req.params.plant;
+
+    })
+    res.render("plant-profile", tempData.userPlantPhotos.plants)
 })
 
 //DELETE a plant
@@ -218,6 +145,75 @@ router.delete("/api/:user/plant/:plant", ensureAuthenticated, function (req, res
         res.json(data)
     })
 })
+// =======================================================================
+// Photo Routes
+// =======================================================================
+
+
+
+
+// =======================================================================
+// PExternal API Routes
+// =======================================================================
+
+//api call for to get plant info by name (and it's trefle ID)
+router.get("/api/search/:plantName", ensureAuthenticated, function (req, res) {
+    const key = "RFxyA90U90mDUshDMP8y-PiyRafTF254xr72BbWqlPQ"
+    const plantName = req.params.plantName
+
+    axios.get(`https://trefle.io/api/v1/plants/search?q=${plantName}&token=${key}`)
+        .then((response) => {
+            res.json(response.data);
+        })
+})
+
+//axios get request to trefle based on plant id
+router.get("/api/searchById/:id", ensureAuthenticated, function (req, res) {
+    const key = "RFxyA90U90mDUshDMP8y-PiyRafTF254xr72BbWqlPQ"
+    const plantId = req.params.id
+
+    axios.get(`https://trefle.io/api/v1/plants/${plantId}?token=${key}`)
+        .then((response) => {
+            res.json(response.data);
+        });
+})
+
+
+
+
+
+
+
+//Welcome user page. Need to make a call to grab user's plants
+router.get("/:user", ensureAuthenticated, function (req, res) {
+    db.User.findOne(
+        {
+            where: {
+                userName: req.session.user.userName
+            },
+            include: [
+                { model: db.Plant, include: [db.Photo] }
+            ],
+        }).then(data => {
+            console.log('db data: ', data.dataValues);
+            res.render("index", data.dataValues)
+        })
+})
+
+
+
+
+
+
+
+
+
+//Adding a plant photo...kinda
+router.post("/api/plant/:plant/img", ensureAuthenticated, async function (req, res) {
+    const data = await addPhoto(req.params.plant, req.body.image)
+})
+
+
 
 function ensureAuthenticated(req, res, next) {
 
