@@ -8,8 +8,8 @@ var app = express();
 app.use(express.static("public"));
 
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(express.json({limit: '50mb', extended: true, parameterLimit: 50000 }));
 
 var exphbs = require("express-handlebars");
 
