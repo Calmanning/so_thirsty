@@ -2,6 +2,10 @@
   border-radius: 3px
 }
 
+background {
+  background-color: rgb(235, 253, 221)
+}
+
 
 .footer {
     position: fixed;
@@ -43,7 +47,8 @@
   }
 
   .card-section {
-    border-radius: 3px
+    border-radius: 3px;
+    box-shadow: 2px 5px 5px 1px;
   }
 
   .grid-container {
@@ -55,5 +60,6 @@
     border: solid 2px rgb(104,123,136);
     padding: 4px;
     background-color: rgb(173, 187, 162);
-    color: rgb(104,123,136)
+    color: rgb(93, 100, 87);
+    box-shadow: 1px 3px 3px;
   }
