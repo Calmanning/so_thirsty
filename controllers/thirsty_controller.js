@@ -121,7 +121,7 @@ router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
     })
 })
 
-//UPDATE a Plant
+//UPDATE a Plant's name and notes
 router.put("/:user/plant/:plant/", function(req, res) {
     console.log(req.body);
     db.Plant.update(req.body,
@@ -135,6 +135,21 @@ router.put("/:user/plant/:plant/", function(req, res) {
         })
 
     })
+
+//UPDATE a plants watered status on PLANT-Profile page
+router.put("/:user/plant/:plant/", (req, res) => {
+    const time = moments 
+    db.Plant.update(req.params.lastWatered,
+        {
+            where: {
+                id:req.params.plant
+            }
+        }).
+        then(waterDate => {
+            res.render("plant-profile", waterDate)
+        })
+
+})
 
 //DELETE a plant
 router.delete("/api/:user/plant/:plant", ensureAuthenticated, function (req, res) {
