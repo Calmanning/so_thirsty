@@ -15,7 +15,12 @@ const axios = require('axios')
 // Routes
 
 router.get("/signin", function (req, res) {
-    res.render("signin");
+    if(req.session.user){
+        res.redirect("/" + req.session.user.userName)
+    }
+    else{
+        res.render("signin");
+    }    
 })
 
 // sign in
@@ -52,7 +57,12 @@ router.get("/addplant", ensureAuthenticated, function (req, res) {
 
 //home page
 router.get("/", function (req, res) {
-    res.render("register");
+    if(req.session.user){
+        res.redirect("/" + req.session.user.userName)
+    }
+    else{
+        res.render("register");
+    }
 })
 
 //Welcome user page. Need to make a call to grab user's plants
@@ -170,11 +180,12 @@ router.post("/api/plant", ensureAuthenticated, async function (req, res) {
         lastWatered: moment(),
         trefleId: req.body.trefleId
     }).then(async function (data) {
+        console.log(`insert plant data: `, data);
         if (req.body.treflePhoto) {
-            const photoData = await addPhoto(data.insertId, req.body.treflePhoto);
+            const photoData = await addPhoto(data.id, req.body.treflePhoto);
             data.photo = photoData;
         }
-        res.json(data)
+        res.redirect("/" + req.session.user.userName)
     })
 })
 // .catch(err => {
