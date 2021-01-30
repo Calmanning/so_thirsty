@@ -112,7 +112,7 @@ router.post("/api/plant", ensureAuthenticated, async function (req, res) {
 router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
     db.Plant.findOne({
         where: {
-            UserId: req.body.Plant
+            id: req.params.plant
         }
     }).then(function (data) {
         res.render("plant-profile", data);
@@ -120,14 +120,19 @@ router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
 })
 
 //UPDATE a Plant
-router.put("/:user/plant/:plant/", function (req, res) {
-    console.log("making an update.");
-    tempData.userPlantPhotos.plants = tempData.userPlantPhotos.plants.filter(plant => {
-        return plant.id === req.params.plant;
+router.put("/:user/plant/:plant/", function(req, res) {
+    console.log(req.body);
+    db.Plant.update(req.body,
+        {
+            where: {
+                id:req.params.plant
+            }
+        }).
+        then(updatedPlant => {
+            res.render("plant-profile", updatedPlant)        
+        })
 
     })
-    res.render("plant-profile", tempData.userPlantPhotos.plants)
-})
 
 //DELETE a plant
 router.delete("/api/:user/plant/:plant", ensureAuthenticated, function (req, res) {
