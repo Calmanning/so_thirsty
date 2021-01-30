@@ -62,8 +62,9 @@ router.get("/:user", ensureAuthenticated, function (req, res) {
             where: {
                 userName: req.session.user.userName
             },
-            include: [db.Plant],
-            include: [db.Photo]
+            include: [
+                { model: db.Plant, include: [db.Photo] }
+            ],
         }).then(data => {
             console.log('db data: ', data.dataValues);
             res.render("index", data.dataValues)
