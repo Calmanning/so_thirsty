@@ -12,6 +12,8 @@ const temp = require("../tempObj");
 
 const axios = require('axios')
 
+require('dotenv').config()
+
 // =========================================================================
 // User Account Routes
 // =========================================================================
@@ -129,9 +131,7 @@ router.put("/:user/plant/:plant/", function (req, res) {
 
 //DELETE a plant
 router.delete("/api/:user/plant/:plant", ensureAuthenticated, function (req, res) {
-    // tempData.userPlantPhotos.plants = tempData.userPlantPhotos.plants.filter(plant => {
-    //     return plant.id != req.params.plant;
-    // })
+    
     db.Plant.destroy({
         where: {
             id: req.params.plant
@@ -165,7 +165,7 @@ async function addPhoto(id, url) {
 
 //api call for to get plant info by name (and it's trefle ID)
 router.get("/api/search/:plantName", ensureAuthenticated, function (req, res) {
-    const key = "RFxyA90U90mDUshDMP8y-PiyRafTF254xr72BbWqlPQ"
+    const key = process.env.TREFLE_API_KEY;
     const plantName = req.params.plantName
 
     axios.get(`https://trefle.io/api/v1/plants/search?q=${plantName}&token=${key}`)
@@ -176,7 +176,7 @@ router.get("/api/search/:plantName", ensureAuthenticated, function (req, res) {
 
 //axios get request to trefle based on plant id
 router.get("/api/searchById/:id", ensureAuthenticated, function (req, res) {
-    const key = "RFxyA90U90mDUshDMP8y-PiyRafTF254xr72BbWqlPQ"
+    const key = process.env.TREFLE_API_KEY;
     const plantId = req.params.id
 
     axios.get(`https://trefle.io/api/v1/plants/${plantId}?token=${key}`)
