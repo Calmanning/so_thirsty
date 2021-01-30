@@ -1,9 +1,9 @@
 const bcrypt = require("bcrypt");
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 const moment = require("moment");
 
-var db = require("../models");
+const db = require("../models");
 
 const tempData = require("../tempObj")
 
@@ -12,8 +12,16 @@ const temp = require("../tempObj");
 
 const axios = require('axios')
 
+// =========================================================================
 // Routes
+// =========================================================================
 
+
+// =========================================================================
+// User Routes
+// =========================================================================
+
+// sign in 
 router.get("/signin", function (req, res) {
     if(req.session.user){
         res.redirect("/" + req.session.user.userName)
@@ -50,12 +58,7 @@ router.post("/signin", function (req, res) {
     })
 })
 
-
-router.get("/addplant", ensureAuthenticated, function (req, res) {
-    res.render("new-plant");
-})
-
-//home page
+//home page/register
 router.get("/", function (req, res) {
     if(req.session.user){
         res.redirect("/" + req.session.user.userName)
@@ -64,6 +67,25 @@ router.get("/", function (req, res) {
         res.render("register");
     }
 })
+
+//CREATE a new user 
+router.post("/api/user", function (req, res) {
+    db.User.create({
+        userName: req.body.userName,
+        name: req.body.name,
+        password: req.body.password
+    }).then(function (data) {
+        res.redirect("/signin")
+    })
+})
+
+
+
+router.get("/addplant", ensureAuthenticated, function (req, res) {
+    res.render("new-plant");
+})
+
+
 
 //Welcome user page. Need to make a call to grab user's plants
 router.get("/:user", ensureAuthenticated, function (req, res) {
@@ -83,7 +105,7 @@ router.get("/:user", ensureAuthenticated, function (req, res) {
 
 // READ/get user's specific plants
 router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
-    console.log(req.params.plant);
+    // console.log(req.params.plant);
     // res.render("plant-profile", helpers.addWatered(tempData.userPlantPhotos[0].plants.find(plant => {
     //     return plant.id = req.params.plant
     // })))
@@ -106,22 +128,7 @@ router.put("/:user/plant/:plant/", function (req, res) {
 })
 
 
-//CREATE a new user name
-router.post("/api/user", function (req, res) {
-    // const newUser = req.body;
-    // newUser.id = tempData.user.length + 1
-    // tempData.user.push(newUser);
-    // console.log("the new user is: " + newUser)
-    // res.json(newUser)
 
-    db.User.create({
-        userName: req.body.userName,
-        name: req.body.name,
-        password: req.body.password
-    }).then(function (data) {
-        res.redirect("/signin")
-    })
-})
 
 
 
@@ -180,7 +187,7 @@ router.post("/api/plant", ensureAuthenticated, async function (req, res) {
         lastWatered: moment(),
         trefleId: req.body.trefleId
     }).then(async function (data) {
-        console.log(`insert plant data: `, data);
+        // console.log(`insert plant data: `, data);
         if (req.body.treflePhoto) {
             const photoData = await addPhoto(data.id, req.body.treflePhoto);
             data.photo = photoData;
