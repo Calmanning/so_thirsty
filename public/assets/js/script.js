@@ -58,11 +58,8 @@ $(document).ready(function () {
     // TODO: Get user info
 
 
-    // TODO: Treffle API plant search
-
-
-
-    // Search for a plant by name
+    // Treffle API plant search
+    // Search for a plant by it's common name
     searchBtn.on("click", function (event) {
         event.preventDefault();
         console.log(searchBox.val());
@@ -74,11 +71,12 @@ $(document).ready(function () {
             for (let i = 0; i < data.data.length; i++) {
                 var container = $("<div>").addClass("searchContainer");
                 $("<p>").text(data.data[i].common_name).appendTo(container);
-                $("<p>").text(data.data[i].genus).appendTo(container);
                 $("<p>").text(data.data[i].scientific_name).appendTo(container);
-                for (let j = 0; j < data.data[i].synonyms.length; j++) {
-                    $("<p>").text(data.data[i].synonyms[j]).appendTo(container)
-                };
+                $("<p>").text(data.data[i].genus).appendTo(container);
+                $("<p>").text(data.data[i].family).appendTo(container);
+                // for (let j = 0; j < data.data[i].synonyms.length; j++) {
+                //     $("<p>").text(data.data[i].synonyms[j]).appendTo(container)
+                // };
                 $("<img>").attr("src", data.data[i].image_url).appendTo(container);
                 $("<button>").text("Select this plant").attr("data-id", data.data[i].id).appendTo(container).addClass("resultsButton");
                 resultsBox.append(container);
@@ -119,7 +117,6 @@ $(document).ready(function () {
 });
 
 frequencyMap = precipitation => {
-    // return 3;
     let frequency = 3;
 
     if (typeof precipitation === "number") {
