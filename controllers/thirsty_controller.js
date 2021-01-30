@@ -13,11 +13,6 @@ const temp = require("../tempObj");
 const axios = require('axios')
 
 // =========================================================================
-// Routes
-// =========================================================================
-
-
-// =========================================================================
 // User Account Routes
 // =========================================================================
 
@@ -145,12 +140,24 @@ router.delete("/api/:user/plant/:plant", ensureAuthenticated, function (req, res
         res.json(data)
     })
 })
+
 // =======================================================================
 // Photo Routes
 // =======================================================================
 
+//Adding a plant photo...kinda
+router.post("/api/plant/:plant/img", ensureAuthenticated, async function (req, res) {
+    const data = await addPhoto(req.params.plant, req.body.image)
+})
 
+async function addPhoto(id, url) {
+    const data = await db.Photo.create({
+        PlantId: id,
+        url: url
+    })
 
+    return data;
+}
 
 // =======================================================================
 // PExternal API Routes
@@ -178,11 +185,9 @@ router.get("/api/searchById/:id", ensureAuthenticated, function (req, res) {
         });
 })
 
-
-
-
-
-
+// =======================================================================
+// Home page catch all route
+// =======================================================================
 
 //Welcome user page. Need to make a call to grab user's plants
 router.get("/:user", ensureAuthenticated, function (req, res) {
@@ -201,41 +206,19 @@ router.get("/:user", ensureAuthenticated, function (req, res) {
 })
 
 
-
-
-
-
-
-
-
-//Adding a plant photo...kinda
-router.post("/api/plant/:plant/img", ensureAuthenticated, async function (req, res) {
-    const data = await addPhoto(req.params.plant, req.body.image)
-})
-
-
+// =======================================================================
+// Helper functions
+// =======================================================================
 
 function ensureAuthenticated(req, res, next) {
 
-    // console.log(`req.session.user: `, req.session.user);
     if (req.session.user) {
-        // console.log(session);
         return next();
     }
     else {
-        // res.status(401).json({ msg: "not authorized from ensureAuthenticated 1" })
         res.redirect("/signin")
     }
 
-}
-
-async function addPhoto(id, url) {
-    const data = await db.Photo.create({
-        PlantId: id,
-        url: url
-    })
-
-    return data;
 }
 
 module.exports = router;
