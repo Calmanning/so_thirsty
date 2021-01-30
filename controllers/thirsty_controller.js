@@ -116,7 +116,7 @@ router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
         where: {
             id: req.params.plant
         },
-        include: [db.User]
+        include: [db.Photo, db.User]
     }).then(function (data) {
         console.log("plant-data", data);
         res.render("plant-profile", data);
@@ -169,7 +169,7 @@ router.get("/:user/plant/:plant/addphoto", ensureAuthenticated, function(req, re
 
 //Adding a plant photo
 router.post("/api/plant/img", ensureAuthenticated, async function (req, res) {
-    console.log('hello from post /api/uploadimg');
+    // console.log('hello from post /api/uploadimg');
 
     try{
         const file = req.body.data;
@@ -197,7 +197,7 @@ router.post("/api/plant/img", ensureAuthenticated, async function (req, res) {
 })
 
 async function addPhoto(id, url) {
-    console.log(`addPhoto(${id}, ${url}) fires`);
+    // console.log(`addPhoto(${id}, ${url}) fires`);
     const data = await db.Photo.create({
         PlantId: id,
         url: url
