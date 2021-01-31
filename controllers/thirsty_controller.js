@@ -140,7 +140,7 @@ router.put("/:user/plant/:plant/", function(req, res) {
             }
         }).
         then(updatedPlant => {
-            res.json("plant-profile", updatedPlant)        
+            res.render("plant-profile", updatedPlant)        
         })
 
     })
@@ -175,7 +175,7 @@ router.put("/:user/plant/:plant/water", (req, res) => {
             }
         }).
         then(waterDate => {
-            res.render("plant-profile", waterDate)
+            res.json("plant-profile", waterDate)
         })
 
 })
