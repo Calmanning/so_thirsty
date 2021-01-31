@@ -13,6 +13,7 @@ const temp = require("../tempObj");
 const axios = require('axios')
 
 const cloudinary = require("cloudinary");
+const { string } = require("underscore");
 
 require('dotenv').config()
 
@@ -74,7 +75,14 @@ router.post("/api/user", function (req, res) {
         name: req.body.name,
         password: req.body.password
     }).then(function (data) {
-        res.redirect("/signin")
+        if(bcrypt.compareSync(req.body.password, data.password)) {
+            req.session.user = {
+                id: data.id,
+                name: data.name,
+                userName: data.userName
+            }
+        }
+        res.redirect("/" + req.session.user.userName)
     })
 })
 
@@ -123,9 +131,8 @@ router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
     })
 })
 
-//UPDATE a Plant
+//UPDATE a Plant's name and notes
 router.put("/:user/plant/:plant/", function(req, res) {
-    console.log(req.body);
     db.Plant.update(req.body,
         {
             where: {
@@ -137,6 +144,25 @@ router.put("/:user/plant/:plant/", function(req, res) {
         })
 
     })
+
+//UPDATE a plants watered status on PLANT-Profile page
+router.put("/:user/plant/:plant/water", (req, res) => {
+    let time = moment(); 
+    console.log("time " + time)
+    db.Plant.update({
+        lastWatered: time
+        },
+        {
+            
+            where: {
+                id:req.params.plant
+            }
+        }).
+        then(waterDate => {
+            res.render("plant-profile", waterDate)
+        })
+
+})
 
 //DELETE a plant
 router.delete("/api/:user/plant/:plant", ensureAuthenticated, function (req, res) {
