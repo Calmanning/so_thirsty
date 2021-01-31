@@ -75,7 +75,14 @@ router.post("/api/user", function (req, res) {
         name: req.body.name,
         password: req.body.password
     }).then(function (data) {
-        res.redirect("/signin")
+        if(bcrypt.compareSync(req.body.password, data.password)) {
+            req.session.user = {
+                id: data.id,
+                name: data.name,
+                userName: data.userName
+            }
+        }
+        res.redirect("/" + req.session.user.userName)
     })
 })
 
