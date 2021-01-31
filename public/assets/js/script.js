@@ -107,12 +107,12 @@ $(document).ready(function () {
     waterBtn.on("click", function () {
         console.log("watered!");
         console.log($("<data-id>"));
-        // console.log(this);
         $.ajax({
             method: "PUT",
             url: "/:user/plant/" + $(this).val() + "/water"
         }).then(function (data) {
             console.log(data);
+            location.reload();
         });
     });
 
