@@ -19,6 +19,8 @@ $(document).ready(function () {
     var selectPlant = $("#selectPlant");
     var trefleId = $("#trefleId");
     var treflePhoto = $("#treflePhoto");
+    var waterBtn = $("#waterBtn");
+    var lastWatered = $("#lastWatered");
 
     // Register user
     $("#newUser").on("submit", function (event) {
@@ -101,16 +103,22 @@ $(document).ready(function () {
         });
     });
 
-    // TODO: Upload photo
+    // UPDATE when plant was watered (plant profile)
+    waterBtn.on("click", function () {
+        console.log("watered!");
+        console.log($("<data-id>"));
+        // console.log(this);
+        $.ajax({
+            method: "PUT",
+            url: "/:user/plant/" + $(this).val() + "/water"
+        }).then(function (data) {
+            console.log(data);
+        });
+    });
 
-    // resultsBox.on("click", function () {
-    //     $.ajax({
-    //         method: "GET",
-    //         url: "/api/search/" + selectPlant.val()
-    //     }).then(function (data) {
-    //         console.log(data);
-    //         $(commonName).push(common_name).val();
-    //     })
+    // TODO: DELETE plant from profile button
+    // deleteBtn.on("click", function (){
+
     // })
 
 
