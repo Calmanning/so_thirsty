@@ -263,7 +263,10 @@ router.get("/api/searchById/:id", ensureAuthenticated, function (req, res) {
 // Temp user routes 
 // =========================================================================
 
-
+// Route to let user invite caretaker
+router.get("/invite", ensureAuthenticated, (req, res)=>{
+    res.render("invite")
+})
 
 
 // =======================================================================
