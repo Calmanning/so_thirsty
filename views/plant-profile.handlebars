@@ -1,41 +1,50 @@
-<div class="callout">
+<div class="callout plant-page">
   <h5 id="science-name"> Scientific Name: {{dataValues.scientificName}}</h5>
 </div>
 
 <div class="grid-container grid-containter-padded"></div>
 <div class="grid-x grid-margin-x align-center">
-<div class="grid-y grid-margin-y">
+  <div class="grid-y grid-margin-y">
 
-  <div class="callout small">
-    <h5>Last Watered: {{dataValues.lastWatered}}</h5>
-  </div>
+    <div class="cell shrink plant-page">
+      <div class="callout small">
+        <h5>Last Watered: {{dataValues.lastWatered}}</h5>
+      </div>
 
-  <button class="btn">Just watered!</button>
 
-  <div class="card" style="width: 75%;">
-    <div class="card-divider">
-      <h4>Notes & Care Instructions</h4>
-      <textarea id="notes" name="notes" rows="4" cols="50">
-      {{dataValues.notes}}
-  </textarea>
-      <br>
+      <button class="watered-btn">Just watered!</button>
+<div class="cell small-12">
+      <div class="card" style="width: 75%;">
+        <div class="card-section">
+          <h4>Notes & Care Instructions</h4>
+          </div>
+          <textarea id="notes" name="notes" rows="4" cols="50">
+                {{dataValues.notes}}
+            </textarea>
+          <br>
+          <button class="btn">Save</button>
+          <button class="btn">Edit</button>
+      </div>
+      </div>
+
+      <div class="cell shrink plant-page">
+        <div class="callout small">
+          <h5>Recommended Water Frequency: Every {{dataValues.waterFrequency}} days</h5>
+        </div>
+      </div>
+
+      <div class="callout small">
+        <h5>Recommended Enviromental Conditions:</h5>
+      </div>
+
+
+      <div class="callout small">
+        <h5><a href="/{{{dataValues.User.dataValues.userName}}}/plant/{{{dataValues.id}}}/addphoto">Add photo</a></h5>
+      </div>
+
+
     </div>
   </div>
-
-  <div class="callout small">
-    <h5>Recommended Water Frequency: Every {{dataValues.waterFrequency}} days</h5>
-  </div>
-
-  <div class="callout small">
-    <h5>Recommended Enviromental Conditions:</h5>
-  </div>
-
-  <div class="callout small">
-    <h5><a href="/{{{dataValues.User.dataValues.userName}}}/plant/{{{dataValues.id}}}/addphoto">Add photo</a></h5>
-  </div>
-
-</div>
-</div>
 </div>
 {{#each dataValues.Photos}}
 <div class="grid-container">
@@ -47,7 +56,7 @@
           {{!-- Wel'll need to see about adding that information from the "photos" table in the DB. --}}
           <h4>Date of Picture taken</h4>
           {{!-- I believe we'll want to add a STRING col to the "photos" table in the DB, for this. --}}
-          <p>Possible notes added to each picture upload?</p>
+          {{!-- <p>Possible notes added to each picture upload?</p> --}}
         </div>
       </div>
     </div>
