@@ -81,7 +81,7 @@ $(document).ready(function () {
                 $("<button>").text("Select this plant").attr("data-id", data.data[i].id).appendTo(container).addClass("resultsButton");
                 resultsBox.append(container);
             };
-         });
+        });
     });
 
     // Populate Create Plant form
@@ -151,3 +151,8 @@ const filterObj = objToFilter => {
     returnString = returnString.substring(2, returnString.length - 1)
     return returnString;
 }
+
+// ==========================================================
+// add temp user functions
+// ==========================================================
+
