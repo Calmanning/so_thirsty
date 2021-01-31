@@ -11,7 +11,7 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Caretaker.associate = function (models) {
-        User.belongsTo(models.User)
+        Caretaker.belongsTo(models.User)
     }
 
     return Caretaker;
