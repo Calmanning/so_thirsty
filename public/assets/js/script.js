@@ -113,8 +113,21 @@ $(document).ready(function () {
     //     })
     // })
 
+//just watered button on "/:user"
+$(document).on("click", ".wateredBtn", function(event) {
+event.preventDefault();
+let plantData = $(this).Plant
+console.log("button...uhhhh 'click' " + plantData);
+// $.ajax({
+//         method: "PUT",
+//         url: "/:user/water/" + $(this).data("id")
+// }).then(function(data) {
+//     console.log("watered plant id: " + data);
+// })
+})
 
-});
+
+}); //end of the document ready
 
 frequencyMap = precipitation => {
     let frequency = 3;

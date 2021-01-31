@@ -24,15 +24,17 @@
     {{#each Plants}}
     <div class="cell medium-2 small-2">
       <div class="card">
+        <a href="/{{../userName}}/plant/{{{dataValues.id}}}">
         <h4>{{dataValues.nickname}}</h4>
+        </a>
         <div class="card-section">
           <a href="/{{../userName}}/plant/{{{dataValues.id}}}">
-          {{#each Photos}}
-            <img class ="img" src={{dataValues.url}}>
-            {{/each}}</a>
+          {{#Photos}}
+            <img class ="img" src={{Photos[0]dataValues.url}}>
+            {{/Photos}}</a>
         </div>
         <div class="card-section">
-          <button class="btn">Just watered!</button>
+          <button class="wateredBtn btn">Just watered!</button>
         </div>
       </div>
     </div>
