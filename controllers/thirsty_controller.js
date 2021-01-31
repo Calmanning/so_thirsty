@@ -184,7 +184,7 @@ router.post("/api/plant/img", ensureAuthenticated, async function (req, res) {
 
         console.log('uploadedResponse: ', uploadedResponse);
 
-        console.log(await addPhoto(uploadedResponse.id, uploadedResponse.url))
+        console.log(await addPhoto(req.body.id, uploadedResponse.url))
 
         console.log(`attempting to redirect to /${req.session.user.userName}/plant/${req.body.id}`);
         return res.json({href: `/${req.session.user.userName}/plant/${req.body.id}`});
