@@ -211,7 +211,7 @@ $(document).ready(function () {
         waterUpdate.toggle()
         waterText.toggle()
         saveWater.toggle()
-    })
+    });
 
 
     // UPDATE when plant was watered (plant profile)
