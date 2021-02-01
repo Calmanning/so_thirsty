@@ -21,19 +21,18 @@
       <button class="btn" id="deleteBtn" value={{dataValues.id}}>Delete plant?</button>
 
 
-      
-        <div class="card" style="width: 75%;">
-          <div class="card-section">
-            <h4>Notes & Care Instructions</h4>
-          </div>
-          <textarea id="notes" name="notes" rows="4" cols="50">
+
+      <div class="card" style="width: 75%;">
+        <div class="card-section">
+          <h4>Notes & Care Instructions</h4>
+        </div>
+        <textarea id="notes" name="notes" rows="4" cols="50">
                 {{dataValues.notes}}
             </textarea>
-          <br>
-          <button class="btn">Save</button>
-          <button class="btn">Edit</button>
-        </div>
-     
+        <br>
+        <button class="btn" id="saveBtn" value={{dataValues.id}}>Save</button>
+      </div>
+
 
 
       <div class="cell shrink plant-page">
