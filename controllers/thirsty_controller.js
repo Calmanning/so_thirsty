@@ -126,8 +126,10 @@ router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
         },
         include: [db.Photo, db.User]
     }).then(function (data) {
-        console.log("plant-data", data);
-        res.render("plant-profile", data);
+        console.log("plant-data", data);        
+        let dataToSend = helpers.addWateredSingle(data);
+        
+        res.render("plant-profile", dataToSend);
     })
 })
 
