@@ -192,6 +192,17 @@ router.delete("/api/:user/plant/:plant", ensureAuthenticated, function (req, res
     })
 })
 
+//DELETE a plant call from "/:user" page
+router.delete("/api/:user/dead/:plant", ensureAuthenticated, function (req, res) {
+    
+    db.Plant.destroy({
+        where: {
+            id: req.params.plant
+        }
+    }).then(function (data) {
+        res.json(data)
+    })
+})
 // =======================================================================
 // Photo Routes
 // =======================================================================

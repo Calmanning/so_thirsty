@@ -20,7 +20,7 @@ $(document).ready(function () {
     var trefleId = $("#trefleId");
     var treflePhoto = $("#treflePhoto");
     var waterBtn = $("#waterBtn");
-    var lastWatered = $("#lastWatered");
+    var deleteBtn = $("#deleteBtn")
 
     // Register user
     $("#newUser").on("submit", function (event) {
@@ -116,22 +116,42 @@ $(document).ready(function () {
         });
     });
 
-    // TODO: DELETE plant from profile button
-    // deleteBtn.on("click", function (){
+    //DELETE plant from profile button
+    deleteBtn.on("click", function (event) {
+        event.stopPropagation();
+        var id = $(this).val();
+        $.ajax({
+            method: "DELETE",
+            url: "/api/:user/plant/" + id
+        }).then(function () {
+            window.location.href = "/";
+        })
+    })
 
-    // })
+    //UPDATE just watered information on "/:user"
+    $(document).on("click", ".wateredBtn", function (event) {
+        event.preventDefault();
+        console.log("button...uhhhh 'click' " + $(this).val());
+        $.ajax({
+            method: "PUT",
+            url: "/:user/water/" + $(this).val()
+        }).then(function (data) {
+            location.reload();
+        });
+    })
+    
+    //DELETE plant call from "/:user" page
+    $(document).on("click", ".removeBtn",function (event) {
+        event.stopPropagation();
+        var id = $(this).val();
+        $.ajax({
+            method: "DELETE",
+            url: "/api/:user/dead/" + id
+        }).then(function () {
+            location.reload();
+        })
+    })
 
-//just watered button on "/:user"
-$(document).on("click", ".wateredBtn", function(event) {
-event.preventDefault();
-console.log("button...uhhhh 'click' " + $(this).val());
-$.ajax({
-    method: "PUT",
-    url: "/:user/water/" + $(this).val()
-}).then(function (data) {
-    location.reload();
-});
-})
 
 
 }); //end of the document ready
@@ -140,7 +160,6 @@ frequencyMap = precipitation => {
     let frequency = 3;
 
     if (typeof precipitation === "number") {
-        console.log("this should not be happening!");
         frequency = (1 / precipitation) * 800;
         frequency = Math.round(frequency);
 
