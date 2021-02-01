@@ -1,21 +1,31 @@
-<div data-sticky-container>
-    <div data-sticky data-margin-top='0' data-top-anchor="header:bottom">
-        <div class="top-bar topbar-sticky-shrink">
-            {{!-- <div class="top-bar-title">
-                <a href="/addplant"><button class="btn">New Plant</button></a>
-            </div> --}}
-            <div class="top-bar-left">
-                <ul class="dropdown menu" data-dropdown-menu>
-                    <li class="menu-text">So Thirsty!</li>
-                    <li><a href="/addplant">New Plant</a></li>
-                </ul>
-            </div>
-            <div class="top-bar-right">
-                <a href="/">Home</a>
-            </div>
-        </div>
+<div class="top-bar">
+    <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+            <li class="menu-text">So Thirsty!</li>
+            <li><a href="/">Home</a></li>
+            {{#if name}}
+            <li><a href="/addplant">New Plant</a></li>
+            {{else}}
+
+            {{/if}}
+        </ul>
+    </div>
+    <div class="top-bar-right">
+        <ul class="dropdown menu" data-dropdown-menu>
+            {{#if name}}
+            <li><a href="/">{{userName}}</a></li>
+            <li><a href="/logout">Sign Out</a></li>
+            {{else}}
+            {{#if data.name}}
+            <li><a href="/caretaker/{{data.key}}">{{data.name}}</a></li>
+            {{/if}}
+            <li><a href="/">Sign Up</a></li>
+            <li><a href="/signin">Sign In</a></li>
+            {{/if}}
+        </ul>
     </div>
 </div>
+
 
 {{!-- <div class="top-bar">
     <div class="top-bar-left">

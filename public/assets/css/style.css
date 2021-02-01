@@ -3,7 +3,8 @@
 }
 
 #body {
-  background-color: rgb(173, 187, 162, 0.2)
+  background-color: rgb(173, 187, 162, 0.2);
+  margin-top: 100px;
 }
 
 
@@ -196,6 +197,14 @@ label{
   margin: 1px;
 } */
 
+.top-bar{
+  padding: 10px !important;
+  background-color: rgb(173, 187, 162) !important;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
 
 .top-bar-left, .top-bar ul, .top-bar a{
   background-color: rgb(173, 187, 162) !important;
