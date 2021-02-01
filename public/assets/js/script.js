@@ -110,7 +110,8 @@ $(document).ready(function () {
             method: "PUT",
             url: "/:user/plant/" + $(this).val(),
             data: {
-                notes: $("#notes").val()
+                notes: $("#notes").val(),
+                nickname: $("#nickname").val()
             }
         }).then(function (data) {
             location.reload();
@@ -166,7 +167,7 @@ $(document).ready(function () {
     })
 
     //Delete caretaker
-    $(document).on("click", ".deleteCaretaker",function (event) {
+    $(document).on("click", ".deleteCaretaker", function (event) {
 
         event.stopPropagation();
 
