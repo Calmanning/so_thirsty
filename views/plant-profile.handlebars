@@ -2,6 +2,7 @@
   <h5 id="nicknameText">Nickname: {{dataValues.nickname}}</h5>
   <textarea class="hiddenElement" id="nickname" name="nickname" rows="1" cols="20">{{dataValues.nickname}}</textarea>
   <button class="editNickname">Edit</button>
+  <button class="btn hiddenElement" id="saveName" value={{dataValues.id}}>Save</button>
 </div>
 
 <div class="callout plant-page">
@@ -30,7 +31,7 @@
             </textarea>
         <p id="plantNotes">{{dataValues.notes}}</p>
         <button class="editNotes">Edit</button>
-        <button class="btn" id="saveBtn" value={{dataValues.id}}>Save</button>
+        <button class="btn hiddenElement" id="saveNotes" value={{dataValues.id}}>Save</button>
       </div>
 
 

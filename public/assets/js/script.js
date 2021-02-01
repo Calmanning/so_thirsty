@@ -16,13 +16,15 @@ $(document).ready(function () {
     var searchBox = $("#searchBox");
     var searchBtn = $("#searchBtn");
     var resultsBox = $("#resultsBox");
-    var selectPlant = $("#selectPlant");
+    var saveName = $("#saveName");
     var trefleId = $("#trefleId");
     var treflePhoto = $("#treflePhoto");
+    // Edit and Save buttons
     var waterBtn = $("#waterBtn");
     var deleteBtn = $("#deleteBtn");
-    var saveBtn = $("#saveBtn");
-    var editNotes = $(".editNotes")
+    var saveName = $("#saveName");
+    var saveNotes = $("#saveNotes");
+    var editNotes = $(".editNotes");
     var plantText = $("#plantText");
     var editNickname = $(".editNickname");
     var nicknameText = $("#nicknameText");
@@ -143,30 +145,42 @@ $(document).ready(function () {
     });
 
     // UPDATE notes and nickname in plant profile
-    saveBtn.on("click", function () {
+    saveName.on("click", function () {
         $.ajax({
             method: "PUT",
             url: "/:user/plant/" + $(this).val(),
             data: {
-                notes: $("#plantText").val(),
                 nickname: $("#nickname").val()
             }
         }).then(function () {
             location.reload();
-        })
-    })
+        });
+    });
+
+    saveNotes.on("click", function () {
+        $.ajax({
+            method: "PUT",
+            url: "/:user/plant/" + $(this).val(),
+            data: {
+                notes: $("#plantText").val()
+            }
+        }).then(function () {
+            location.reload();
+        });
+    });
 
     // Toggles the text area for notes and nickname editing
     editNickname.on("click", function () {
         nickname.toggle()
         nicknameText.toggle()
-
+        saveName.toggle()
     });
 
     editNotes.on("click", function () {
         plantNotes.toggle()
         plantText.toggle()
-    })
+        saveNotes.toggle()
+    });
 
 
     // UPDATE when plant was watered (plant profile)
