@@ -193,3 +193,11 @@ label{
 } */
 
 
+.top-bar-left, .top-bar ul, .top-bar a{
+  background-color: rgb(173, 187, 162) !important;
+  color: rgb(93, 100, 87) !important;
+}
+
+.top-bar-right{
+  margin-right: 25px;
+}
