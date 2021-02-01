@@ -1,5 +1,6 @@
 <div class="callout plant-page">
   <textarea id="nickname" name="nickname" rows="1" cols="20">{{dataValues.nickname}}</textarea>
+  <button class="editBtn">Edit</button>
 </div>
 
 <div class="callout plant-page">
@@ -23,10 +24,11 @@
         <div class="card-divider">
           <h4>Notes & Care Instructions</h4>
         </div>
-        <textarea class="display: none" id="notes" name="notes" rows="4" cols="50">
+        <textarea class="display: block" id="notes" name="notes" rows="4" cols="50">
                 {{dataValues.notes}}
             </textarea>
-          <button class="btn" id="saveBtn" value={{dataValues.id}}>Save</button>
+        <button class="editBtn">Edit</button>
+        <button class="btn" id="saveBtn" value={{dataValues.id}}>Save</button>
       </div>
 
 

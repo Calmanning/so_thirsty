@@ -22,6 +22,7 @@ $(document).ready(function () {
     var waterBtn = $("#waterBtn");
     var deleteBtn = $("#deleteBtn");
     var saveBtn = $("#saveBtn");
+    var editBtn = $(".editBtn")
 
     // Register user
     $("#newUser").on("submit", function (event) {
@@ -119,8 +120,10 @@ $(document).ready(function () {
     })
 
     // Toggles the text area for notes and nickname editing
-    updateBtn.on("click", function () {
-
+    editBtn.on("click", function () {
+        if (nickname === "<textarea>")
+            nickname.toggle("<p>")
+        // else if ()
     })
 
     // UPDATE when plant was watered (plant profile)
