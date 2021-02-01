@@ -22,7 +22,10 @@ $(document).ready(function () {
     var waterBtn = $("#waterBtn");
     var deleteBtn = $("#deleteBtn");
     var saveBtn = $("#saveBtn");
-    var editBtn = $(".editBtn")
+    var editNotes = $(".editNotes")
+    var plantText = $("#plantText");
+    var editNickname = $(".editNickname");
+    var nicknameText = $("#nicknameText");
 
     // Register user
     $("#newUser").on("submit", function (event) {
@@ -76,22 +79,22 @@ $(document).ready(function () {
 
                 // <div class="grid-x grid-margin-x align-center"></div>
                 var container = $("<div>").addClass("grid-x grid-margin-x align-center");
-                
+
                 $("<div>").addClass("cell medium-3").append(
                     $("<button>").addClass("btn").text("Select this plant").attr("data-id", data.data[i].id).appendTo(container).addClass("resultsButton"))
-                .appendTo(container);
+                    .appendTo(container);
 
                 $("<div>").addClass("cell medium-3").append($("<img>").attr("src", data.data[i].image_url)).appendTo(container);
 
                 $("<div>").addClass("cell medium-3").append([
                     $("<h5>").text("Common Name"),
                     $("<p>").text(data.data[i].common_name)])
-                .appendTo(container);
-                
+                    .appendTo(container);
+
                 $("<div>").addClass("cell medium-3").append([
                     $("<h5>").text("Scientific Name").appendTo(container),
                     $("<p>").text(data.data[i].scientific_name)])
-                .appendTo(container);
+                    .appendTo(container);
 
                 // $("<div>").addClass("cell medium-2").append([
                 //     $("<h5>").text("Genus").appendTo(container),
@@ -105,8 +108,8 @@ $(document).ready(function () {
 
                 const synonyms = $("<p>");
                 for (let j = 0; j < data.data[i].synonyms.length; j++) {
-                    if(j > 0){
-                        synonyms.append(", ")    
+                    if (j > 0) {
+                        synonyms.append(", ")
                     }
                     synonyms.append(data.data[i].synonyms[j])
                 };
@@ -120,7 +123,7 @@ $(document).ready(function () {
                 resultsBox.append(container);
             };
         });
-    });    
+    });
 
     // Populate Create Plant form
     $(document).on("click", ".resultsButton", function (event) {
@@ -145,22 +148,26 @@ $(document).ready(function () {
             method: "PUT",
             url: "/:user/plant/" + $(this).val(),
             data: {
-                notes: $("#notes").val(),
+                notes: $("#plantText").val(),
                 nickname: $("#nickname").val()
             }
-        }).then(function (data) {
+        }).then(function () {
             location.reload();
         })
     })
 
     // Toggles the text area for notes and nickname editing
-    editBtn.on("click", function () {
-        nickname.toggle("<textarea>")
-        if (nickname === "<textarea>")
-            nickname.toggle("<p>")
-        else {
-        }
+    editNickname.on("click", function () {
+        nickname.toggle()
+        nicknameText.toggle()
+
+    });
+
+    editNotes.on("click", function () {
+        plantNotes.toggle()
+        plantText.toggle()
     })
+
 
     // UPDATE when plant was watered (plant profile)
     waterBtn.on("click", function () {

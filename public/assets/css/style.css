@@ -91,6 +91,10 @@
     box-shadow: 3px 3px 3px #666;
   }
 
+  .hiddenElement {
+    display: none;
+  }
+
   .delete-btn{
     border-radius: 3px;
     border: solid 2px rgb(131, 47, 45);
