@@ -1,5 +1,5 @@
 <div class="callout plant-page">
-  <h5 id="nickname">{{dataValues.nickname}}</h5>
+  <textarea id="nickname" name="nickname" rows="1" cols="20">{{dataValues.nickname}}</textarea>
 </div>
 
 <div class="callout plant-page">
@@ -17,9 +17,6 @@
       </div>
 
       <button class="btn watered-btn" id="waterBtn" value={{dataValues.id}}>Just watered!</button>
-
-      <button class="btn" id="deleteBtn" value={{dataValues.id}}>Delete plant?</button>
-
 
 
       <div class="card" style="width: 75%;">
@@ -50,10 +47,12 @@
         <h5><a href="/{{{dataValues.User.dataValues.userName}}}/plant/{{{dataValues.id}}}/addphoto">Add photo</a></h5>
       </div>
 
+      <button class="btn delete-btn" id="deleteBtn" value={{dataValues.id}}>Delete plant?</button>
 
     </div>
   </div>
 </div>
+
 
 
 {{#each dataValues.Photos}}
