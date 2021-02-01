@@ -32,11 +32,11 @@
           <h3>Photos</h3>
           <a href="/{{../userName}}/plant/{{{dataValues.id}}}">
             {{#if Photos}}
-              {{#Photos.[0]}}          
-                <img src={{dataValues.url}} {{#if dataValues.isWatered}}class="img is-watered"{{else}}class="img not-watered"{{/if}}>                      
+              {{#Photos.[0]}}   
+                <img src={{dataValues.url}} {{#if ../dataValues.isWatered}}class="img is-watered"{{else}}class="img not-watered"{{/if}}>                      
               {{/Photos.[0]}}
             {{else}}
-              <img src="/assets/images/Potted Plant1.jpg" {{#if dataValues.isWatered}}class="img is-watered"{{else}}class="img not-watered"{{/if}}>            
+              <img src="/assets/images/Potted Plant1.jpg" {{#if ../dataValues.isWatered}}class="img is-watered"{{else}}class="img not-watered"{{/if}}>            
             {{/if}}
           </a>
         </div>

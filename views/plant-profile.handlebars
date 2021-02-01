@@ -59,7 +59,9 @@
       <div class="grid-x grid-margin-x small-up-2 medium-up-3">
         <div class="cell">
           <div class="card">
-            <img src="{{dataValues.url}}" style="width: 200px" alt="">
+            <h3>{{#if ../dataValues.isWatered}}I have enough water. {{else}} {{/if}}</h3>
+            <img src="{{dataValues.url}}" style="width: 200px" alt="" {{#if ../dataValues.isWatered}}class="img is-watered"
+    {{else}}class="img not-watered" {{/if}}>
             <div class="card-section">
               {{!-- Wel'll need to see about adding that information from the "photos" table in the DB. --}}
               <h4>Date of Picture taken</h4>
@@ -80,7 +82,8 @@
     <div class="grid-x grid-margin-x small-up-2 medium-up-3">
       <div class="cell">
         <div class="card">
-          <img src="/assets/images/Potted Plant1.jpg" {{#if dataValues.isWatered}}class="img is-watered"
+          
+          <img src="/assets/images/Potted Plant1.jpg" {{#if ../dataValues.isWatered}}class="img is-watered"
     {{else}}class="img not-watered" {{/if}}>
           <div class="card-section">
             {{!-- Wel'll need to see about adding that information from the "photos" table in the DB. --}}
