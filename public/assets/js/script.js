@@ -73,6 +73,7 @@ $(document).ready(function () {
     // Search for a plant by it's common name
     searchBtn.on("click", function (event) {
         event.preventDefault();
+        resultsBox.show();
         console.log(searchBox.val());
         $.ajax({
             method: "GET",
