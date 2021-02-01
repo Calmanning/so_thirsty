@@ -143,3 +143,10 @@
   text-align: center;
 }
 
+.is-watered {
+border: solid 10px rgb(216, 81, 79)
+}
+
+.not-watered {
+  border: solid 10px rgb(192, 225, 247)
+}
