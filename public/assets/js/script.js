@@ -124,14 +124,13 @@ $(document).ready(function () {
 //just watered button on "/:user"
 $(document).on("click", ".wateredBtn", function(event) {
 event.preventDefault();
-let plantData = $(this).Plant
-console.log("button...uhhhh 'click' " + plantData);
-// $.ajax({
-//         method: "PUT",
-//         url: "/:user/water/" + $(this).data("id")
-// }).then(function(data) {
-//     console.log("watered plant id: " + data);
-// })
+console.log("button...uhhhh 'click' " + $(this).val());
+$.ajax({
+    method: "PUT",
+    url: "/:user/water/" + $(this).val()
+}).then(function (data) {
+    location.reload();
+});
 })
 
 

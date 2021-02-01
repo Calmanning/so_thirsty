@@ -158,7 +158,7 @@ router.put("/:user/water/:plant", (req, res) => {
             }
         }).
         then(waterDate => {
-            res.json("plant-profile", waterDate)
+            res.json(waterDate)
         })
 
 })
@@ -175,7 +175,7 @@ router.put("/:user/plant/:plant/water", (req, res) => {
             }
         }).
         then(waterDate => {
-            res.json("plant-profile", waterDate)
+            res.json(waterDate)
         })
 
 })
