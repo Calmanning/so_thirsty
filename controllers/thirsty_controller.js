@@ -13,7 +13,7 @@ const temp = require("../tempObj");
 const axios = require('axios')
 
 const cloudinary = require("cloudinary");
-const { string } = require("underscore");
+const nodemailer = require('nodemailer');
 
 require('dotenv').config()
 
@@ -260,7 +260,7 @@ async function addPhoto(id, url) {
 }
 
 // =======================================================================
-// PExternal API Routes
+// External API Routes
 // =======================================================================
 
 //api call for to get plant info by name (and it's trefle ID)
@@ -285,6 +285,110 @@ router.get("/api/searchById/:id", ensureAuthenticated, function (req, res) {
         });
 })
 
+
+// =========================================================================
+// Temp user routes 
+// =========================================================================
+
+// Route to let user invite caretaker
+router.get("/invite", ensureAuthenticated, (req, res)=>{
+    res.render("invite")
+})
+
+router.post("/invite", ensureAuthenticated, (req, res) => {
+    
+    const key = generatePassword();
+
+    // save user in db
+    db.Caretaker.create({
+        UserId: req.session.user.id,
+        name: req.body.name,
+        email: req.body.email,
+        key: key
+    }).then(data => {
+
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'sothirstyproject@gmail.com',
+              pass: process.env.GMAIL_PASSWORD
+            }
+          });
+          
+          const mailOptions = {
+            from: 'sothirstyproject@gmail.com',
+            to: req.body.email,
+            subject: `${req.session.user.name} would like to invite you to view their plants at SoThirstyProject!`,
+            text: `So Thirsty is a web app that helps users care for their plants. Users can add plants, search for information about them, set watering schedules and more! ${req.session.user.name} wants to show you their plant profile to help you care for their plants. visit http://localhost:3000/caretaker/${key} to get started. Also consider signing up for an account of your own at http://localhost:3000 - The So Thirsty Team`
+          };
+          
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+              res.status(500).json(error)
+            } else {
+              console.log('Email sent: ' + info.response);
+              res.redirect("/")
+            }
+          });
+
+
+    });
+
+})
+
+router.get("/caretaker/:key", (req, res) => {
+    db.Caretaker.findOne({
+        where: {
+            key: req.params.key
+        },
+        include: [
+            { model: db.User, include: [{model: db.Plant, include: [db.Photo]}] }
+        ]
+    }).then(data => {
+        console.log('Caretaker data: ', data.dataValues);
+        res.render("caretaker.handlebars", {
+            layout: "tempUser.handlebars",
+            data: data.dataValues});
+        // res.json(data)
+    })
+})
+
+router.get("/caretaker/:key/plant/:id", (req, res) => {
+    db.Caretaker.findOne({
+        where: {
+            key: req.params.key
+        },
+        include: [
+            { model: db.User, include: [{model: db.Plant, include: [db.Photo]}] }
+        ]
+    }).then(data => {
+        db.Plant.findOne({
+            where: {
+                id: req.params.id
+            },
+            include: [db.Photo, db.User]
+        }).then(plant => {
+
+            res.render("caretaker-plant", plant);
+
+        })
+    })
+})
+
+router.delete("/api/caretaker/:id", (req, res) => {
+    db.Caretaker.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(data => {
+        res.json({msg: "caretaker deleted"})
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json(err)
+    })
+})
+
 // =======================================================================
 // Home page catch all route
 // =======================================================================
@@ -297,7 +401,7 @@ router.get("/:user", ensureAuthenticated, function (req, res) {
                 userName: req.session.user.userName
             },
             include: [
-                { model: db.Plant, include: [db.Photo]}
+                { model: db.Plant, include: [db.Photo]}, db.Caretaker
             ]
 
         }).then(data => {
@@ -322,6 +426,36 @@ function ensureAuthenticated(req, res, next) {
         res.redirect("/signin")
     }
 
+}
+
+function getDigit() {
+    var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+    var possibleDigits = [];
+
+    possibleDigits = possibleDigits.concat(lowerCase);
+
+    possibleDigits = possibleDigits.concat(upperCase);
+
+    possibleDigits = possibleDigits.concat(numbers);
+
+    return possibleDigits[Math.floor(Math.random() * possibleDigits.length)];
+}
+
+function generatePassword() {
+
+    var password = "";
+
+    for (var i = 0; i < 15; i++) {
+
+        var tempDigit = getDigit();
+
+        password = password.concat(tempDigit);
+    }
+
+    return password;    
 }
 
 module.exports = router;

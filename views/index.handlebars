@@ -41,6 +41,15 @@
       </div>
     </div>
     {{/each}}
+    <hr>
+    <h3>Caretakers</h3>
+    <ul>
+    {{#each Caretakers}}
+      <li>        
+        {{dataValues.name}} - <button class="deleteCaretaker btn" value={{dataValues.id}}>Remove Caretaker</button>
+      </li>
+    {{/each}}
+    </ul>
   </div>
 </div>
 
