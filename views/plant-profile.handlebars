@@ -60,25 +60,25 @@
 
 {{#if dataValues.Photos}}
 
-{{#each dataValues.Photos}}
 <div class="grid-container">
   <div class="grid-x grid-margin-x small-up-2 medium-up-3">
-    <div class="cell">
-      <div class="card">
-        <h3>{{#if ../dataValues.isWatered}} {{else}} {{/if}}</h3>
+    {{#each dataValues.Photos}}
+    <div class="cell large-4 medium-6 small-12 plant-card">
+      <div class="card-section">
+        <h3>{{#if ../dataValues.isWatered}}I have enough water. {{else}} {{/if}}</h3>
         <img src="{{dataValues.url}}" style="width: 200px" alt="" {{#if ../dataValues.isWatered}}class="img is-watered"
           {{else}}class="img not-watered" {{/if}}>
-        <div class="card-section">
+        <div>
           {{!-- Wel'll need to see about adding that information from the "photos" table in the DB. --}}
-          <h4>Picture Added:</h4>
+          <h4>{{dataValues.createdAt}}</h4>
           {{!-- I believe we'll want to add a STRING col to the "photos" table in the DB, for this. --}}
           {{!-- <p>Possible notes added to each picture upload?</p> --}}
         </div>
       </div>
     </div>
+    {{/each}}
   </div>
 </div>
-{{/each}}
 
 {{else}}
 
@@ -93,7 +93,7 @@
           {{else}}class="img not-watered" {{/if}}>
         <div class="card-section">
           {{!-- Wel'll need to see about adding that information from the "photos" table in the DB. --}}
-          <h4>Date of Picture taken</h4>
+          <h4>{{dataValues.createdAt}}</h4>
           {{!-- I believe we'll want to add a STRING col to the "photos" table in the DB, for this. --}}
           {{!-- <p>Possible notes added to each picture upload?</p> --}}
         </div>
