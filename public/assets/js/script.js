@@ -104,7 +104,7 @@ $(document).ready(function () {
         });
     });
 
-    // UPDATE notes in plant profile
+    // UPDATE notes and nickname in plant profile
     saveBtn.on("click", function () {
         $.ajax({
             method: "PUT",
@@ -116,6 +116,11 @@ $(document).ready(function () {
         }).then(function (data) {
             location.reload();
         })
+    })
+
+    // Toggles the text area for notes and nickname editing
+    updateBtn.on("click", function () {
+
     })
 
     // UPDATE when plant was watered (plant profile)
