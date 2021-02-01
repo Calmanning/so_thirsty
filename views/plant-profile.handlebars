@@ -52,7 +52,7 @@
         <h5><a href="/{{{dataValues.User.dataValues.userName}}}/plant/{{{dataValues.id}}}/addphoto">Add photo</a></h5>
       </div>
 
-      <button class="btn delete-btn" id="deleteBtn" value={{dataValues.id}}>Delete plant?</button>
+      <button class="btn delete-btn" id="deleteBtn" value={{dataValues.id}}>Remove Plant?</button>
 
     </div>
   </div>
@@ -65,7 +65,7 @@
     {{#each dataValues.Photos}}
     <div class="cell large-4 medium-6 small-12 plant-card">
       <div class="card-section">
-        <h3>{{#if ../dataValues.isWatered}}I have enough water. {{else}} {{/if}}</h3>
+        <h3>{{#if ../dataValues.isWatered}} {{else}} {{/if}}</h3>
         <img src="{{dataValues.url}}" style="width: 200px" alt="" {{#if ../dataValues.isWatered}}class="img is-watered"
           {{else}}class="img not-watered" {{/if}}>
         <div>
