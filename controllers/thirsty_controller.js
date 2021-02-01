@@ -13,7 +13,7 @@ const temp = require("../tempObj");
 const axios = require('axios')
 
 const cloudinary = require("cloudinary");
-const { string } = require("underscore");
+const nodemailer = require('nodemailer');
 
 require('dotenv').config()
 
@@ -266,6 +266,48 @@ router.get("/api/searchById/:id", ensureAuthenticated, function (req, res) {
 // Route to let user invite caretaker
 router.get("/invite", ensureAuthenticated, (req, res)=>{
     res.render("invite")
+})
+
+router.post("/invite", ensureAuthenticated, (req, res) => {
+    
+    const key = generatePassword();
+
+    // save user in db
+    db.Caretaker.create({
+        UserId: req.session.user.id,
+        name: req.body.name,
+        email: req.body.email,
+        key: key
+    }).then(data => {
+
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'sothirstyproject@gmail.com',
+              pass: process.env.GMAIL_PASSWORD
+            }
+          });
+          
+          const mailOptions = {
+            from: 'sothirstyproject@gmail.com',
+            to: req.body.email,
+            subject: `${req.session.user.name} would like to invite you to view their plants at SoThirstyProject!`,
+            text: `So Thirsty is a web app that helps users care for their plants. Users can add plants, search for information about them, set watering schedules and more! ${req.session.user.name} wants to show you their plant profile to help you care for their plants. visit http://localhost:3000/caretaker/${key} to get started. Also consider signing up for an account of your own at http://localhost:3000 - The So Thirsty Team`
+          };
+          
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+              res.status(500).json(error)
+            } else {
+              console.log('Email sent: ' + info.response);
+              res.redirect("/")
+            }
+          });
+
+
+    });
+
 })
 
 
