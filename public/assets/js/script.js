@@ -102,12 +102,6 @@ $(document).ready(function () {
                 //     $("<p>").text(data.data[i].family)])
                 // .appendTo(container);
 
-                
-
-                
-                
-
-
                 const synonyms = $("<p>");
                 for (let j = 0; j < data.data[i].synonyms.length; j++) {
                     if(j > 0){
@@ -125,7 +119,7 @@ $(document).ready(function () {
                 resultsBox.append(container);
             };
         });
-    });
+    });    
 
     // Populate Create Plant form
     $(document).on("click", ".resultsButton", function (event) {
