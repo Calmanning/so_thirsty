@@ -126,7 +126,8 @@
     overflow-x: hidden; 
     overflow-y: auto; 
     text-align:justify;
-    color:   rgb(93, 100, 87)
+    color:   rgb(93, 100, 87);
+    display: none;
 }
 
 .grid-container{
