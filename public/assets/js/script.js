@@ -20,7 +20,7 @@ $(document).ready(function () {
     var trefleId = $("#trefleId");
     var treflePhoto = $("#treflePhoto");
     var waterBtn = $("#waterBtn");
-    var lastWatered = $("#lastWatered");
+    var deleteBtn = $("#deleteBtn")
 
     // Register user
     $("#newUser").on("submit", function (event) {
@@ -116,19 +116,23 @@ $(document).ready(function () {
         });
     });
 
-    // TODO: DELETE plant from profile button
-    // deleteBtn.on("click", function (){
-
-    // })
-
-
+    // DELETE plant from profile
+    deleteBtn.on("click", function (event) {
+        event.stopPropagation();
+        var id = $(this).val();
+        $.ajax({
+            method: "DELETE",
+            url: "/api/:user/plant/" + id
+        }).then(function () {
+            window.location.href = "/";
+        })
+    })
 });
 
 frequencyMap = precipitation => {
     let frequency = 3;
 
     if (typeof precipitation === "number") {
-        console.log("this should not be happening!");
         frequency = (1 / precipitation) * 800;
         frequency = Math.round(frequency);
 
