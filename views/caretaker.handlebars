@@ -1,0 +1,23 @@
+
+<div class="grid-container">
+  <div class="grid-x grid-margin-x small-up-2 medium-up-3">
+    <h3>Welcome, {{{data.name}}} - Viewing {{{data.User.dataValues.name}}}'s Plants</h3><br>
+    
+    {{#each data.User.Plants}}
+    <div class="cell medium-2 small-2">
+      <div class="card">
+        <h4>{{dataValues.nickname}}</h4>
+        <div class="card-section">
+          <a href="/caretaker/{{{../data.key}}}/plant/{{dataValues.id}}">
+            {{#Photos.[0]}}
+            <img class ="img" src={{dataValues.url}}>
+            {{/Photos.[0]}}</a>
+        </div>
+        <div class="card-section">
+          <button class="btn">Just watered!</button>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>

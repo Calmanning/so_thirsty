@@ -155,6 +155,8 @@ $(document).ready(function () {
     $(document).on("click", ".removeBtn", function (event) {
         event.stopPropagation();
         var id = $(this).val();
+        alert("/api/:user/dead/" + id)
+        console.log(`delete plant event listener fires: `, $(this));
         $.ajax({
             method: "DELETE",
             url: "/api/:user/dead/" + id
@@ -163,7 +165,19 @@ $(document).ready(function () {
         })
     })
 
+    //Delete caretaker
+    $(document).on("click", ".deleteCaretaker",function (event) {
 
+        event.stopPropagation();
+
+        var id = $(this).val();
+        $.ajax({
+            method: "DELETE",
+            url: "/api/caretaker/" + id
+        }).then(function () {
+            location.reload();
+        })
+    })
 
 }); //end of the document ready
 
@@ -201,3 +215,8 @@ const filterObj = objToFilter => {
     returnString = returnString.substring(2, returnString.length - 1)
     return returnString;
 }
+
+// ==========================================================
+// add temp user functions
+// ==========================================================
+
