@@ -116,6 +116,9 @@ $(document).ready(function () {
         });
     });
 
+    // SAVE notes in plant profile
+    saveBtn
+
     // DELETE plant from profile
     deleteBtn.on("click", function (event) {
         event.stopPropagation();
