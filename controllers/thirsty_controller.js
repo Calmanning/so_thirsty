@@ -310,6 +310,22 @@ router.post("/invite", ensureAuthenticated, (req, res) => {
 
 })
 
+router.get("/caretaker/:key", (req, res) => {
+    db.Caretaker.findOne({
+        where: {
+            key: req.params.key
+        },
+        include: [
+            { model: db.User, include: [{model: db.Plant, include: [db.Photo]}] }
+        ]
+    }).then(data => {
+        console.log('Caretaker data: ', data);
+        res.render("caretaker.handlebars", {
+            layout: "tempUser.handlebars",
+            data: data});
+    })
+})
+
 
 // =======================================================================
 // Home page catch all route
