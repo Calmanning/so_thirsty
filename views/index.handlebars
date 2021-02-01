@@ -30,7 +30,7 @@
         <div class="card-section">
           <a href="/{{../userName}}/plant/{{{dataValues.id}}}">
           {{#Photos.[0]}}
-            <img class ="img" src={{dataValues.url}}>
+            <img src={{dataValues.url}} {{#if ../dataValues.isWatered}}class="img is-watered"{{else}}class="img not-watered"{{/if}}>
             {{/Photos.[0]}}</a>
         </div>
         <div class="card-section">
