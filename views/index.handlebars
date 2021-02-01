@@ -29,8 +29,12 @@
         </a>
         <div class="card-section">
           <a href="/{{../userName}}/plant/{{{dataValues.id}}}">
-          {{#Photos.[0]}}
-            <img class ="img" src={{dataValues.url}}>
+         {{#Photos.[0]}}
+          {{#if dataValues.url }}
+            <img class ="img" src={{{dataValues.url}}}>
+            {{else}}
+            <img class="img" src="https://www.placecage.com/g/140/100"
+            {{/if}}
             {{/Photos.[0]}}</a>
         </div>
         <div class="card-section">
@@ -56,6 +60,11 @@
 <h1>
 
 </h1>
+
+
+{{!-- {{#Photos.[0]}}
+            <img class ="img" src={{dataValues.url}}>
+            {{/Photos.[0]}}</a> --
 
 {{!-- {{#each Plants}}
 {{dataValues.nickname}}<br>
