@@ -49,12 +49,17 @@
 
 
 <hr>
+
+<div class="grid-container grid-container-margin">
+
 <h3>Caretakers</h3>
-<a href="/invite">Invite a caretaker</a>
 <ul>
   {{#each Caretakers}}
   <li>
-    {{dataValues.name}} - <button class="deleteCaretaker btn" value={{dataValues.id}}>Remove Caretaker</button>
+    {{dataValues.name}} - <button class="deleteCaretaker btn" value={{dataValues.id}}>Remove</button>
   </li>
   {{/each}}
 </ul>
+
+<a href="/invite"><button class="btn">Invite a Caretaker</button></a>
+</div>
