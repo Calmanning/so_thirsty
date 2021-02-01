@@ -376,6 +376,18 @@ router.get("/caretaker/:key/plant/:id", (req, res) => {
     })
 })
 
+router.delete("/api/caretaker/:id", (req, res) => {
+    db.Caretaker.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(data => {
+        res.json({msg: "caretaker deleted"})
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json(err)
+    })
+})
 
 // =======================================================================
 // Home page catch all route
@@ -389,7 +401,7 @@ router.get("/:user", ensureAuthenticated, function (req, res) {
                 userName: req.session.user.userName
             },
             include: [
-                { model: db.Plant, include: [db.Photo]}
+                { model: db.Plant, include: [db.Photo]}, db.Caretaker
             ]
 
         }).then(data => {
