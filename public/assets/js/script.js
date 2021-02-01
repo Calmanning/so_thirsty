@@ -74,10 +74,10 @@ $(document).ready(function () {
             method: "GET",
             url: "/api/search/" + searchBox.val()
         }).then(function (data) {
+            resultsBox.text("");
             console.log(data);
             for (let i = 0; i < data.data.length; i++) {
-
-                // <div class="grid-x grid-margin-x align-center"></div>
+                
                 var container = $("<div>").addClass("grid-x grid-margin-x align-center");
 
                 $("<div>").addClass("cell medium-3").append(
