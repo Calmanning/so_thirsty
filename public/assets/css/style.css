@@ -3,9 +3,13 @@
 }
 
 #body {
-  background-color: rgb(173, 187, 162, 0.2)
+  background-color: rgb(173, 187, 162, 0.2);
+  font-family: 'Bubbler One', sans-serif;
 }
 
+a {
+  font-family: 'Bubbler One', sans-serif!important;
+}
 
 .footer {
     position: fixed;
