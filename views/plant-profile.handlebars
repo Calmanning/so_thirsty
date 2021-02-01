@@ -3,7 +3,7 @@
 <div class="callout plant-page">
   <h5 id="nicknameText">Nickname: {{dataValues.nickname}}</h5>
   <textarea class="hiddenElement" id="nickname" name="nickname" rows="1" cols="20">{{dataValues.nickname}}</textarea>
-  <button class="editNickname">Edit</button>
+  <button class="btn editNickname">Edit</button>
   <button class="btn hiddenElement" id="saveName" value={{dataValues.id}}>Save</button>
 </div>
 
@@ -32,16 +32,21 @@
                 {{dataValues.notes}}
             </textarea>
         <p id="plantNotes">{{dataValues.notes}}</p>
-        <button class="editNotes">Edit</button>
+        <button class="btn editNotes">Edit</button>
         <button class="btn hiddenElement" id="saveNotes" value={{dataValues.id}}>Save</button>
       </div>
 
 
-
       <div class="cell shrink plant-page">
-        <div class="callout small">
+        <div class="callout small" id="waterLevel">
           <h5>Recommended Water Frequency: Every {{dataValues.waterFrequency}} days</h5>
         </div>
+        <p class="hiddenElement" id="waterUpdate">How many days would you like your watering frequency to be?</p>
+        <span class="hiddenElement" id="hideInput">
+          <input type="number" id="waterDays" name="watering" value={{dataValues.waterFrequency}}>
+        </span>
+        <button class="btn editWater">Edit</button>
+        <button class="btn hiddenElement" id="saveWater" value={{dataValues.id}}>Save</button>
       </div>
 
       <div class="callout small">

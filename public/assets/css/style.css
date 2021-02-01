@@ -165,6 +165,10 @@ input{
   margin: 10px !important;
 }
 
+.callout > input{
+display: unset;
+}
+
 label{
   margin: 4px  0 -10px 10px !important;
 }

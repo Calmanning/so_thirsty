@@ -28,6 +28,12 @@ $(document).ready(function () {
     var plantText = $("#plantText");
     var editNickname = $(".editNickname");
     var nicknameText = $("#nicknameText");
+    var editWater = $(".editWater");
+    var saveWater = $("#saveWater");
+    var waterUpdate = $("#waterUpdate");
+    var waterLevel = $("#waterLevel");
+    var hideInput = $("#hideInput");
+
 
     // Register user
     $("#newUser").on("submit", function (event) {
@@ -64,8 +70,6 @@ $(document).ready(function () {
     //     };
     // });
 
-    // TODO: Get user info
-
 
     // Treffle API plant search
     // Search for a plant by it's common name
@@ -80,7 +84,7 @@ $(document).ready(function () {
             resultsBox.text("");
             console.log(data);
             for (let i = 0; i < data.data.length; i++) {
-                
+
                 var container = $("<div>").addClass("grid-x grid-margin-x align-center");
 
                 $("<div>").addClass("cell medium-3").append(
@@ -142,7 +146,7 @@ $(document).ready(function () {
             conditions.val(filterObj(data.data.main_species.growth));
             trefleId.val(data.data.id);
             treflePhoto.val(data.data.image_url);
-            
+
             $("#selectedNotice").text(`${data.data.common_name} is selected.`).append([
                 $("<br>"),
                 $("<a>").addClass("clearSelection").text("clear selection")
@@ -150,12 +154,12 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on("click", ".clearSelection", function(){
+    $(document).on("click", ".clearSelection", function () {
         $("#myForm").trigger("reset");
         $("#selectedNotice").text("");
     })
 
-    // UPDATE notes and nickname in plant profile
+    // UPDATE notes, nickname, and water frequency in plant profile
     saveName.on("click", function () {
         $.ajax({
             method: "PUT",
@@ -180,7 +184,19 @@ $(document).ready(function () {
         });
     });
 
-    // Toggles the text area for notes and nickname editing
+    saveWater.on("click", function () {
+        $.ajax({
+            method: "PUT",
+            url: "/:user/plant/" + $(this).val(),
+            data: {
+                waterFrequency: $("#waterDays").val()
+            }
+        }).then(function () {
+            location.reload();
+        });
+    });
+
+    // Toggles the text area for notes, nickname, and water frequency editing
     editNickname.on("click", function () {
         nickname.toggle()
         nicknameText.toggle()
@@ -193,6 +209,12 @@ $(document).ready(function () {
         saveNotes.toggle()
     });
 
+    editWater.on("click", function () {
+        waterUpdate.toggle()
+        saveWater.toggle()
+        waterLevel.toggle()
+        hideInput.toggle()
+    });
 
     // UPDATE when plant was watered (plant profile)
     waterBtn.on("click", function () {
