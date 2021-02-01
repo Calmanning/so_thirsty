@@ -2,15 +2,18 @@
 
 <div class="grid-container grid-container-margin">
   <div class="grid-x grid-x-margin">
-    <div class="cell medium-3">
-      <div class="btn-group">
-        <button>Sonny{{dataValues.nickname}}</button>
+    <div class="grid-y">
+      <div class="cell medium-3">
+      {{#each Plants}}
+        <div class="btn-group">
+          <a href="/{{../userName}}/plant/{{{dataValues.id}}}">
+            <button>{{dataValues.nickname}}</button></a>
+        </div>
+      {{/each}}
       </div>
     </div>
 
-
     <div class="cell medium-9">
-
       <div class="grid-container grid-container-margin">
         <div class="grid-x grid-x-margin">
           {{#each Plants}}
@@ -31,8 +34,8 @@
                   {{else}}class="img not-watered" {{/if}}>
                 {{/if}}
               </a>
-            </div>
-            <div class="card-section">
+            {{!-- </div>
+            <div class="card-section"> --}}
               <button class="wateredBtn btn" value={{dataValues.id}}>Just watered!</button>
               <button class="removeBtn btn" value={{dataValues.id}}>Remove Plant</button>
             </div>
