@@ -32,6 +32,7 @@ $(document).ready(function () {
     var saveWater = $("#saveWater");
     var waterText = $("#waterText");
     var waterUpdate = $("#waterUpdate");
+    var waterLevel = $("#waterLevel");
 
     // Register user
     $("#newUser").on("submit", function (event) {
@@ -211,8 +212,8 @@ $(document).ready(function () {
         waterUpdate.toggle()
         waterText.toggle()
         saveWater.toggle()
+        waterLevel.toggle()
     });
-
 
     // UPDATE when plant was watered (plant profile)
     waterBtn.on("click", function () {
