@@ -260,7 +260,7 @@ async function addPhoto(id, url) {
 }
 
 // =======================================================================
-// PExternal API Routes
+// External API Routes
 // =======================================================================
 
 //api call for to get plant info by name (and it's trefle ID)
@@ -351,6 +351,28 @@ router.get("/caretaker/:key", (req, res) => {
             layout: "tempUser.handlebars",
             data: data.dataValues});
         // res.json(data)
+    })
+})
+
+router.get("/caretaker/:key/plant/:id", (req, res) => {
+    db.Caretaker.findOne({
+        where: {
+            key: req.params.key
+        },
+        include: [
+            { model: db.User, include: [{model: db.Plant, include: [db.Photo]}] }
+        ]
+    }).then(data => {
+        db.Plant.findOne({
+            where: {
+                id: req.params.id
+            },
+            include: [db.Photo, db.User]
+        }).then(plant => {
+
+            res.render("caretaker-plant", plant);
+
+        })
     })
 })
 

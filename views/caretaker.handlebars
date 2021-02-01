@@ -8,7 +8,7 @@
       <div class="card">
         <h4>{{dataValues.nickname}}</h4>
         <div class="card-section">
-          <a href="/caretaker/plant/{{{dataValues.id}}}">
+          <a href="/caretaker/{{{../data.key}}}/plant/{{dataValues.id}}">
             {{#Photos.[0]}}
             <img class ="img" src={{dataValues.url}}>
             {{/Photos.[0]}}</a>
