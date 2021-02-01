@@ -2,16 +2,16 @@
 
 <div class="grid-container grid-container-margin">
   <div class="grid-x grid-x-margin">
-    {{!-- <div class="grid-y"> --}}
-      {{#each Plants}}
+    <div class="grid-y">
       <div class="cell medium-3">
-        {{!-- <div class="btn-group">
+      {{#each Plants}}
+        <div class="btn-group">
           <a href="/{{../userName}}/plant/{{{dataValues.id}}}">
             <button>{{dataValues.nickname}}</button></a>
-        </div> --}}
-      </div>
+        </div>
       {{/each}}
-    {{!-- </div> --}}
+      </div>
+    </div>
 
     <div class="cell medium-9">
       <div class="grid-container grid-container-margin">
