@@ -154,17 +154,6 @@ border: solid 10px rgb(216, 81, 79)
 .is-watered {
   border: solid 10px rgb(192, 225, 247)
 }
-
-textarea{
-  border-bottom-color: rgb(118, 118, 118);
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-  border-bottom-style: inset;
-  border-bottom-width: 2px;
-  border-collapse: separate;
-  border-image-outset: 0;
-  border-image-repeat: stretch;
-  border-image-slice: 100%;
-  border-image-source: none;
-  border-image-width: 1;
+#selectedNotice{
+  text-align: center;
 }

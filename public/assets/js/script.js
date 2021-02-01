@@ -139,8 +139,18 @@ $(document).ready(function () {
             conditions.val(filterObj(data.data.main_species.growth));
             trefleId.val(data.data.id);
             treflePhoto.val(data.data.image_url);
+            
+            $("#selectedNotice").text(`${data.data.common_name} is selected.`).append([
+                $("<br>"),
+                $("<a>").addClass("clearSelection").text("clear selection")
+            ])
         });
     });
+
+    $(document).on("click", ".clearSelection", function(){
+        $("#myForm").trigger("reset");
+        $("#selectedNotice").text("");
+    })
 
     // UPDATE notes and nickname in plant profile
     saveBtn.on("click", function () {
