@@ -36,11 +36,13 @@
 
 
       <div class="cell shrink plant-page">
-        <div class="callout small">
-          <h5 id="waterLevel">Recommended Water Frequency: Every {{dataValues.waterFrequency}} days</h5>
+        <div class="callout small" id="waterLevel">
+          <h5>Recommended Water Frequency: Every {{dataValues.waterFrequency}} days</h5>
         </div>
-        <input type="number" class="hiddenElement" id="waterText" name="watering" value={{dataValues.waterFrequency}}>
-        <p id="waterUpdate"></p>
+        <p class="hiddenElement" id="waterUpdate">How many days would you like your watering frequency to be?</p>
+        <span class="hiddenElement" id="hideInput">
+          <input type="number" id="waterDays" name="watering" value={{dataValues.waterFrequency}}>
+        </span>
         <button class="btn editWater">Edit</button>
         <button class="btn hiddenElement" id="saveWater" value={{dataValues.id}}>Save</button>
       </div>

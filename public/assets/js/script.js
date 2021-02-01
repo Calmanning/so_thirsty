@@ -30,9 +30,10 @@ $(document).ready(function () {
     var nicknameText = $("#nicknameText");
     var editWater = $(".editWater");
     var saveWater = $("#saveWater");
-    var waterText = $("#waterText");
     var waterUpdate = $("#waterUpdate");
     var waterLevel = $("#waterLevel");
+    var hideInput = $("#hideInput");
+
 
     // Register user
     $("#newUser").on("submit", function (event) {
@@ -188,7 +189,7 @@ $(document).ready(function () {
             method: "PUT",
             url: "/:user/plant/" + $(this).val(),
             data: {
-                watering: $("#waterText").val()
+                waterFrequency: $("#waterDays").val()
             }
         }).then(function () {
             location.reload();
@@ -210,9 +211,9 @@ $(document).ready(function () {
 
     editWater.on("click", function () {
         waterUpdate.toggle()
-        waterText.toggle()
         saveWater.toggle()
         waterLevel.toggle()
+        hideInput.toggle()
     });
 
     // UPDATE when plant was watered (plant profile)
