@@ -145,6 +145,23 @@ router.put("/:user/plant/:plant/", function(req, res) {
 
     })
 
+//UPDATE a plants watered status on USER HOME PAGE
+router.put("/:user/water/:plant", (req, res) => {
+    let time = moment(); 
+    console.log("time " + time)
+    db.Plant.update({
+        lastWatered: time
+        },
+        {
+            where: {
+                id:req.params.plant
+            }
+        }).
+        then(waterDate => {
+            res.json(waterDate)
+        })
+
+})
 //UPDATE a plants watered status on PLANT-Profile page
 router.put("/:user/plant/:plant/water", (req, res) => {
     let time = moment(); 
@@ -153,13 +170,12 @@ router.put("/:user/plant/:plant/water", (req, res) => {
         lastWatered: time
         },
         {
-            
             where: {
                 id:req.params.plant
             }
         }).
         then(waterDate => {
-            res.render("plant-profile", waterDate)
+            res.json(waterDate)
         })
 
 })
@@ -176,6 +192,17 @@ router.delete("/api/:user/plant/:plant", ensureAuthenticated, function (req, res
     })
 })
 
+//DELETE a plant call from "/:user" page
+router.delete("/api/:user/dead/:plant", ensureAuthenticated, function (req, res) {
+    
+    db.Plant.destroy({
+        where: {
+            id: req.params.plant
+        }
+    }).then(function (data) {
+        res.json(data)
+    })
+})
 // =======================================================================
 // Photo Routes
 // =======================================================================
@@ -339,8 +366,9 @@ router.get("/:user", ensureAuthenticated, function (req, res) {
                 userName: req.session.user.userName
             },
             include: [
-                { model: db.Plant, include: [db.Photo] }
-            ],
+                { model: db.Plant, include: [db.Photo]}
+            ]
+
         }).then(data => {
             // console.log('db data: ', data.dataValues);
             const dataToSend = helpers.addWatered(data.dataValues)
