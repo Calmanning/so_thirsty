@@ -50,7 +50,9 @@
 
   .card-section {
     border-radius: 3px;
-    box-shadow: 2px 5px 5px 1px;
+    border: solid 2px rgb(173, 187, 162);
+    text-align: center;
+    margin: 10px;
   }
 
   .grid-container {
@@ -166,3 +168,28 @@ input{
 label{
   margin: 4px  0 -10px 10px !important;
 }
+
+.btn-group button {
+  background-color: rgb(173, 187, 162, 0.2);
+  border: solid 2px rgb(104,123,136);
+  color: rgb(93, 100, 87);
+  border-radius: 3px;
+  padding: 10px 24px;
+  /* cursor: pointer; */
+  width: 100%;
+  display: block;
+}
+
+.btn-group button:not(:last-child) {
+  border-bottom: none;
+}
+
+.btn-group button:hover {
+  background-color: rgb(252, 240, 106);
+}
+
+/* .plant-card {
+  margin: 1px;
+} */
+
+
