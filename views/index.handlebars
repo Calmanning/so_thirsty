@@ -4,39 +4,34 @@
 
 
 
-<ul class="accordion" data-accordion>
-  <li class="accordion-item is-active" data-accordion-item>
-    <!-- Accordion tab title -->
-    <a href="#" class="accordion-title">Accordion 1</a>
-
-    <!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->
-    <div class="accordion-content" data-tab-content>
-      <p>Panel 1. Lorem ipsum dolor</p>
-      <a href="#">Nowhere to Go</a>
+<div class="grid-container grid-container-margin">
+  <div class="grid-y grid-y-margin grid-button-list">
+    <div class="btn-group">
+      <button>Sonny{{dataValues.nickname}}</button>
     </div>
-  </li>
-</ul>
+  </div>
 
 
-<br>
-<div class="grid-container">
-  <div class="grid-x grid-margin-x small-up-2 medium-up-3">
-    {{#each Plants}}
 
-    <div class="cell medium-2 small-2">
-      <div class="card">
+
+  <div class="grid-y grid-y-margin">
+    <div class="grid-x grid-x-margin">
+      <div class="cell small-2 medium-3">
+        {{#each Plants}}
         <a href="/{{../userName}}/plant/{{{dataValues.id}}}">
-        <h4><strong>{{dataValues.nickname}}</strong></h4>
+          <h4><strong>{{dataValues.nickname}}</strong></h4>
         </a>
         <div class="card-section">
           <h3>Photos</h3>
           <a href="/{{../userName}}/plant/{{{dataValues.id}}}">
             {{#if Photos}}
-              {{#Photos.[0]}}   
-                <img src={{dataValues.url}} {{#if ../dataValues.isWatered}}class="img is-watered"{{else}}class="img not-watered"{{/if}}>                      
-              {{/Photos.[0]}}
+            {{#Photos.[0]}}
+            <img src={{dataValues.url}} {{#if ../dataValues.isWatered}}class="img is-watered"
+              {{else}}class="img not-watered" {{/if}}>
+            {{/Photos.[0]}}
             {{else}}
-              <img src="/assets/images/Potted Plant1.jpg" {{#if ../dataValues.isWatered}}class="img is-watered"{{else}}class="img not-watered"{{/if}}>            
+            <img src="/assets/images/Potted Plant1.jpg" {{#if ../dataValues.isWatered}}class="img is-watered"
+              {{else}}class="img not-watered" {{/if}}>
             {{/if}}
           </a>
         </div>
@@ -46,19 +41,20 @@
         </div>
       </div>
     </div>
-    {{/each}}
-    <hr>
-    <h3>Caretakers</h3>
-    <a href="/invite">Invite a caretaker</a>
-    <ul>
-    {{#each Caretakers}}
-      <li>        
-        {{dataValues.name}} - <button class="deleteCaretaker btn" value={{dataValues.id}}>Remove Caretaker</button>
-      </li>
-    {{/each}}
-    </ul>
   </div>
 </div>
+
+{{/each}}
+<hr>
+<h3>Caretakers</h3>
+<a href="/invite">Invite a caretaker</a>
+<ul>
+  {{#each Caretakers}}
+  <li>
+    {{dataValues.name}} - <button class="deleteCaretaker btn" value={{dataValues.id}}>Remove Caretaker</button>
+  </li>
+  {{/each}}
+</ul>
 
 
 
