@@ -1,5 +1,7 @@
 <div class="callout plant-page">
-  <textarea id="nickname" name="nickname" rows="1" cols="20">{{dataValues.nickname}}</textarea>
+  <h5 id="nicknameText">Nickname: {{dataValues.nickname}}</h5>
+  <textarea class="hiddenElement" id="nickname" name="nickname" rows="1" cols="20">{{dataValues.nickname}}</textarea>
+  <button class="editNickname">Edit</button>
 </div>
 
 <div class="callout plant-page">
@@ -23,10 +25,12 @@
         <div class="card-divider">
           <h4>Notes & Care Instructions</h4>
         </div>
-        <textarea id="notes" name="notes" rows="4" cols="50">
+        <textarea class="hiddenElement" id="plantText" name="notes" rows="4" cols="50">
                 {{dataValues.notes}}
             </textarea>
-          <button class="btn" id="saveBtn" value={{dataValues.id}}>Save</button>
+        <p id="plantNotes">{{dataValues.notes}}</p>
+        <button class="editNotes">Edit</button>
+        <button class="btn" id="saveBtn" value={{dataValues.id}}>Save</button>
       </div>
 
 
@@ -53,48 +57,47 @@
 </div>
 
 {{#if dataValues.Photos}}
-  
-  {{#each dataValues.Photos}}
-    <div class="grid-container">
-      <div class="grid-x grid-margin-x small-up-2 medium-up-3">
-        <div class="cell">
-          <div class="card">
-            <h3>{{#if ../dataValues.isWatered}}I have enough water. {{else}} {{/if}}</h3>
-            <img src="{{dataValues.url}}" style="width: 200px" alt="" {{#if ../dataValues.isWatered}}class="img is-watered"
-    {{else}}class="img not-watered" {{/if}}>
-            <div class="card-section">
-              {{!-- Wel'll need to see about adding that information from the "photos" table in the DB. --}}
-              <h4>Date of Picture taken</h4>
-              {{!-- I believe we'll want to add a STRING col to the "photos" table in the DB, for this. --}}
-              {{!-- <p>Possible notes added to each picture upload?</p> --}}
-            </div>
-          </div>
+
+{{#each dataValues.Photos}}
+<div class="grid-container">
+  <div class="grid-x grid-margin-x small-up-2 medium-up-3">
+    <div class="cell">
+      <div class="card">
+        <h3>{{#if ../dataValues.isWatered}}I have enough water. {{else}} {{/if}}</h3>
+        <img src="{{dataValues.url}}" style="width: 200px" alt="" {{#if ../dataValues.isWatered}}class="img is-watered"
+          {{else}}class="img not-watered" {{/if}}>
+        <div class="card-section">
+          {{!-- Wel'll need to see about adding that information from the "photos" table in the DB. --}}
+          <h4>Date of Picture taken</h4>
+          {{!-- I believe we'll want to add a STRING col to the "photos" table in the DB, for this. --}}
+          {{!-- <p>Possible notes added to each picture upload?</p> --}}
         </div>
       </div>
     </div>
-  {{/each}}
+  </div>
+</div>
+{{/each}}
 
 {{else}}
 
 
 
-  <div class="grid-container">
-    <div class="grid-x grid-margin-x small-up-2 medium-up-3">
-      <div class="cell">
-        <div class="card">
-          
-          <img src="/assets/images/Potted Plant1.jpg" {{#if ../dataValues.isWatered}}class="img is-watered"
-    {{else}}class="img not-watered" {{/if}}>
-          <div class="card-section">
-            {{!-- Wel'll need to see about adding that information from the "photos" table in the DB. --}}
-            <h4>Date of Picture taken</h4>
-            {{!-- I believe we'll want to add a STRING col to the "photos" table in the DB, for this. --}}
-            {{!-- <p>Possible notes added to each picture upload?</p> --}}
-          </div>
+<div class="grid-container">
+  <div class="grid-x grid-margin-x small-up-2 medium-up-3">
+    <div class="cell">
+      <div class="card">
+
+        <img src="/assets/images/Potted Plant1.jpg" {{#if ../dataValues.isWatered}}class="img is-watered"
+          {{else}}class="img not-watered" {{/if}}>
+        <div class="card-section">
+          {{!-- Wel'll need to see about adding that information from the "photos" table in the DB. --}}
+          <h4>Date of Picture taken</h4>
+          {{!-- I believe we'll want to add a STRING col to the "photos" table in the DB, for this. --}}
+          {{!-- <p>Possible notes added to each picture upload?</p> --}}
         </div>
       </div>
     </div>
   </div>
+</div>
 
 {{/if}}
-
