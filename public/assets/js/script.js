@@ -20,7 +20,8 @@ $(document).ready(function () {
     var trefleId = $("#trefleId");
     var treflePhoto = $("#treflePhoto");
     var waterBtn = $("#waterBtn");
-    var deleteBtn = $("#deleteBtn")
+    var deleteBtn = $("#deleteBtn");
+    var saveBtn = $("#saveBtn");
 
     // Register user
     $("#newUser").on("submit", function (event) {
@@ -103,20 +104,30 @@ $(document).ready(function () {
         });
     });
 
+    // UPDATE notes in plant profile
+    saveBtn.on("click", function () {
+        $.ajax({
+            method: "PUT",
+            url: "/:user/plant/" + $(this).val(),
+            data: {
+                notes: $("#notes").val()
+            }
+        }).then(function (data) {
+            location.reload();
+        })
+    })
+
     // UPDATE when plant was watered (plant profile)
     waterBtn.on("click", function () {
-        console.log("watered!");
-        console.log($("<data-id>"));
         $.ajax({
             method: "PUT",
             url: "/:user/plant/" + $(this).val() + "/water"
         }).then(function (data) {
-            console.log(data);
             location.reload();
         });
     });
 
-    //DELETE plant from profile button
+    // DELETE plant from profile
     deleteBtn.on("click", function (event) {
         event.stopPropagation();
         var id = $(this).val();
@@ -125,8 +136,8 @@ $(document).ready(function () {
             url: "/api/:user/plant/" + id
         }).then(function () {
             window.location.href = "/";
-        })
-    })
+        });
+    });
 
     //UPDATE just watered information on "/:user"
     $(document).on("click", ".wateredBtn", function (event) {
@@ -139,9 +150,9 @@ $(document).ready(function () {
             location.reload();
         });
     })
-    
+
     //DELETE plant call from "/:user" page
-    $(document).on("click", ".removeBtn",function (event) {
+    $(document).on("click", ".removeBtn", function (event) {
         event.stopPropagation();
         var id = $(this).val();
         $.ajax({
