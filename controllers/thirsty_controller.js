@@ -5,10 +5,7 @@ const moment = require("moment");
 
 const db = require("../models");
 
-const tempData = require("../tempObj")
-
 const helpers = require("../helpers/helpers");
-const temp = require("../tempObj");
 
 const axios = require('axios')
 
@@ -91,14 +88,13 @@ router.post("/api/user", function (req, res) {
 // =======================================================================
 
 // add plant
-router.get("/addplant", ensureAuthenticated, function (req, res) {
-    res.render("new-plant");
+router.get("/addplant", ensureAuthenticated, function (req, res) {    
+    res.render("new-plant", req.session.user);
 })
 
 //CREATE a new plant
 router.post("/api/plant", ensureAuthenticated, async function (req, res) {
-    // tempData.userPlantPhotos.plants.push(req.body);
-    // res.json(tempData.userPlantPhotos);
+    
     db.Plant.create({
         UserId: req.session.user.id,
         commonName: req.body.commonName,
@@ -128,7 +124,8 @@ router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
     }).then(function (data) {
         console.log("plant-data", data);        
         let dataToSend = helpers.addWateredSingle(data);
-        
+        dataToSend.userName = req.session.user.userName;
+        dataToSend.name = req.session.user.userName;
         res.render("plant-profile", dataToSend);
     })
 })
@@ -217,6 +214,8 @@ router.get("/:user/plant/:plant/addphoto", ensureAuthenticated, function(req, re
         }
     }).then(data => {
         // console.log('plant data: ', data);
+        data.userName = req.session.user.userName;
+        data.name = req.session.user.userName;
         res.render("addphoto", data);
     })
     
@@ -349,6 +348,7 @@ router.get("/caretaker/:key", (req, res) => {
         ]
     }).then(data => {
         if(data){
+            data.key = req.params.key;
             res.render("caretaker.handlebars", {
                 layout: "tempUser.handlebars",
                 data: data.dataValues});
@@ -374,7 +374,11 @@ router.get("/caretaker/:key/plant/:id", (req, res) => {
             },
             include: [db.Photo, db.User]
         }).then(plant => {
-
+            console.log(`==================================`);
+            console.log(`caretaker plant data: `, data);
+            
+            // plant.data.name = data.name;
+            plant.data = {name: data.dataValues.name, key: req.params.key}
             res.render("caretaker-plant", plant);
 
         })
