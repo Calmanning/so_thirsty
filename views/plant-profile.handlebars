@@ -38,8 +38,12 @@
 
       <div class="cell shrink plant-page">
         <div class="callout small">
-          <h5>Recommended Water Frequency: Every {{dataValues.waterFrequency}} days</h5>
+          <h5 id="waterText">Recommended Water Frequency: Every {{dataValues.waterFrequency}} days</h5>
         </div>
+        <textarea class="hiddenElement" id="waterUpdate" name="watering" rows="1"
+          cols="20">{{dataValues.waterFrequency}}</textarea>
+        <button class="editWater">Edit</button>
+        <button class="btn hiddenElement" id="saveWater" value={{dataValues.id}}>Save</button>
       </div>
 
       <div class="callout small">
