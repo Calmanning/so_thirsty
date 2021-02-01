@@ -73,20 +73,54 @@ $(document).ready(function () {
         }).then(function (data) {
             console.log(data);
             for (let i = 0; i < data.data.length; i++) {
-                var container = $("<div>").addClass("searchContainer");
-                $("<p>").text(data.data[i].common_name).appendTo(container);
-                $("<p>").text(data.data[i].scientific_name).appendTo(container);
-                $("<p>").text(data.data[i].genus).appendTo(container);
-                $("<p>").text(data.data[i].family).appendTo(container);
+
+                // <div class="grid-x grid-margin-x align-center"></div>
+                var container = $("<div>").addClass("grid-x grid-margin-x align-center");
+                
+                $("<div>").addClass("cell medium-3").append(
+                    $("<button>").addClass("btn").text("Select this plant").attr("data-id", data.data[i].id).appendTo(container).addClass("resultsButton"))
+                .appendTo(container);
+
+                $("<div>").addClass("cell medium-3").append($("<img>").attr("src", data.data[i].image_url)).appendTo(container);
+
+                $("<div>").addClass("cell medium-3").append([
+                    $("<h5>").text("Common Name"),
+                    $("<p>").text(data.data[i].common_name)])
+                .appendTo(container);
+                
+                $("<div>").addClass("cell medium-3").append([
+                    $("<h5>").text("Scientific Name").appendTo(container),
+                    $("<p>").text(data.data[i].scientific_name)])
+                .appendTo(container);
+
+                // $("<div>").addClass("cell medium-2").append([
+                //     $("<h5>").text("Genus").appendTo(container),
+                //     $("<p>").text(data.data[i].genus)])
+                // .appendTo(container);
+
+                // $("<div>").addClass("cell medium-2").append([
+                //     $("<h5>").text("Family").appendTo(container),
+                //     $("<p>").text(data.data[i].family)])
+                // .appendTo(container);
+
+                const synonyms = $("<p>");
                 for (let j = 0; j < data.data[i].synonyms.length; j++) {
-                    $("<p>").text(data.data[i].synonyms[j]).appendTo(container)
+                    if(j > 0){
+                        synonyms.append(", ")    
+                    }
+                    synonyms.append(data.data[i].synonyms[j])
                 };
-                $("<img>").attr("src", data.data[i].image_url).appendTo(container);
-                $("<button>").text("Select this plant").attr("data-id", data.data[i].id).appendTo(container).addClass("resultsButton");
+
+                $("<div>").addClass("grid-x grid-margin-x align-center").append($("<div>").addClass("cell medium-11").append([
+                    $("<h5>").text("Synonyms").appendTo(container),
+                    synonyms,
+                    $("<hr>")
+                ])).appendTo(container);
+
                 resultsBox.append(container);
             };
         });
-    });
+    });    
 
     // Populate Create Plant form
     $(document).on("click", ".resultsButton", function (event) {
