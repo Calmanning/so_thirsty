@@ -157,3 +157,7 @@ border: solid 10px rgb(216, 81, 79)
 #selectedNotice{
   text-align: center;
 }
+
+label{
+  margin: 4px  0 -10px 10px !important;
+}
