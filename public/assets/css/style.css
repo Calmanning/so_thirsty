@@ -158,6 +158,10 @@ border: solid 10px rgb(216, 81, 79)
   text-align: center;
 }
 
+input{
+  margin: 10px !important;
+}
+
 label{
   margin: 4px  0 -10px 10px !important;
 }
