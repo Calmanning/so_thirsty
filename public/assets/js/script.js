@@ -121,9 +121,11 @@ $(document).ready(function () {
 
     // Toggles the text area for notes and nickname editing
     editBtn.on("click", function () {
+        nickname.toggle("<textarea>")
         if (nickname === "<textarea>")
             nickname.toggle("<p>")
-        // else if ()
+        else {
+        }
     })
 
     // UPDATE when plant was watered (plant profile)
