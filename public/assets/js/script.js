@@ -19,6 +19,8 @@ $(document).ready(function () {
     var selectPlant = $("#selectPlant");
     var trefleId = $("#trefleId");
     var treflePhoto = $("#treflePhoto");
+    var waterBtn = $("#waterBtn");
+    var deleteBtn = $("#deleteBtn")
 
     // Register user
     $("#newUser").on("submit", function (event) {
@@ -81,7 +83,7 @@ $(document).ready(function () {
                 $("<button>").text("Select this plant").attr("data-id", data.data[i].id).appendTo(container).addClass("resultsButton");
                 resultsBox.append(container);
             };
-         });
+        });
     });
 
     // Populate Create Plant form
@@ -101,26 +103,63 @@ $(document).ready(function () {
         });
     });
 
-    // TODO: Upload photo
+    // UPDATE when plant was watered (plant profile)
+    waterBtn.on("click", function () {
+        console.log("watered!");
+        console.log($("<data-id>"));
+        $.ajax({
+            method: "PUT",
+            url: "/:user/plant/" + $(this).val() + "/water"
+        }).then(function (data) {
+            console.log(data);
+            location.reload();
+        });
+    });
 
-    // resultsBox.on("click", function () {
-    //     $.ajax({
-    //         method: "GET",
-    //         url: "/api/search/" + selectPlant.val()
-    //     }).then(function (data) {
-    //         console.log(data);
-    //         $(commonName).push(common_name).val();
-    //     })
-    // })
+    //DELETE plant from profile button
+    deleteBtn.on("click", function (event) {
+        event.stopPropagation();
+        var id = $(this).val();
+        $.ajax({
+            method: "DELETE",
+            url: "/api/:user/plant/" + id
+        }).then(function () {
+            window.location.href = "/";
+        })
+    })
+
+    //UPDATE just watered information on "/:user"
+    $(document).on("click", ".wateredBtn", function (event) {
+        event.preventDefault();
+        console.log("button...uhhhh 'click' " + $(this).val());
+        $.ajax({
+            method: "PUT",
+            url: "/:user/water/" + $(this).val()
+        }).then(function (data) {
+            location.reload();
+        });
+    })
+    
+    //DELETE plant call from "/:user" page
+    $(document).on("click", ".removeBtn",function (event) {
+        event.stopPropagation();
+        var id = $(this).val();
+        $.ajax({
+            method: "DELETE",
+            url: "/api/:user/dead/" + id
+        }).then(function () {
+            location.reload();
+        })
+    })
 
 
-});
+
+}); //end of the document ready
 
 frequencyMap = precipitation => {
     let frequency = 3;
 
     if (typeof precipitation === "number") {
-        console.log("this should not be happening!");
         frequency = (1 / precipitation) * 800;
         frequency = Math.round(frequency);
 

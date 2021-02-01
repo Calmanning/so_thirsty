@@ -1,22 +1,30 @@
 <div class="callout plant-page">
+  <h5 id="nickname">{{dataValues.nickname}}</h5>
+</div>
+
+<div class="callout plant-page">
   <h5 id="science-name"> Scientific Name: {{dataValues.scientificName}}</h5>
 </div>
 
-<div class="grid-container grid-containter-padded"></div>
-<div class="grid-x grid-margin-x align-center">
-  <div class="grid-y grid-margin-y">
+<div class="grid-container grid-container-padded">
+  <div class="grid-x grid-margin-x align-center">
+    <div class="grid-y grid-margin-y">
 
-    <div class="cell shrink plant-page">
-      <div class="callout small">
-        <h5>Last Watered: {{dataValues.lastWatered}}</h5>
+      <div class="cell shrink plant-page">
+        <div class="callout small">
+          <h5>Last Watered: {{dataValues.lastWatered}}</h5>
+        </div>
       </div>
 
+      <button class="btn watered-btn" id="waterBtn" value={{dataValues.id}}>Just watered!</button>
 
-      <button class="watered-btn">Just watered!</button>
-<div class="cell small-12">
-      <div class="card" style="width: 75%;">
-        <div class="card-section">
-          <h4>Notes & Care Instructions</h4>
+      <button class="btn" id="deleteBtn" value={{dataValues.id}}>Delete plant?</button>
+
+
+      
+        <div class="card" style="width: 75%;">
+          <div class="card-section">
+            <h4>Notes & Care Instructions</h4>
           </div>
           <textarea id="notes" name="notes" rows="4" cols="50">
                 {{dataValues.notes}}
@@ -24,8 +32,9 @@
           <br>
           <button class="btn">Save</button>
           <button class="btn">Edit</button>
-      </div>
-      </div>
+        </div>
+     
+
 
       <div class="cell shrink plant-page">
         <div class="callout small">
@@ -46,6 +55,8 @@
     </div>
   </div>
 </div>
+
+
 {{#each dataValues.Photos}}
 <div class="grid-container">
   <div class="grid-x grid-margin-x small-up-2 medium-up-3">
