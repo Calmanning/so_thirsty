@@ -4,83 +4,83 @@
 
 
 
-<ul class="accordion" data-accordion>
-  <li class="accordion-item is-active" data-accordion-item>
-    <!-- Accordion tab title -->
-    <a href="#" class="accordion-title">Accordion 1</a>
-
-    <!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->
-    <div class="accordion-content" data-tab-content>
-      <p>Panel 1. Lorem ipsum dolor</p>
-      <a href="#">Nowhere to Go</a>
-    </div>
-  </li>
-</ul>
-
-
-<br>
 <div class="grid-container">
-  <div class="grid-x grid-margin-x small-up-2 medium-up-3">
-    {{#each Plants}}
-
-    <div class="cell medium-2 small-2">
-      <div class="card">
-        <a href="/{{../userName}}/plant/{{{dataValues.id}}}">
-        <h4><strong>{{dataValues.nickname}}</strong></h4>
-        </a>
-        <div class="card-section">
-          <h3>Photos</h3>
-          <a href="/{{../userName}}/plant/{{{dataValues.id}}}">
-            {{#if Photos}}
-              {{#Photos.[0]}}   
-                <img src={{dataValues.url}} {{#if ../dataValues.isWatered}}class="img is-watered"{{else}}class="img not-watered"{{/if}}>                      
-              {{/Photos.[0]}}
-            {{else}}
-              <img src="/assets/images/Potted Plant1.jpg" {{#if ../dataValues.isWatered}}class="img is-watered"{{else}}class="img not-watered"{{/if}}>            
-            {{/if}}
-          </a>
-        </div>
-        <div class="card-section">
-          <button class="wateredBtn btn" value={{dataValues.id}}>Just watered!</button>
-          <button class="removeBtn btn" value={{dataValues.id}}>Remove Plant</button>
+  <div class="grid-x grid-margin-x">
+    <div class="grid-y">
+      <div class="cell">
+        <div class="btn-group">
+          <button>Sonny{{dataValues.nickname}}</button>
+          <button>Judy{{dataValues.nickname}}</button>
+          <button>Prince{{dataValues.nickname}}</button>
         </div>
       </div>
     </div>
-    {{/each}}
+
+    <br>
+    <div class="grid-container">
+      <div class="grid-x grid-margin-x small-up-2 medium-up-3">
+        {{#each Plants}}
+
+        <div class="cell medium-2 small-2">
+          <div class="card">
+            <a href="/{{../userName}}/plant/{{{dataValues.id}}}">
+              <h4><strong>{{dataValues.nickname}}</strong></h4>
+            </a>
+            <div class="card-section">
+              <h3>Photos</h3>
+              <a href="/{{../userName}}/plant/{{{dataValues.id}}}">
+                {{#if Photos}}
+                {{#Photos.[0]}}
+                <img src={{dataValues.url}} {{#if ../dataValues.isWatered}}class="img is-watered"
+                  {{else}}class="img not-watered" {{/if}}>
+                {{/Photos.[0]}}
+                {{else}}
+                <img src="/assets/images/Potted Plant1.jpg" {{#if ../dataValues.isWatered}}class="img is-watered"
+                  {{else}}class="img not-watered" {{/if}}>
+                {{/if}}
+              </a>
+            </div>
+            <div class="card-section">
+              <button class="wateredBtn btn" value={{dataValues.id}}>Just watered!</button>
+              <button class="removeBtn btn" value={{dataValues.id}}>Remove Plant</button>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+        <hr>
+        <h3>Caretakers</h3>
+        <a href="/invite">Invite a caretaker</a>
+        <ul>
+          {{#each Caretakers}}
+          <li>
+            {{dataValues.name}} - <button class="deleteCaretaker btn" value={{dataValues.id}}>Remove Caretaker</button>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+
+
+
+
+    {{!-- {{#each Plants}}
+    {{dataValues.nickname}}<br>
+    {{dataValues.commonName}}<br>
+    {{dataValues.scientificName}}<br>
+    {{#each Plants}}
     <hr>
-    <h3>Caretakers</h3>
-    <a href="/invite">Invite a caretaker</a>
-    <ul>
-    {{#each Caretakers}}
-      <li>        
-        {{dataValues.name}} - <button class="deleteCaretaker btn" value={{dataValues.id}}>Remove Caretaker</button>
-      </li>
+    <strong>Nickname: </strong>{{dataValues.nickname}}<br>
+    <strong>Common Name: </strong>{{dataValues.commonName}}<br>
+    <strong>Scientific Name: </strong>{{dataValues.scientificName}}<br>
+    <strong>Last Watered</strong>{{dataValues.lastWatered}}<br>
+    <strong>Water every {{dataValues.waterFrequency}} days</strong><br>
+    {{#unless dataValues.isWatered}}
+    <h1>Your plant needs water!!!</h1>
+    {{/unless}}
+    <strong>Water Due: </strong>{{dataValues.waterDue}}<br>
+    <strong>Notes: </strong>{{dataValues.notes}}<br>
+
+    {{#each Photos}}
+    <img src="{{dataValues.url}}" style="width: 200px" alt="">
     {{/each}}
-    </ul>
-  </div>
-</div>
-
-
-
-
-{{!-- {{#each Plants}}
-{{dataValues.nickname}}<br>
-{{dataValues.commonName}}<br>
-{{dataValues.scientificName}}<br>
-{{#each Plants}}
-<hr>
-<strong>Nickname: </strong>{{dataValues.nickname}}<br>
-<strong>Common Name: </strong>{{dataValues.commonName}}<br>
-<strong>Scientific Name: </strong>{{dataValues.scientificName}}<br>
-<strong>Last Watered</strong>{{dataValues.lastWatered}}<br>
-<strong>Water every {{dataValues.waterFrequency}} days</strong><br>
-{{#unless dataValues.isWatered}}
-<h1>Your plant needs water!!!</h1>
-{{/unless}}
-<strong>Water Due: </strong>{{dataValues.waterDue}}<br>
-<strong>Notes: </strong>{{dataValues.notes}}<br>
-
-{{#each Photos}}
-<img src="{{dataValues.url}}" style="width: 200px" alt="">
-{{/each}}
-{{/each}} --}}
+    {{/each}} --}}
