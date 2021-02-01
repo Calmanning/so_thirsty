@@ -346,10 +346,11 @@ router.get("/caretaker/:key", (req, res) => {
             { model: db.User, include: [{model: db.Plant, include: [db.Photo]}] }
         ]
     }).then(data => {
-        console.log('Caretaker data: ', data);
+        console.log('Caretaker data: ', data.dataValues);
         res.render("caretaker.handlebars", {
             layout: "tempUser.handlebars",
-            data: data});
+            data: data.dataValues});
+        // res.json(data)
     })
 })
 
