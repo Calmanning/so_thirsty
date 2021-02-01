@@ -116,7 +116,7 @@ $(document).ready(function () {
         });
     });
 
-    // DELETE plant from profile
+    //DELETE plant from profile button
     deleteBtn.on("click", function (event) {
         event.stopPropagation();
         var id = $(this).val();
@@ -127,7 +127,34 @@ $(document).ready(function () {
             window.location.href = "/";
         })
     })
-});
+
+    //UPDATE just watered information on "/:user"
+    $(document).on("click", ".wateredBtn", function (event) {
+        event.preventDefault();
+        console.log("button...uhhhh 'click' " + $(this).val());
+        $.ajax({
+            method: "PUT",
+            url: "/:user/water/" + $(this).val()
+        }).then(function (data) {
+            location.reload();
+        });
+    })
+    
+    //DELETE plant call from "/:user" page
+    $(document).on("click", ".removeBtn",function (event) {
+        event.stopPropagation();
+        var id = $(this).val();
+        $.ajax({
+            method: "DELETE",
+            url: "/api/:user/dead/" + id
+        }).then(function () {
+            location.reload();
+        })
+    })
+
+
+
+}); //end of the document ready
 
 frequencyMap = precipitation => {
     let frequency = 3;
