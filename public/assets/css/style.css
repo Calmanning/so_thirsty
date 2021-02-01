@@ -169,8 +169,12 @@ textarea{
   border-image-width: 1;
 }
 
-.card {
-  width: 200px;
+.plant-card {
+  margin: 10px;
+}
+
+.large-4 {
+  max-width: 30%;
 }
 
 .btn-group button {
@@ -179,7 +183,7 @@ textarea{
   color: white; /* White text */
   padding: 10px 24px; /* Some padding */
   cursor: pointer; /* Pointer/hand icon */
-  width: 15%; /* Set a width if needed */
+  width: 50%; /* Set a width if needed */
   display: block; /* Make the buttons appear below each other */
 }
 
