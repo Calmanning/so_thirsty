@@ -30,7 +30,11 @@
         <div class="card-section">
           <a href="/{{../userName}}/plant/{{{dataValues.id}}}">
           {{#Photos.[0]}}
-            <img class ="img" src={{dataValues.url}}>
+          {{#if this.dataValues.url}}
+            <img src={{dataValues.url}} {{#if ../dataValues.isWatered}}class="img is-watered"{{else}}class="img not-watered"{{/if}}>
+          {{else}}
+            <img src="https://www.placecage.com/g/140/100" {{#if ../dataValues.isWatered}}class="img is-watered"{{else}}class="img not-watered"{{/if}}>
+            {{/if}}
             {{/Photos.[0]}}</a>
         </div>
         <div class="card-section">
@@ -53,9 +57,8 @@
   </div>
 </div>
 
-<h1>
 
-</h1>
+
 
 {{!-- {{#each Plants}}
 {{dataValues.nickname}}<br>
