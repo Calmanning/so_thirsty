@@ -17,6 +17,21 @@ a {
   color: rgb(104,123,136)!important;
 }
 
+title {
+  font-family: 'Bubbler One', sans-serif!important;
+  color: rgb(104,123,136)!important;
+}
+
+h1 {
+  font-family: 'Bubbler One', sans-serif!important;
+  color: rgb(104,123,136)!important;
+}
+
+h3 {
+  font-family: 'Bubbler One', sans-serif!important;
+  color: rgb(104,123,136)!important;
+}
+
 #pageContainer{ 
   min-height: calc(100vh - 58px);
   padding-top: 100px;
