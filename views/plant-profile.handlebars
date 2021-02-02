@@ -49,16 +49,21 @@
         <button class="btn hiddenElement" id="saveWater" value={{dataValues.id}}>Save</button>
       </div>
 
-      <div class="callout small">
-        <h5>Recommended Environmental Conditions:</h5>
-      </div>
-
 
       <div class="callout small">
         <h5><a href="/{{{dataValues.User.dataValues.userName}}}/plant/{{{dataValues.id}}}/addphoto">Add photo</a></h5>
       </div>
 
-      <button class="btn delete-btn" id="deleteBtn" value={{dataValues.id}}>Delete plant?</button>
+
+      <p><button class="btn" data-open="deleteBtnModal">Remove this plant?</button></p>
+
+      <div class="reveal" id="deleteBtnModal" data-reveal>
+        <h5>WAIT JUST ONE MINUTE!</h5>
+        <p>Are you sure you want to remove this plant from your profile?</p>
+        <button class="btn delete-btn" id="deleteBtn" value={{dataValues.id}}>Yes, remove
+          it!</button>
+      </div>
+
 
     </div>
   </div>
@@ -68,10 +73,10 @@
 
 <div class="grid-container">
   <div class="grid-x grid-margin-x small-up-2 medium-up-3">
-{{#each dataValues.Photos}}
+    {{#each dataValues.Photos}}
     <div class="cell large-4 medium-6 small-12 plant-card">
       <div class="card-section">
-        <h3>{{#if ../dataValues.isWatered}}I have enough water. {{else}} {{/if}}</h3>
+        <h3>{{#if ../dataValues.isWatered}} {{else}} {{/if}}</h3>
         <img src="{{dataValues.url}}" style="width: 200px" alt="" {{#if ../dataValues.isWatered}}class="img is-watered"
           {{else}}class="img not-watered" {{/if}}>
         <div>
@@ -82,7 +87,7 @@
         </div>
       </div>
     </div>
-{{/each}}
+    {{/each}}
   </div>
 </div>
 
