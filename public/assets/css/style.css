@@ -117,21 +117,23 @@ a {
   }
 
   .delete-btn{
+    display: block;
+    margin: 10px auto;
+    width: 250px;
     border-radius: 3px;
     border: solid 2px rgb(131, 47, 45);
-    background-color: rgb(216, 81, 79);
-    color: rgb(131, 47, 45);
+    /* background-color: rgb(216, 81, 79); */
+    /* color: rgb(131, 47, 45); */
     box-shadow: 1px 1px 1px;
     padding: 20px;
-    margin: 10px;
   }
 
-  .delete-btn:hover {background-color: rgb(252, 240, 106)}
+  /* .delete-btn:hover {background-color: rgb(252, 240, 106)} */
 
-  .delete-btn:active {
-    background-color: rgb(252, 240, 106);
-    box-shadow: 3px 3px 3px #666;
-  }
+  /* .delete-btn:active { */
+    /* background-color: rgb(252, 240, 106); */
+    /* box-shadow: 3px 3px 3px #666; */
+  /* } */
 
   .img {
     width: 200px;
@@ -272,18 +274,16 @@ i{
 .translucent-form-overlay input::placeholder {
   color: #8a8a8a;
 }
-
+/* 
 .dangerBtn{
   width: 300px;
   display: block;
   margin: 25px auto 50px auto;
-  background-color: red;
   padding: 15px 30px;
   cursor: pointer;
   font-size: 15pt;
   border-radius: 5px;
-  border: 2px solid rgb(140, 0, 0);
-}
+} */
 
 .cell{
   position: relative;

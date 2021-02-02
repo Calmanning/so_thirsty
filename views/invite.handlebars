@@ -1,13 +1,22 @@
 {{>navbar}}
+<div class="grid-container grid-container-margin">
+    <div class="grid-x grid-x-margin">
+        <div class="grid-y">
+            <div class="cell medium-12">
+                <form action="/invite" method="POST">
 
-<form action="/invite" method="POST">
+                    <p>IF you need someone else to tend your plants for a while, send them an invite to see your plant
+                        information and water them! Don't worry about your account - we'll only let them see and water
+                        your plants!</p>
 
-    <p>IF you need someone else to tend your plants for a while, send them an invite to see your plant information and water them! Don't worry about your account - we'll only let them see and water your plants!</p>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" required><br>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
 
-    <label for="email">Email</label>
-    <input type="email" name="email" id="email" required><br>
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" required>
-
-    <button type="submit">Send Invite</button>
-</form>
+                    <button class="btn" type="submit">Send Invite</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
