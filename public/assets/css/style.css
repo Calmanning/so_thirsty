@@ -219,3 +219,52 @@ label{
 .top-bar-right{
   margin-right: 25px;
 }
+
+#wrapper {
+  background-image: url("https://images.pexels.com/photos/1776804/pexels-photo-1776804.jpeg?cs=srgb&dl=pexels-ngh%C4%A9a-ph%E1%BA%A1m-1776804.jpg&fm=jpg");
+  
+  min-width: 100vw;
+  min-height: 100vw;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#loginImg {
+  background-image: url("https://images.pexels.com/photos/1776804/pexels-photo-1776804.jpeg?cs=srgb&dl=pexels-ngh%C4%A9a-ph%E1%BA%A1m-1776804.jpg&fm=jpg");
+  
+  min-width: 100vw;
+  min-height: 100vw;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.translucent-form-overlay {
+  margin: 0 auto;
+  max-width: 500px;
+  width: 100%;
+  background-color: rgba(54, 54, 54, 0.8);
+  padding: 20px;
+  color: #fefefe;
+}
+
+.translucent-form-overlay .columns.row {
+  display: block;
+}
+
+.translucent-form-overlay h3, .translucent-form-overlay label {
+  color: #fefefe;
+}
+
+.translucent-form-overlay input, .translucent-form-overlay select {
+  color: #8a8a8a;
+}
+
+.translucent-form-overlay input::-webkit-input-placeholder {
+  color: #8a8a8a;
+}
+
+.translucent-form-overlay input:-ms-input-placeholder {
+  color: #8a8a8a;
+}
+
+.translucent-form-overlay input::placeholder {
+  color: #8a8a8a;
