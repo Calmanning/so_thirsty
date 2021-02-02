@@ -1,20 +1,22 @@
 {{>navbar}}
-
+<div id="loginImg">
 <div class="grid-container grid-container-padded">
     <div class="grid-x grid-margin-x align-center">
         <div class="grid-y grid-margin-y">
 
-            
 
-                <h1>Welcome back!</h1>
 
-                <form method="POST" action="/signin">
-                    <label for="userName">User Name</label>
-                    <input name="userName"><br>
-                    <label for="password">password</label>
-                    <input type="password" name="password">
-                    <input type="submit" value="Sign in" class="btn">
-                </form>
+            <h1>Welcome back!</h1>
+            <div class="translucent-form-overlay">
+            <form method="POST" action="/signin">
+                <label for="userName">User Name</label>
+                <input name="userName"><br>
+                <label for="password">password</label>
+                <input type="password" name="password">
+                <input type="submit" value="Sign in" class="btn primary">
+            </form>
         </div>
     </div>
+</div>
+</div>
 </div>

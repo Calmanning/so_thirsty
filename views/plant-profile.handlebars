@@ -55,6 +55,26 @@
       <p>
         <strong>Created: </strong> {{dataValues.createdAt}}
       </p>
+        <button class="btn editWater">Edit</button>
+        <button class="btn hiddenElement" id="saveWater" value={{dataValues.id}}>Save</button>
+      </div>
+
+
+      <div class="callout small">
+        <h5><a href="/{{{dataValues.User.dataValues.userName}}}/plant/{{{dataValues.id}}}/addphoto">Add photo</a></h5>
+      </div>
+
+
+      <p><button class="btn" data-open="deleteBtnModal">Remove this plant?</button></p>
+
+      <div class="reveal" id="deleteBtnModal" data-reveal>
+        <h5>WAIT JUST ONE MINUTE!</h5>
+        <p>Are you sure you want to remove this plant from your profile?</p>
+        <button class="btn delete-btn" id="deleteBtn" value={{dataValues.id}}>Yes, remove
+          it!</button>
+      </div>
+
+
     </div>
   </div>
 </div>
