@@ -1,6 +1,24 @@
 <div class="top-bar">
     <div class="top-bar-left">
-        <ul class="dropdown menu" data-dropdown-menu>
+        <ul class="dropdown menu desktop-view " data-dropdown-menu>
+            <li class="menu-text">So Thirsty!</li>
+            <li><a href="/">Home</a></li>
+            {{#if name}}
+            <li><a href="/addplant">New Plant</a></li>
+            {{else}}
+
+            {{/if}}
+        </ul>
+         <ul class="dropdown menu lg-mobile-view " data-dropdown-menu>
+            <li class="menu-text">So Thirsty!</li>
+            <li><a href="/">Home</a></li>
+            {{#if name}}
+            <li><a href="/addplant">New Plant</a></li>
+            {{else}}
+
+            {{/if}}
+        </ul>
+         <ul class="dropdown menu" data-dropdown-menu>
             <li class="menu-text">So Thirsty!</li>
             <li><a href="/">Home</a></li>
             {{#if name}}
