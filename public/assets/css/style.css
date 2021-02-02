@@ -13,8 +13,8 @@ body {
 }
 
 .backgroundMain {
-  background-image: url('https://images.pexels.com/photos/1353938/pexels-photo-1353938.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-  background-position: top;
+  background-image: url('/assets/images/thirsty_background.svg');
+  background-position: bottom;
   background-repeat: no-repeat;
   background-size: 100vw;
 }
