@@ -1,29 +1,35 @@
 <div class="top-bar">
     <div class="top-bar-left">
-        <i class="fa fa-bars" aria-hidden="true">
 
+        {{!-- Desktop-view of the nav bar --}}
         <ul class="dropdown menu desktop-view" data-dropdown-menu>
-           <li class="menu-text">So Thirsty!</li>
-            
-            <li><a href="/">Home <i class="fas fa-home"></i></a></li>
-            {{#if name}}
-            <li><a href="/addplant">New Plant <i class="fas fa-seedling"></i></a></li>
-            {{else}}
-
-            {{/if}}
-        </ul>
-        </i>
-       {{!-- the mobile view --}}
-         <ul class="dropdown menu mobile-view" data-dropdown-menu>
             <li class="menu-text">So Thirsty!</li>
             <li><a href="/">Home <i class="fas fa-home"></i></a></li>
             {{#if name}}
             <li><a href="/addplant">New Plant <i class="fas fa-seedling"></i></a></li>
             {{else}}
-
             {{/if}}
         </ul>
+
+        {{!-- the mobile view --}}
+        <ul class="menu top-bar mobile-view" data-dropdown-menu>
+            <li class="menu-text">So Thirsty!</li>
+            <li class="has-submenu">
+                <a href="#0"><i class="fas fa-bars"></i></a>
+                <ul class="submenu menu" data-submenu>
+                    {{#if name}}
+                    <li><a href="/"><i class="fas fa-user"></i></i> {{userName}}/Home</a></li>
+                    <li><a href="/addplant">New Plant <i class="fas fa-seedling"></i></a></li>
+                    <li><a href="/signout"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
+                    {{else}}
+
+                    {{/if}}
+                </ul>
+            </li>
+        </ul>
     </div>
+
+    {{!-- right side of the nav for desktop-view only--}}
     <div class="top-bar-right">
         <ul class="dropdown menu desktop-view" data-dropdown-menu>
             {{#if name}}
@@ -38,43 +44,6 @@
             <li><a href="/signin">Sign In</a></li>
             {{/if}}
         </ul>
-        <ul class="dropdown menu mobile-view" data-dropdown-menu>
-            {{#if name}}
-
-            <li><a href="/"><i class="fas fa-user"></i></i> {{userName}}</a></li>
-            <li><a href="/signout"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
-            {{else}}
-            {{#if data.name}}
-            <li><a href="/caretaker/{{data.key}}">{{data.name}}</a></li>
-            {{/if}}
-            <li><a href="/">Sign Up</a></li>
-            <li><a href="/signin">Sign In</a></li>
-            {{/if}}
-        </ul>
     </div>
-</div>
 
-
-{{!-- <div class="top-bar">
-    <div class="top-bar-left">
-        <ul class="dropdown menu" data-dropdown-menu>
-            <li class="menu-text">Site Title</li>
-            <li>
-                <a href="#">One</a>
-                <ul class="menu vertical">
-                    <li><a href="#">One</a></li>
-                    <li><a href="#">Two</a></li>
-                    <li><a href="#">Three</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Two</a></li>
-            <li><a href="#">Three</a></li>
-        </ul>
-    </div>
-    <div class="top-bar-right">
-        <ul class="menu">
-            <li><input type="search" placeholder="Search"></li>
-            <li><button type="button" class="button">Search</button></li>
-        </ul>
-    </div>
-</div> --}}
+</div> {{!-- end of the "top-bar" class div--}}
