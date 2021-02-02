@@ -76,7 +76,7 @@
   <div class="grid-x grid-x-margin">
 
     {{#each dataValues.Photos}}
-    {{>photo-block}}
+    {{>photo-block this}}
     {{/each}}
     <div class="cell medium-3">
       <a href="/{{{dataValues.User.dataValues.userName}}}/plant/{{{dataValues.id}}}/addphoto">

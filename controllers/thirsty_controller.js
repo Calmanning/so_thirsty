@@ -401,9 +401,6 @@ router.get("/caretaker/:key", (req, res) => {
             // console.log('data.Plants: ', data.Plants);            
             let dataToSend = helpers.addWatered(data);
             dataToSend.dataValues.userName = dataToSend.dataValues.User.userName;
-            console.log(`===========================================================================`);
-            console.log('caretakers owners userName: ', dataToSend.dataValues.userName);
-            console.log(dataToSend.dataValues);
             res.render("caretaker.handlebars", dataToSend.dataValues);
         }else{
             res.render("unauthorized")
@@ -426,12 +423,12 @@ router.get("/caretaker/:key/plant/:id", (req, res) => {
             },
             include: [db.Photo, db.User]
         }).then(plant => {
-            console.log(`==================================`);
-            console.log(`caretaker plant data: `, data);
             
             // plant.data.name = data.name;
             plant.data = {name: data.dataValues.name, key: req.params.key}
-            res.render("caretaker-plant", plant);
+            const dataToSend = helpers.addWateredSingle(plant);
+            dataToSend.key = req.params.key;
+            res.render("caretaker-plant", dataToSend);
 
         })
     })
@@ -470,9 +467,6 @@ router.get("/:user", ensureAuthenticated, function (req, res) {
             const dataToSend = helpers.addWatered(data.dataValues)
             // console.log(`=============================`);
             // console.log('regular user data: ', dataToSend);
-
-            console.log(`===========================================================================`);
-            console.log('owners userName: ', dataToSend.userName);
 
             res.render("index", dataToSend)
         })

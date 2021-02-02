@@ -1,47 +1,89 @@
 {{>navbar}}
 
-<div class="callout">
-  <h5 id="science-name"> Scientific Name: {{dataValues.scientificName}}</h5>
-</div>
+<div class="grid-container grid-container-margin">
+  <div class="grid-x grid-x-margin">
 
-<div class="callout small" id="lastWatered">
-  <h5>Last Watered: {{dataValues.lastWatered}}</h5>
-</div>
-
-<button class="btn" id="waterBtn" value={{dataValues.id}}>Just watered!</button>
-
-<div class=" card" style="width: 75%;">
-  <div class="card-divider">
-    <h4>Notes & Care Instructions</h4>
-    <textarea id="notes" name="notes" rows="4" cols="50">
-      {{dataValues.notes}}
-  </textarea>
-    <br>
+    <div class="cell medium-2" style="text-align: center;">
+      <img src="/assets/images/wateringcan.png" style="width: 90%; cursor: pointer;" class="wateredBtn"
+        data-id={{{dataValues.id}}} title="Water Me!">
+    </div>
+    <div class="cell medium-10" style="padding-left: 25px;">
+      <h1>{{dataValues.nickname}}</h1>
+      <h3>{{#if dataValues.isWatered}}I have enough water. {{else}}I need water! {{/if}}</h3>
+    </div>
   </div>
-</div>
 
-<div class="callout small">
-  <h5>Recommended Water Frequency: Every {{dataValues.waterFrequency}} days</h5>
-</div>
-
-<div class="callout small">
-  <h5>Recommended Enviromental Conditions:</h5>
-</div>
-
-{{#each dataValues.Photos}}
-<div class="grid-container">
-  <div class="grid-x grid-margin-x small-up-2 medium-up-3">
-    <div class="cell">
-      <div class="card">
-        <img src="{{dataValues.url}}" style="width: 200px" alt="">
-        <div class="card-section">
-          {{!-- Wel'll need to see about adding that information from the "photos" table in the DB. --}}
-          <h4>Date of Picture taken</h4>
-          {{!-- I believe we'll want to add a STRING col to the "photos" table in the DB, for this. --}}
-          <p>Possible notes added to each picture upload?</p>
-        </div>
-      </div>
+  <div class="grid-x grid-x-margin">
+    <div class="cell medium-3">
+      {{#if dataValues.Photos.[0].dataValues.url}}
+      <img src="{{dataValues.Photos.[0].dataValues.url}}" style="width: 100" alt="" {{#if
+        dataValues.isWatered}}class="is-watered" {{else}}class="img not-watered" {{/if}}>
+      {{else}}
+      <img src="/assets/images/Potted Plant1.jpg" {{#if dataValues.isWatered}}class="img is-watered"
+        {{else}}class="img not-watered" {{/if}}>
+      {{/if}}
+    </div>
+    <div class="cell medium-9" style="padding-left: 25px;">
+      <p>
+        <strong>Nickname: </strong><span id="nicknameText">{{dataValues.nickname}}</span>
+      </p>
+      <p>
+        <strong>Common Name: </strong> {{dataValues.commonName}}
+      </p>
+      <p>
+        <strong>Scientific Name: </strong>{{dataValues.scientificName}}
+      </p>
+      <p>
+        <strong>Last Watered: </strong>{{dataValues.lastWatered}}
+      </p>
+      <p>
+        <strong>Water every {{dataValues.waterFrequency}} days.</strong>
+      </p>
+      <p>
+        <strong>Next water Due: </strong>{{dataValues.waterDue}}
+      </p>
+      <p>
+        <strong>Notes &amp; Care: </strong>
+        {{dataValues.notes}}
+      </p>
+      <p>
+        <strong>Created: </strong> {{dataValues.createdAt}}
+      </p>
+      <button class="btn hiddenElement" id="saveWater" value={{dataValues.id}}>Save</button>
     </div>
   </div>
 </div>
-{{/each}}
+</div>
+
+{{#if dataValues.Photos}}
+
+<div class="grid-container grid-container-margin">
+  <div class="grid-x grid-x-margin">
+
+    {{#each dataValues.Photos}}
+    {{>photo-block this}}
+    {{/each}}
+  </div>
+</div>
+
+{{else}}
+
+<div class="grid-container grid-container-margin">
+
+  <div class="grid-x grid-x-margin">
+    <div class="cell medium-12">
+      <h3>
+        You don't have any photos yet. <br>
+      </h3>
+    </div>
+  </div>
+  <div class="grid-x grid-x-margin">
+
+    <div class="cell medium-3">
+      <img src="/assets/images/Potted Plant1.jpg" {{#if dataValues.isWatered}}class="img is-watered"
+        {{else}}class="img not-watered" {{/if}}>
+    </div>
+  </div>
+</div>
+
+{{/if}}
