@@ -15,9 +15,16 @@
     <div class="cell medium-9">
       <div class="grid-container grid-container-margin">
         <div class="grid-x grid-x-margin">
+          {{#if Plants}}
           {{#each Plants}}
           {{>plant-block this}}
           {{/each}}
+          {{else}}
+          <div>
+          <p>Oh! There aren't any Plants here. But why wait to cultivate!</p>
+          <a href="/addplant"><button class="btn">Add Your First Plant!</button></a>
+          </div>
+          {{/if}}
         </div>
       </div>
     </div>
