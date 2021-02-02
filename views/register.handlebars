@@ -1,29 +1,59 @@
 {{>navbar}}
+<div id="wrapper">
+  <div class="register">
+    <h1>Welcome to So Thirsty!</h1>
+    <br>
+    <div class="translucent-form-overlay">
+      <div class="row grid-x">
+        <div class="column cell small-8 grid-y-margin">
+          <h3>Register</h3>
+        </div>
+        <div class="column grid-y-margin">
+          <a href="../signin"> <button id="returnUserBtn" class=" button primary radius">Returning User</button></a>
+        </div>
+      </div>
+      
+      <form id="newUser" class="small">
+        <div class="row columns">
+          <form id="newUser">
+            <label for="userName">User Name</label>
+            <input id="userName" placeholder="username"></input>
+            <br>
+        </div>
+        <div class="row columns">
+         <label for="name">name</label>
+          <input id="name" type="name" placeholder="name"></input>
+         {{!-- <label for="name">Name</label>
+          <input id="name" type="name" placeholder="name"></input> --}}
+          <br>
+        </div>
+        <div class="row columns">
+          <label for="password">Password</label>
+          <input id="password" type="password" placeholder="password"></input>
+          <br>
+        </div>
+        <div class="row columns">
+          <label for="confirmPassword">Confirm Password</label>
+          <input id="confirmPassword" type="password" placeholder="confirm password"></input>
+          <br>
+        </div>
 
-<div class="register">
-  <table>
-    <a href="../signin"><button class="btn">Returning User</button></a>
-    <thead>
-     
-      <h1>Welcome to So Thirsty!</h1>
-
-<p>Sometimes when life gets busy, we forget to water our beloved plants on time. It happens to every plant owner, but here at So Thirsty we want to provide you with everything you need for keeping up to date on the care of your plant friends. Make each plant a profile to show off their personalities, keep track of waterings to make sure they never get too thirsty and upload your own photos to keep records of their growth and show off your success as a plant owner. You can also share your profile with plant-sitters when you go out of town to make sure your plants get all the love and attention they need when you are out of town. You're plants don't want to be So Thirsty, but we do. Sign up today and check us out!</p>
-    </thead>
-
-
-    <tbody><br>
-      <form id="newUser">
-        <label for="userName">User Name</label>
-        <input id="userName" placeholder="username"></input><br>
-        <label for="name">Name</label>
-        <input id="name" placeholder="name"></input><br>
-        <label for="password">Password</label>
-        <input id="password" type="password" placeholder="password"></input><br>
-        <label for="confirmPassword">Confirm Password</label>
-        <input id="confirmPassword" type="password" placeholder="confirm password"></input><br>
-        <button type="submit" id="startButton" class="btn">Get Started</button>
+        <button type="submit" id="startButton" class="primary button expanded">
+          Get Started
+        </button>
       </form>
 
-    </tbody>
-  </table>
+    </div>
+    <p>Sometimes when life gets busy, we forget to water our beloved plants on time. It happens to every plant owner,
+      but here at So Thirsty we want to provide you with everything you need for keeping up to date on the care of your
+      plant friends. Make each plant a profile to show off their personalities, keep track of waterings to make sure
+      they never get too thirsty and upload your own photos to keep records of their growth and show off your success as
+      a plant owner. You can also share your profile with plant-sitters when you go out of town to make sure your plants
+      get all the love and attention they need when you are out of town. You're plants don't want to be So Thirsty, but
+      we do. Sign up today and check us out!</p>
+
+  </div>
+
+
 </div>
+{{!-- that is the close to the "wrapper id" div --}}

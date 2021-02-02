@@ -218,3 +218,11 @@ label{
 .top-bar-right{
   margin-right: 25px;
 }
+
+#wrapper {
+  background-image: url("https://images.pexels.com/photos/1776804/pexels-photo-1776804.jpeg?cs=srgb&dl=pexels-ngh%C4%A9a-ph%E1%BA%A1m-1776804.jpg&fm=jpg");
+  min-width: 100vw;
+  min-height: 100vw;
+  background-position: center;
+  background-repeat: no-repeat;
+}
