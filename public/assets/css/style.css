@@ -2,10 +2,8 @@
   border-radius: 3px
 }
 
-#body {
+body {
   background-color: rgb(173, 187, 162, 0.2);
-  /* margin: 100px 0 100px 0; */
-  padding: 100px 0 0 0;
 }
 
 a {
@@ -13,14 +11,19 @@ a {
   color: rgb(104,123,136)!important;
 }
 
+#pageContainer{ 
+  min-height: calc(100vh - 58px);
+  padding-top: 100px;
+}
+
+
 .footer {
-    /* position: fixed; */
-    /* bottom: 0; */
-    width: 100%;
-    background-color: rgb(173, 187, 162) ;
-    color: rgb(104,123,136);
-    display: flex;
-  }
+  
+  width: 100%;
+  background-color: rgb(173, 187, 162) ;
+  color: rgb(104,123,136);
+  display: flex;
+}
 
 .footer-li {
   /* text-align: center; */
