@@ -393,10 +393,18 @@ router.get("/caretaker/:key", (req, res) => {
     }).then(data => {
         if(data){
             data.key = req.params.key;
-            res.render("caretaker.handlebars", {
-                layout: "tempUser.handlebars",
-                data: data.dataValues});
-            // res.json(data)
+            data.Plants = data.dataValues.User.Plants;
+
+            // console.log(`==================================================`);
+            // console.log(`caretaker data: `, data);
+            // console.log(`++++++++++++++++++++++++++++++++++++++++++++++++++++`);
+            // console.log('data.Plants: ', data.Plants);            
+            let dataToSend = helpers.addWatered(data);
+            dataToSend.dataValues.userName = dataToSend.dataValues.User.userName;
+            console.log(`===========================================================================`);
+            console.log('caretakers owners userName: ', dataToSend.dataValues.userName);
+            console.log(dataToSend.dataValues);
+            res.render("caretaker.handlebars", dataToSend.dataValues);
         }else{
             res.render("unauthorized")
         }
@@ -460,7 +468,12 @@ router.get("/:user", ensureAuthenticated, function (req, res) {
         }).then(data => {
             // console.log('db data: ', data.dataValues);
             const dataToSend = helpers.addWatered(data.dataValues)
-            // console.log('Formatted data: ', dataToSend);
+            // console.log(`=============================`);
+            // console.log('regular user data: ', dataToSend);
+
+            console.log(`===========================================================================`);
+            console.log('owners userName: ', dataToSend.userName);
+
             res.render("index", dataToSend)
         })
 })

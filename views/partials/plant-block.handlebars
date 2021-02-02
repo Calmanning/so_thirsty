@@ -1,10 +1,21 @@
+
 <div class="cell large-4 medium-6 small-12 plant-card">
 
     <div class="card-section">
-        <a href="/{{@root.userName}}/plant/{{{dataValues.id}}}">
+        {{#if @root.key}}
+            <a href="/caretaker/{{@root.key}}/plant/{{{dataValues.id}}}">
+        {{else}}
+            <a href="/{{@root.userName}}/plant/{{{dataValues.id}}}">
+        {{/if}}
+        
             <h4><strong>{{dataValues.nickname}}</strong></h4>
         </a>
-        <a href="/{{@root.userName}}/plant/{{{dataValues.id}}}">
+        {{#if @root.key}}
+            <a href="/caretaker/{{@root.key}}/plant/{{{dataValues.id}}}">
+        {{else}}
+            <a href="/{{@root.userName}}/plant/{{{dataValues.id}}}">
+        {{/if}}
+        
             {{#if Photos}}
             {{#Photos.[0]}}
             <img src={{dataValues.url}} {{#if ../dataValues.isWatered}}class="img is-watered"

@@ -16,7 +16,11 @@ var exphbs = require("express-handlebars");
 require('dotenv').config()
 
 app.engine("handlebars", exphbs({
-  defaultLayout: "main"
+  defaultLayout: "main",
+  helpers: {
+    "json": function(context) {
+      return JSON.stringify(context, null, 4);
+  }}
 }));
 app.set("view engine", "handlebars");
 
