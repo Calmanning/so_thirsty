@@ -273,6 +273,23 @@ i{
   margin-right: 25px;
 }
 
+.desktop-view{
+/* display: block; */
+}
+
+@media (max-width: 762px) {
+  /* For mobile phones: */
+  .desktop-view{
+    display: none !important;
+  }
+}
+
+@media (min-width: 762px) {
+  /* For mobile phones: */
+  .mobile-view{
+    display: none !important;
+  }
+}
 .translucent-form-overlay {
   margin: 0 auto;
   max-width: 500px;
