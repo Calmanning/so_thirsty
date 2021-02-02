@@ -276,7 +276,7 @@ $(document).ready(function () {
         }).then(function () {
             location.reload();
         })
-    })    
+    })
 
 }); //end of the document ready
 
