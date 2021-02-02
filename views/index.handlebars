@@ -35,15 +35,15 @@
 <hr>
 
 <div class="grid-container grid-container-margin">
-
   <h3>Caretakers</h3>
-  <ul>
+<div class="grid-x grid-x-margin">
     {{#each Caretakers}}
-    <li>
-      {{dataValues.name}} - <button class="deleteCaretaker btn" value={{dataValues.id}}>Remove</button>
-    </li>
+    <div class="cell medium-3 small-12">
+    <div class="card-section">
+      {{dataValues.name}} <br> <button class="deleteCaretaker btn" value={{dataValues.id}}>Remove</button>
+    </div>
+    </div>
     {{/each}}
-  </ul>
-
+</div>
   <a href="/invite"><button class="btn">Invite a Caretaker <i class="fas fa-envelope"></i></button></a>
 </div>
