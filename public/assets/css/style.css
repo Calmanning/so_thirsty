@@ -13,9 +13,10 @@ body {
 }
 
 .backgroundMain {
-  background-image: url('https://i.pinimg.com/originals/8e/10/8c/8e108c5a22047854c0e733a38c1ce3a1.png');
-  background-position: center;
+  background-image: url('https://i.pinimg.com/originals/0d/af/4f/0daf4f6ce427461de398b0ce0f039979.jpg');
+  background-position:bottom;
   background-repeat: no-repeat;
+  background-size: 100vw;
 }
 
 a {
