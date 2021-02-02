@@ -298,6 +298,9 @@ i{
 }
 
 
+.imageThumbnail{  
+  padding: 35px;
+}
 
 .deletePhoto{
   color: white;
