@@ -72,6 +72,12 @@ a {
     text-align: center;
     margin: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: rgb(173, 187, 162, 0.5);
+  }
+
+  .caretakers {
+    background: rgb(173, 187, 162, 0.5);
+    padding: 20px 20px 20px 20px;
   }
 
   .grid-container {
@@ -126,6 +132,16 @@ a {
     /* color: rgb(131, 47, 45); */
     box-shadow: 1px 1px 1px;
     padding: 20px;
+  }
+
+  .remove-btn {
+    display: block;
+    margin: 10px auto;
+    border-radius: 3px;
+    border: solid 2px rgb(131, 47, 45);
+    box-shadow: 1px 1px 1px;
+    padding: 5px;
+    color: rgb(93, 100, 87);
   }
 
   /* .delete-btn:hover {background-color: rgb(252, 240, 106)} */
