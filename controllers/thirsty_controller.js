@@ -447,6 +447,27 @@ router.delete("/api/caretaker/:id", (req, res) => {
     })
 })
 
+// =========================================================================
+// Community routes
+// =========================================================================
+
+router.get("/community", (req, res) => {
+    
+    db.User.findAll({
+        where: {
+            public: true
+        },
+        include: [
+            { model: db.Plant, include: [db.Photo]}
+        ]
+    }).then(data => {
+        console.log("====================================================================");
+        console.log(`community data: `, data);
+        res.render("community", {Users: data});
+    })    
+
+})
+
 // =======================================================================
 // Home page catch all route
 // =======================================================================
