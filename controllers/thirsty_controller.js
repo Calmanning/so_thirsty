@@ -127,7 +127,10 @@ router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
         where: {
             id: req.params.plant
         },
-        include: [db.Photo, db.User]
+        include: [db.Photo, db.User],
+        
+  order: [
+    [ db.Photo, 'id', 'DESC' ]]
     }).then(function (data) { 
         let dataToSend = helpers.addWateredSingle(data);
         dataToSend.userName = req.session.user.userName;
