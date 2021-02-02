@@ -24,7 +24,7 @@ router.get("/signin", function (req, res) {
         res.redirect("/" + req.session.user.userName)
     }
     else{
-        res.render("signin");
+        res.render("signin",  {layout: "newUser"});
     }    
 })
 
@@ -61,7 +61,7 @@ router.get("/", function (req, res) {
         res.redirect("/" + req.session.user.userName)
     }
     else{
-        res.render("register");
+        res.render("register", {layout: "newUser"});
     }
 })
 

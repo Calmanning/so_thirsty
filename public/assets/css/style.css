@@ -6,6 +6,12 @@ body {
   background-color: rgb(173, 187, 162, 0.2);
 }
 
+.backgroundImage{
+  background-image: url('https://images.pexels.com/photos/1776804/pexels-photo-1776804.jpeg?cs=srgb&dl=pexels-ngh%C4%A9a-ph%E1%BA%A1m-1776804.jpg&fm=jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 a {
   font-family: 'Bubbler One', sans-serif!important;
   color: rgb(104,123,136)!important;
@@ -225,25 +231,6 @@ label{
   margin-right: 25px;
 }
 
-#wrapper {
-  background-image: url("https://images.pexels.com/photos/1776804/pexels-photo-1776804.jpeg?cs=srgb&dl=pexels-ngh%C4%A9a-ph%E1%BA%A1m-1776804.jpg&fm=jpg");
-  
-  min-width: 100vw;
-  min-height: 100vw;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-#loginImg {
-  background-image: url("https://images.pexels.com/photos/1776804/pexels-photo-1776804.jpeg?cs=srgb&dl=pexels-ngh%C4%A9a-ph%E1%BA%A1m-1776804.jpg&fm=jpg");
-  position: fixed;
-  top: 0;
-  min-width: 100vw;
-  min-height: 100vw;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: -1;
-}
 .translucent-form-overlay {
   margin: 0 auto;
   max-width: 500px;
