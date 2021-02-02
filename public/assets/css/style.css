@@ -166,6 +166,10 @@ border: solid 10px rgb(216, 81, 79)
   text-align: center;
 }
 
+#deleteBtnModal {
+  text-align: center;
+}
+
 input{
   margin: 10px !important;
 }
