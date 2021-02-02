@@ -1,115 +1,113 @@
 {{>navbar}}
 
-<div class="callout plant-page">
-  <h5 id="nicknameText">Nickname: {{dataValues.nickname}}</h5>
-  <textarea class="hiddenElement" id="nickname" name="nickname" rows="1" cols="20">{{dataValues.nickname}}</textarea>
-  <button class="btn editNickname">Edit</button>
-  <button class="btn hiddenElement" id="saveName" value={{dataValues.id}}>Save</button>
-</div>
+<div class="grid-container grid-container-margin">
+  <div class="grid-x grid-x-margin">
 
-<div class="callout plant-page">
-  <h5 id="science-name"> Scientific Name: {{dataValues.scientificName}}</h5>
-</div>
-
-<div class="grid-container grid-container-padded">
-  <div class="grid-x grid-margin-x align-center">
-    <div class="grid-y grid-margin-y">
-
-      <div class="cell shrink plant-page">
-        <div class="callout small">
-          <h5>Last Watered: {{dataValues.lastWatered}}</h5>
-        </div>
-      </div>
-
-      <button class="btn watered-btn" id="waterBtn" value={{dataValues.id}}>Just watered!</button>
-
-
-      <div class="card" style="width: 100%;">
-        <div class="card-divider">
-          <h4>Notes & Care Instructions</h4>
-        </div>
-        <textarea class="hiddenElement" id="plantText" name="notes" rows="4" cols="50">
-                {{dataValues.notes}}
-            </textarea>
-        <p id="plantNotes">{{dataValues.notes}}</p>
-        <button class="btn editNotes">Edit</button>
-        <button class="btn hiddenElement" id="saveNotes" value={{dataValues.id}}>Save</button>
-      </div>
-
-
-      <div class="cell shrink plant-page">
-        <div class="callout small" id="waterLevel">
-          <h5>Recommended Water Frequency: Every {{dataValues.waterFrequency}} days</h5>
-        </div>
-        <p class="hiddenElement" id="waterUpdate">How many days would you like your watering frequency to be?</p>
-        <span class="hiddenElement" id="hideInput">
-          <input type="number" id="waterDays" name="watering" value={{dataValues.waterFrequency}}>
-        </span>
-        <button class="btn editWater">Edit</button>
-        <button class="btn hiddenElement" id="saveWater" value={{dataValues.id}}>Save</button>
-      </div>
-
-
-      <div class="callout small">
-        <h5><a href="/{{{dataValues.User.dataValues.userName}}}/plant/{{{dataValues.id}}}/addphoto">Add photo</a></h5>
-      </div>
-
-      <p><button class="delete-btn" data-open="deleteBtnModal">Remove this plant?</button></p>
-
-      <div class="reveal" id="deleteBtnModal" data-reveal>
-        <h5>WAIT JUST ONE MINUTE!</h5>
-        <p>Are you sure you want to remove this plant from your profile?</p>
-        <button class="btn delete-btn" id="deleteBtn" value={{dataValues.id}}>Yes, remove
-          it!</button>
-      </div>
-
-
+    <div class="cell medium-2" style="text-align: center;">
+      <img src="/assets/images/wateringcan.png" style="width: 90%; cursor: pointer;" class="wateredBtn" data-id={{{dataValues.id}}} title="Water Me!">   
+    </div>
+    <div class="cell medium-10" style="padding-left: 25px;">
+      <h1>{{dataValues.nickname}}</h1>
+      <h3>{{#if dataValues.isWatered}}I have enough water. {{else}}I need water! {{/if}}</h3>
     </div>
   </div>
+
+  <div class="grid-x grid-x-margin">
+    <div class="cell medium-3">
+      <img src="{{dataValues.Photos.[0].dataValues.url}}" style="width: 100" alt="" {{#if
+        dataValues.isWatered}}class="is-watered" {{else}}class="img not-watered" {{/if}}>
+    </div>
+    <div class="cell medium-9" style="padding-left: 25px;">
+      <p>
+        <strong>Nickname: </strong><span id="nicknameText">{{dataValues.nickname}}</span>
+        <input class="hiddenElement" id="nickname" name="nickname" value="{{dataValues.nickname}}">
+        <button class="btn hiddenElement" id="saveName" value={{dataValues.id}}>Save</button>
+        <i class="far fa-edit editNickname"></i>
+      </p>
+      <p>
+        <strong>Common Name: </strong> {{dataValues.commonName}}
+      </p>
+      <p>
+        <strong>Scientific Name: </strong>{{dataValues.scientificName}}
+      </p>
+      <p>
+        <strong>Last Watered: </strong>{{dataValues.lastWatered}}
+      </p>
+      <p>
+        <strong>Water every {{dataValues.waterFrequency}} days.</strong>
+
+        <span class="hiddenElement" id="hideInput">
+          <input type="number" id="waterDays" name="watering" value={{dataValues.waterFrequency}}>
+          <button class="btn hiddenElement" id="saveWater" value={{dataValues.id}}>Save</button>
+        </span>
+
+
+        <i class="far fa-edit editWater"></i>
+      </p>
+      <p>
+        <strong>Next water Due: </strong>{{dataValues.waterDue}}
+      </p>
+      <p>
+        <strong>Notes &amp; Care: </strong>
+        {{dataValues.notes}}
+        <textarea class="hiddenElement" id="plantText" name="notes" rows="4" cols="50">
+          {{dataValues.notes}}
+        </textarea>
+        <button class="btn hiddenElement" id="saveNotes" value={{dataValues.id}}>Save</button>
+        <i class="far fa-edit editNotes"></i>
+      </p>
+      <p>
+        <strong>Created: </strong> {{dataValues.createdAt}}
+      </p>
+      <button class="btn hiddenElement" id="saveWater" value={{dataValues.id}}>Save</button>
+    </div>
+  </div>
+</div>
 </div>
 
 {{#if dataValues.Photos}}
 
-<div class="grid-container">
-  <div class="grid-x grid-margin-x small-up-2 medium-up-3">
+<div class="grid-container grid-container-margin">
+  <div class="grid-x grid-x-margin">
+
     {{#each dataValues.Photos}}
-    <div class="cell large-4 medium-6 small-12 plant-card">
-      <div class="card-section">
-        <h3>{{#if ../dataValues.isWatered}} {{else}} {{/if}}</h3>
-        <img src="{{dataValues.url}}" style="width: 200px" alt="" {{#if ../dataValues.isWatered}}class="img is-watered"
-          {{else}}class="img not-watered" {{/if}}>
-        <div>
-          {{!-- Wel'll need to see about adding that information from the "photos" table in the DB. --}}
-          <h4>{{dataValues.createdAt}}</h4>
-          {{!-- I believe we'll want to add a STRING col to the "photos" table in the DB, for this. --}}
-          {{!-- <p>Possible notes added to each picture upload?</p> --}}
-        </div>
-      </div>
+    <div class="cell medium-3">
+      <img src="{{dataValues.url}}" style="width: 200px" alt="" {{#if ../dataValues.isWatered}}class="img is-watered"
+        {{else}}class="img not-watered" {{/if}}>
     </div>
     {{/each}}
+    <div class="cell medium-3">
+      <a href="/{{{dataValues.User.dataValues.userName}}}/plant/{{{dataValues.id}}}/addphoto">
+        <i class="fas fa-cloud-upload-alt fa-9x" title="Upload a photo!"></i>
+      </a>
+    </div>
   </div>
 </div>
 
 {{else}}
 
+<div class="grid-container grid-container-margin">
+  <div class="grid-x grid-x-margin">
 
-
-<div class="grid-container">
-  <div class="grid-x grid-margin-x small-up-2 medium-up-3">
-    <div class="cell">
-      <div class="card">
-
-        <img src="/assets/images/Potted Plant1.jpg" {{#if ../dataValues.isWatered}}class="img is-watered"
-          {{else}}class="img not-watered" {{/if}}>
-        <div class="card-section">
-          {{!-- Wel'll need to see about adding that information from the "photos" table in the DB. --}}
-          <h4>{{dataValues.createdAt}}</h4>
-          {{!-- I believe we'll want to add a STRING col to the "photos" table in the DB, for this. --}}
-          {{!-- <p>Possible notes added to each picture upload?</p> --}}
-        </div>
-      </div>
+    <div class="cell medium-3">
+      <img src="/assets/images/Potted Plant1.jpg" {{#if ../dataValues.isWatered}}class="img is-watered"
+        {{else}}class="img not-watered" {{/if}}>
+    </div>
+    <div class="cell medium-3">
+      <a href="/{{{dataValues.User.dataValues.userName}}}/plant/{{{dataValues.id}}}/addphoto">
+        <i class="fas fa-cloud-upload-alt fa-9x" title="Upload a photo!"></i>
+      </a>
     </div>
   </div>
 </div>
 
 {{/if}}
+
+<button class="dangerBtn" data-open="deleteBtnModal">Remove this plant?</button>
+
+<div class="reveal" id="deleteBtnModal" data-reveal>
+  <h5>WAIT JUST ONE MINUTE!</h5>
+  <p>Are you sure you want to remove this plant from your profile?</p>
+  <button class="btn delete-btn" id="deleteBtn" value={{dataValues.id}}>Yes, remove
+    it!</button>
+</div>

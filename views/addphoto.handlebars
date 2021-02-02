@@ -6,11 +6,22 @@
 
 <form>
 
-    <input id="photoInput" type="file" name="image">
-    <input type="hidden" id="hdnId" name="hdnId" value="{{{dataValues.id}}}">
-    <button id="photoBtn" type="button">upload</button>
+    <div class="grid-container grid-container-margin">
+        <div class="grid-x grid-x-margin">
+            <div class="grid-y">
+                <input id="photoInput" type="file" name="image">
+                <input type="hidden" id="hdnId" name="hdnId" value="{{{dataValues.id}}}">
+                
+                <div class="hiddenElement">
+                    <h3>Preview</h3>
+                    <img id="preview" alt="preview" style="width: 200px;">
+                    <button id="photoBtn" class="btn" type="button">upload</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
 </form>
-<img id="preview" alt="preview">
 
 <script>
     $("#photoBtn").click((e) => {
@@ -32,15 +43,16 @@
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = () => {
-            $("#preview").attr("src", reader.result)
+            $("#preview").attr("src", reader.result);
+            $(".hiddenElement").show();
         }
     })
 
     const uploadPhoto = file => {
-        
+
         //console.log('reader result in uploadPhoto()')
-        $.post("/api/plant/img",{
-            data: file, 
+        $.post("/api/plant/img", {
+            data: file,
             id: $("#hdnId").val()
         }).then(response => {
             window.location.href = response.href;
