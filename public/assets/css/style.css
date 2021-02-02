@@ -195,6 +195,14 @@ label{
   margin: 4px  0 -10px 10px !important;
 }
 
+button{
+  cursor: pointer !important;
+}
+
+i{
+  cursor: pointer !important
+}
+
 .btn-group button {
   background-color: rgb(173, 187, 162, 0.2);
   border: solid 2px rgb(104,123,136);
