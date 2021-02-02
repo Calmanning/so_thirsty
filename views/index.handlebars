@@ -6,12 +6,9 @@
   <div class="grid-x grid-x-margin">
     <div class="grid-y">
       <div class="cell medium-3">
-      {{#each Plants}}
-        <div class="btn-group">
-          <a href="/{{../userName}}/plant/{{{dataValues.id}}}">
-            <button>{{dataValues.nickname}}</button></a>
-        </div>
-      {{/each}}
+        {{#each Plants}}
+        {{>plant-button this}}
+        {{/each}}
       </div>
     </div>
 
@@ -19,29 +16,7 @@
       <div class="grid-container grid-container-margin">
         <div class="grid-x grid-x-margin">
           {{#each Plants}}
-          <div class="cell large-4 medium-6 small-12 plant-card">
-
-            <div class="card-section">
-              <a href="/{{../userName}}/plant/{{{dataValues.id}}}">
-                <h4><strong>{{dataValues.nickname}}</strong></h4>
-              </a>
-              <a href="/{{../userName}}/plant/{{{dataValues.id}}}">
-                {{#if Photos}}
-                {{#Photos.[0]}}
-                <img src={{dataValues.url}} {{#if ../dataValues.isWatered}}class="img is-watered"
-                  {{else}}class="img not-watered" {{/if}}>
-                {{/Photos.[0]}}
-                {{else}}
-                <img src="/assets/images/Potted Plant1.jpg" {{#if ../dataValues.isWatered}}class="img is-watered"
-                  {{else}}class="img not-watered" {{/if}}>
-                {{/if}}
-              </a>
-            {{!-- </div>
-            <div class="card-section"> --}}
-              <button class="wateredBtn btn" value={{dataValues.id}}>Just watered!</button>
-              <button class="removeBtn btn" value={{dataValues.id}}>Remove Plant</button>
-            </div>
-          </div>
+          {{>plant-block this}}
           {{/each}}
         </div>
       </div>
@@ -54,14 +29,14 @@
 
 <div class="grid-container grid-container-margin">
 
-<h3>Caretakers</h3>
-<ul>
-  {{#each Caretakers}}
-  <li>
-    {{dataValues.name}} - <button class="deleteCaretaker btn" value={{dataValues.id}}>Remove</button>
-  </li>
-  {{/each}}
-</ul>
+  <h3>Caretakers</h3>
+  <ul>
+    {{#each Caretakers}}
+    <li>
+      {{dataValues.name}} - <button class="deleteCaretaker btn" value={{dataValues.id}}>Remove</button>
+    </li>
+    {{/each}}
+  </ul>
 
-<a href="/invite"><button class="btn">Invite a Caretaker</button></a>
+  <a href="/invite"><button class="btn">Invite a Caretaker</button></a>
 </div>

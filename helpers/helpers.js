@@ -13,7 +13,7 @@ const helpers = {
         data.dataValues.isWatered = waterDue.isAfter(today)
         data.dataValues.lastWatered = moment(data.dataValues.lastWatered).format('MM/DD/YYYY')
         
-        console.log('data in helper: ', data);
+        // console.log('data in helper: ', data);
         return data;
     }
 };

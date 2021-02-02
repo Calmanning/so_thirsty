@@ -24,7 +24,7 @@ router.get("/signin", function (req, res) {
         res.redirect("/" + req.session.user.userName)
     }
     else{
-        res.render("signin");
+        res.render("signin",  {layout: "newUser"});
     }    
 })
 
@@ -61,7 +61,7 @@ router.get("/", function (req, res) {
         res.redirect("/" + req.session.user.userName)
     }
     else{
-        res.render("register");
+        res.render("register", {layout: "newUser"});
     }
 })
 
@@ -81,6 +81,13 @@ router.post("/api/user", function (req, res) {
         }
         res.redirect("/" + req.session.user.userName)
     })
+})
+
+// Sign out
+router.get("/signout", (req, res) => {
+    req.session.user = undefined;
+
+    res.redirect("/signin");
 })
 
 // =======================================================================
@@ -120,13 +127,16 @@ router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
         where: {
             id: req.params.plant
         },
-        include: [db.Photo, db.User]
+        include: [db.Photo, db.User],
+        
+  order: [
+    [ db.Photo, 'id', 'DESC' ]]
     }).then(function (data) { 
         let dataToSend = helpers.addWateredSingle(data);
         dataToSend.userName = req.session.user.userName;
         dataToSend.name = req.session.user.userName;
         dataToSend.dataValues.createdAt = moment(dataToSend.createdAt).format('MM/DD/YYYY'); 
-        console.log("plant-data", dataToSend);       
+        // console.log("plant-data", dataToSend);       
         res.render("plant-profile", dataToSend);
     })
 })
@@ -251,6 +261,39 @@ router.post("/api/plant/img", ensureAuthenticated, async function (req, res) {
     // const data = await addPhoto(req.params.plant, req.body.image)
 })
 
+// Delete a photo
+router.delete("/api/photo/delete/:id", ensureAuthenticated, async (req, res) => {
+    cloudinary.config({
+        cloud_name: "drantho",
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET
+    });
+
+    db.Photo.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(async data=> {
+        const arr = data.url.split("/");
+        let id = arr[arr.length-1];
+        id = id.substring(0, id.length-4);
+        console.log(`attempting to delete: `, id);
+        try{
+            const uploadedResponse = await cloudinary.uploader.destroy(id)
+            console.log(uploadedResponse);
+        }catch{
+            console.log(`image not found on cloudinary`);
+        }
+        db.Photo.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(deleteData => {
+            res.json({msg: "image deleted"})
+        })
+    })
+});
+
 async function addPhoto(id, url) {
     // console.log(`addPhoto(${id}, ${url}) fires`);
     const data = await db.Photo.create({
@@ -350,10 +393,15 @@ router.get("/caretaker/:key", (req, res) => {
     }).then(data => {
         if(data){
             data.key = req.params.key;
-            res.render("caretaker.handlebars", {
-                layout: "tempUser.handlebars",
-                data: data.dataValues});
-            // res.json(data)
+            data.Plants = data.dataValues.User.Plants;
+
+            // console.log(`==================================================`);
+            // console.log(`caretaker data: `, data);
+            // console.log(`++++++++++++++++++++++++++++++++++++++++++++++++++++`);
+            // console.log('data.Plants: ', data.Plants);            
+            let dataToSend = helpers.addWatered(data);
+            dataToSend.dataValues.userName = dataToSend.dataValues.User.userName;
+            res.render("caretaker.handlebars", dataToSend.dataValues);
         }else{
             res.render("unauthorized")
         }
@@ -375,12 +423,12 @@ router.get("/caretaker/:key/plant/:id", (req, res) => {
             },
             include: [db.Photo, db.User]
         }).then(plant => {
-            console.log(`==================================`);
-            console.log(`caretaker plant data: `, data);
             
             // plant.data.name = data.name;
             plant.data = {name: data.dataValues.name, key: req.params.key}
-            res.render("caretaker-plant", plant);
+            const dataToSend = helpers.addWateredSingle(plant);
+            dataToSend.key = req.params.key;
+            res.render("caretaker-plant", dataToSend);
 
         })
     })
@@ -417,7 +465,9 @@ router.get("/:user", ensureAuthenticated, function (req, res) {
         }).then(data => {
             // console.log('db data: ', data.dataValues);
             const dataToSend = helpers.addWatered(data.dataValues)
-            // console.log('Formatted data: ', dataToSend);
+            // console.log(`=============================`);
+            // console.log('regular user data: ', dataToSend);
+
             res.render("index", dataToSend)
         })
 })
