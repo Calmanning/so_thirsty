@@ -12,6 +12,13 @@ body {
   background-repeat: no-repeat;
 }
 
+.backgroundMain {
+  background-image: url('/assets/images/thirsty_background.svg');
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 100vw;
+}
+
 a {
   font-family: 'Bubbler One', sans-serif!important;
   color: rgb(104,123,136)!important;
