@@ -81,6 +81,10 @@ h3 {
     text-align: center;
   }
 
+ .hello {
+    text-align: center;
+  }
+
   .card-section {
     border-radius: 3px;
     border: solid 2px rgb(173, 187, 162);
@@ -90,9 +94,19 @@ h3 {
     background: rgb(173, 187, 162, 0.5);
   }
 
+  .caregiver-card-section {
+    border-radius: 3px;
+    border: solid 2px rgb(173, 187, 162);
+    text-align: center;
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: rgb(173, 187, 162, 0.1);
+  }
+
   .caretakers {
     background: rgb(173, 187, 162, 0.5);
     padding: 20px 20px 20px 20px;
+    
   }
 
   .grid-container {
