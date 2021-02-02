@@ -1,0 +1,5 @@
+<div class="cell medium-3">
+    <img src="{{dataValues.url}}" style="width: 200px" alt="" {{#if @root.dataValues.isWatered}}class="img is-watered"
+        {{else}}class="img not-watered" {{/if}}>
+    <i class="far fa-trash-alt deletePhoto fa-2x hiddenButton" data-id={{dataValues.id}}></i>
+</div>
