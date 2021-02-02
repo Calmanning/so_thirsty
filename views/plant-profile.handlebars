@@ -4,8 +4,13 @@
   <div class="grid-x grid-x-margin">
 
     <div class="cell medium-2" style="text-align: center;">
-      <img src="/assets/images/wateringcan.png" style="width: 90%; cursor: pointer;" class="wateredBtn"
+      {{#if dataValues.isWatered}}
+        <img src="/assets/images/wateringcan.png" style="width: 90%; cursor: pointer;" class="wateredBtn"
         data-id={{{dataValues.id}}} title="Water Me!">
+      {{else}}
+        <img src="/assets/images/red_can_transparent.png" style="width: 90%; cursor: pointer;" class="wateredBtn"
+        data-id={{{dataValues.id}}} title="Water Me!">
+      {{/if}}
     </div>
     <div class="cell medium-10" style="padding-left: 25px;">
       <h1>{{dataValues.nickname}}</h1>
