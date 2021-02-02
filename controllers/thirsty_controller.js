@@ -83,6 +83,13 @@ router.post("/api/user", function (req, res) {
     })
 })
 
+// Sign out
+router.get("/signout", (req, res) => {
+    req.session.user = undefined;
+
+    res.redirect("/signin");
+})
+
 // =======================================================================
 // Plant routes
 // =======================================================================
