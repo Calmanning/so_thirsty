@@ -12,6 +12,12 @@ body {
   background-repeat: no-repeat;
 }
 
+.backgroundMain {
+  background-image: url('https://i.pinimg.com/originals/8e/10/8c/8e108c5a22047854c0e733a38c1ce3a1.png');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 a {
   font-family: 'Bubbler One', sans-serif!important;
   color: rgb(104,123,136)!important;
