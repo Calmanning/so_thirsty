@@ -53,22 +53,6 @@ $(document).ready(function () {
             });
         };
     });
-    // TODO: Sign in user
-    // $("#current-user").on("submit", function (event) {
-    //     event.preventDefault();
-    //     if (userName.val() && password.val()) {
-    //         $.ajax({
-    //             method: "POST",
-    //             url: "/api/user",
-    //             data: {
-    //                 userName: userName.val(),
-    //                 password: password.val()
-    //             }
-    //         }).then(function () {
-    //             window.location.href = "/" + userName.val()
-    //         });
-    //     };
-    // });
 
 
     // Treffle API plant search
@@ -157,7 +141,7 @@ $(document).ready(function () {
     $(document).on("click", ".clearSelection", function () {
         $("#myForm").trigger("reset");
         $("#selectedNotice").text("");
-    })
+    });
 
     // UPDATE notes, nickname, and water frequency in plant profile
     saveName.on("click", function () {
@@ -198,22 +182,25 @@ $(document).ready(function () {
 
     // Toggles the text area for notes, nickname, and water frequency editing
     editNickname.on("click", function () {
-        nickname.toggle()
-        nicknameText.toggle()
-        saveName.toggle()
+        nickname.toggle();
+        nicknameText.toggle();
+        saveName.toggle();
+        editNickname.toggle();
     });
 
     editNotes.on("click", function () {
-        plantNotes.toggle()
-        plantText.toggle()
-        saveNotes.toggle()
+        plantNotes.toggle();
+        plantText.toggle();
+        saveNotes.toggle();
+        editNotes.toggle();
     });
 
     editWater.on("click", function () {
-        waterUpdate.toggle()
-        saveWater.toggle()
-        waterLevel.toggle()
-        hideInput.toggle()
+        waterUpdate.toggle();
+        saveWater.toggle();
+        waterLevel.toggle();
+        hideInput.toggle();
+        editWater.toggle();
     });
 
     // UPDATE when plant was watered (plant profile)
@@ -248,7 +235,7 @@ $(document).ready(function () {
         }).then(function (data) {
             location.reload();
         });
-    })
+    });
 
     //DELETE plant call from "/:user" page
     $(document).on("click", ".removeBtn", function (event) {
@@ -261,8 +248,8 @@ $(document).ready(function () {
             url: "/api/:user/dead/" + id
         }).then(function () {
             location.reload();
-        })
-    })
+        });
+    });
 
     //Delete caretaker
     $(document).on("click", ".deleteCaretaker", function (event) {
@@ -275,8 +262,8 @@ $(document).ready(function () {
             url: "/api/caretaker/" + id
         }).then(function () {
             location.reload();
-        })
-    })
+        });
+    });
 
 }); //end of the document ready
 
