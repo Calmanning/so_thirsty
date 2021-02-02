@@ -284,3 +284,22 @@ i{
   border-radius: 5px;
   border: 2px solid rgb(140, 0, 0);
 }
+
+.cell{
+  position: relative;
+}
+
+.cell .hiddenButton{
+  display: none;
+}
+
+.cell:hover .hiddenButton{
+  display: block;
+}
+
+.deletePhoto{
+  color: white;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}

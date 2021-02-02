@@ -268,6 +268,19 @@ $(document).ready(function () {
         });
     });
 
+    $(document).on("click", ".deletePhoto", function(e){
+        // alert("/api/photo/delete/" + $(this).data("id"));
+        $.ajax({
+            url: "/api/photo/delete/" + $(this).data("id"),
+            method: "DELETE"
+         }).then(function(response){
+            // console.log(`photo deleted`);
+            location.reload();
+         }).fail(function(err){
+             console.log(err);
+         })
+    })
+
 }); //end of the document ready
 
 frequencyMap = precipitation => {

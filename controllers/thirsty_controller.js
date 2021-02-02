@@ -136,7 +136,7 @@ router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
         dataToSend.userName = req.session.user.userName;
         dataToSend.name = req.session.user.userName;
         dataToSend.dataValues.createdAt = moment(dataToSend.createdAt).format('MM/DD/YYYY'); 
-        console.log("plant-data", dataToSend);       
+        // console.log("plant-data", dataToSend);       
         res.render("plant-profile", dataToSend);
     })
 })
@@ -260,6 +260,39 @@ router.post("/api/plant/img", ensureAuthenticated, async function (req, res) {
 
     // const data = await addPhoto(req.params.plant, req.body.image)
 })
+
+// Delete a photo
+router.delete("/api/photo/delete/:id", ensureAuthenticated, async (req, res) => {
+    cloudinary.config({
+        cloud_name: "drantho",
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET
+    });
+
+    db.Photo.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(async data=> {
+        const arr = data.url.split("/");
+        let id = arr[arr.length-1];
+        id = id.substring(0, id.length-4);
+        console.log(`attempting to delete: `, id);
+        try{
+            const uploadedResponse = await cloudinary.uploader.destroy(id)
+            console.log(uploadedResponse);
+        }catch{
+            console.log(`image not found on cloudinary`);
+        }
+        db.Photo.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(deleteData => {
+            res.json({msg: "image deleted"})
+        })
+    })
+});
 
 async function addPhoto(id, url) {
     // console.log(`addPhoto(${id}, ${url}) fires`);
