@@ -20,9 +20,9 @@
         </ul>
          <ul class="dropdown menu" data-dropdown-menu>
             <li class="menu-text">So Thirsty!</li>
-            <li><a href="/">Home</a></li>
+            <li><a href="/">Home <i class="fas fa-home"></i></a></li>
             {{#if name}}
-            <li><a href="/addplant">New Plant</a></li>
+            <li><a href="/addplant">New Plant <i class="fas fa-seedling"></i></a></li>
             {{else}}
 
             {{/if}}
@@ -31,8 +31,9 @@
     <div class="top-bar-right">
         <ul class="dropdown menu" data-dropdown-menu>
             {{#if name}}
-            <li><a href="/">{{userName}}</a></li>
-            <li><a href="/signout">Sign Out</a></li>
+
+            <li><a href="/"><i class="fas fa-user"></i></i> {{userName}}</a></li>
+            <li><a href="/signout"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
             {{else}}
             {{#if data.name}}
             <li><a href="/caretaker/{{data.key}}">{{data.name}}</a></li>
