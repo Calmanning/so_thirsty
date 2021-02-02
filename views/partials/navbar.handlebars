@@ -1,6 +1,6 @@
 <div class="top-bar">
     <div class="top-bar-left">
-        <ul class="dropdown menu desktop-view " data-dropdown-menu>
+        <ul class="dropdown menu desktop-view" data-dropdown-menu>
            <li class="menu-text">So Thirsty!</li>
             <li><a href="/">Home <i class="fas fa-home"></i></a></li>
             {{#if name}}
@@ -9,16 +9,8 @@
 
             {{/if}}
         </ul>
-        <ul>
-         <li class="menu-text">So Thirsty!</li>
-            <li><a href="/">Home <i class="fas fa-home"></i></a></li>
-            {{#if name}}
-            <li><a href="/addplant">New Plant <i class="fas fa-seedling"></i></a></li>
-            {{else}}
-
-            {{/if}}
-        </ul>
-         <ul class="dropdown menu" data-dropdown-menu>
+       
+         <ul class="dropdown menu mobile-view" data-dropdown-menu>
             <li class="menu-text">So Thirsty!</li>
             <li><a href="/">Home <i class="fas fa-home"></i></a></li>
             {{#if name}}
@@ -29,7 +21,20 @@
         </ul>
     </div>
     <div class="top-bar-right">
-        <ul class="dropdown menu" data-dropdown-menu>
+        <ul class="dropdown menu desktop-view" data-dropdown-menu>
+            {{#if name}}
+
+            <li><a href="/"><i class="fas fa-user"></i></i> {{userName}}</a></li>
+            <li><a href="/signout"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
+            {{else}}
+            {{#if data.name}}
+            <li><a href="/caretaker/{{data.key}}">{{data.name}}</a></li>
+            {{/if}}
+            <li><a href="/">Sign Up</a></li>
+            <li><a href="/signin">Sign In</a></li>
+            {{/if}}
+        </ul>
+        <ul class="dropdown menu mobile-view" data-dropdown-menu>
             {{#if name}}
 
             <li><a href="/"><i class="fas fa-user"></i></i> {{userName}}</a></li>
