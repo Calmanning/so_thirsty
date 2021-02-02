@@ -241,10 +241,13 @@ $(document).ready(function () {
     //UPDATE just watered information on "/:user"
     $(document).on("click", ".wateredBtn", function (event) {
         event.preventDefault();
-        console.log("button...uhhhh 'click' " + $(this).val());
+        const id = $(this).val() || $(this).attr("data-id");
+        console.log($(this));
+        console.log("button...uhhhh 'click' " + id);
+        
         $.ajax({
             method: "PUT",
-            url: "/:user/water/" + $(this).val()
+            url: "/:user/water/" + id
         }).then(function (data) {
             location.reload();
         });

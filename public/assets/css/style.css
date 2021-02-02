@@ -4,7 +4,7 @@
 
 #body {
   background-color: rgb(173, 187, 162, 0.2);
-  margin-top: 100px;
+  margin: 100px 0 100px 0;
 }
 
 a {
@@ -266,3 +266,16 @@ label{
 
 .translucent-form-overlay input::placeholder {
   color: #8a8a8a;
+}
+
+.dangerBtn{
+  width: 300px;
+  display: block;
+  margin: 25px auto 50px auto;
+  background-color: red;
+  padding: 15px 30px;
+  cursor: pointer;
+  font-size: 15pt;
+  border-radius: 5px;
+  border: 2px solid rgb(140, 0, 0);
+}

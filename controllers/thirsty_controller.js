@@ -121,11 +121,12 @@ router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
             id: req.params.plant
         },
         include: [db.Photo, db.User]
-    }).then(function (data) {
-        console.log("plant-data", data);        
+    }).then(function (data) { 
         let dataToSend = helpers.addWateredSingle(data);
         dataToSend.userName = req.session.user.userName;
         dataToSend.name = req.session.user.userName;
+        dataToSend.dataValues.createdAt = moment(dataToSend.createdAt).format('MM/DD/YYYY'); 
+        console.log("plant-data", dataToSend);       
         res.render("plant-profile", dataToSend);
     })
 })
