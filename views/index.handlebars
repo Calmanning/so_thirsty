@@ -1,6 +1,7 @@
 {{>navbar}}
-
+<callout class="hello">
 <h1>Hello {{{name}}}!</h1>
+</callout>
 
 <div class="grid-container grid-container-margin">
   <div class="grid-x grid-x-margin">
@@ -34,20 +35,20 @@
 
 <hr>
 
-<div class="grid-container grid-container-margin">
-  <div class="cell">
+<div class="grid-container grid-container-margin caretakers">
+  <div class="cell hello">
     <h3>Caretakers</h3>
   </div>
   <div class="grid-x grid-x-margin">
     {{#each Caretakers}}
     <div class="cell medium-3 small-12">
-      <div class="card-section">
+      <div class="caregiver-card-section">
         {{dataValues.name}} <br> <button class="deleteCaretaker btn" value={{dataValues.id}}>Remove</button>
       </div>
     </div>
     {{/each}}
   </div>
-  <div class="cell">
+  <div class="cell hello">
     <a href="/invite"><button class="btn">Invite a Caretaker <i class="fas fa-envelope"></i></button></a>
   </div>
 </div>
