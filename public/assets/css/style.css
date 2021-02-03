@@ -14,9 +14,10 @@ body {
 
 .backgroundMain {
   background-image: url('/assets/images/thirsty_background.svg');
-  background-position: bottom;
+  background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: 100vw;
+  background-position: top;
 }
 
 a {
@@ -54,7 +55,7 @@ h3 {
   background-color: rgb(0, 75, 89) ;
   color: white;
   display: flex;
-  position: sticky;
+  
 
 }
 
@@ -316,27 +317,7 @@ i{
 /* display: block; */
 }
 
-@media (max-width: 762px) {
-  /* For mobile phones: */
-  .desktop-view{
-    display: none !important;
-  }
 
-  .btn-group button{
-    display: none;
-  }
-}
-
-@media (min-width: 762px) {
-  /* For mobile phones: */
-  .mobile-view{
-    display: none !important;
-  }
-
-  .imageMobileOptions{
-    display: none !important;
-  }
-}
 .translucent-form-overlay {
   margin: 0 auto;
   max-width: 500px;
@@ -438,4 +419,26 @@ i{
 
 .fa-cloud-upload-alt{
   color: rgb(0, 75, 89);
+}
+
+@media (max-width: 762px) {
+  /* For mobile phones: */
+  .desktop-view{
+    display: none !important;
+  }
+
+  .btn-group button{
+    display: none;
+  }
+}
+
+@media (min-width: 762px) {
+  /* For mobile phones: */
+  .mobile-view{
+    display: none !important;
+  }
+
+  .imageMobileOptions{
+    display: none !important;
+  }
 }
