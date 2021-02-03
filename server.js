@@ -18,9 +18,10 @@ require('dotenv').config()
 app.engine("handlebars", exphbs({
   defaultLayout: "main",
   helpers: {
-    "json": function(context) {
+    "json": function (context) {
       return JSON.stringify(context, null, 4);
-  }}
+    }
+  }
 }));
 app.set("view engine", "handlebars");
 
@@ -42,7 +43,7 @@ app.use(routes);
 
 
 var PORT = process.env.PORT || 3000;
-db.sequelize.sync({ force: false}).then(function () {
+db.sequelize.sync({ force: false }).then(function () {
   app.listen(PORT, function () {
     console.log(`App now listening on port: ${PORT} view at: http://localhost:${PORT}`);
   });
