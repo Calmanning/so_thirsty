@@ -24,7 +24,7 @@ body {
 
 a {
   font-family: 'Bubbler One', sans-serif!important;
-  color: white!important;
+  color: white;
 }
 
 h1 {
@@ -63,6 +63,7 @@ h3 {
 
 .footer-li {
   /* text-align: center; */
+  color: white;
   display: inline-flex;
   /* justify-content: space-evenly; */
   /* align-content: center; */
@@ -420,6 +421,14 @@ i{
 }
 
 .fa-cloud-upload-alt{
+  color: rgb(0, 75, 89);
+}
+
+.aboutContact{
+  color:white
+}
+
+#setPrivate{
   color: rgb(0, 75, 89);
 }
 

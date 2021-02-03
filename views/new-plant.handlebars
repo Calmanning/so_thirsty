@@ -6,20 +6,20 @@
         <div class="cell large-3 medium-12">
             <form id="myForm" action="/api/plant" method="Post">
                 <label for="nickname">Nickname:</label>
-                <input class="new" id="nickname" name="nickname" placeholder="nickname" required></input><br>
+                <input class="new" id="nickname" name="nickname" placeholder="What's your plant's name?" required></input><br>
 
                 <label for="commonName">Common Name:</label>
-                <input class="search new" id="commonName" name="commonName" placeholder="commoname"></input><br>
+                <input class="search new" id="commonName" name="commonName" placeholder="What's it usually called?"></input><br>
 
-                <label for="scientificName">scientific Name:</label>
-                <input class="new" id="scientificName" name="scientificName" placeholder="scientific name"></input><br>
+                <label for="scientificName">Scientific Name:</label>
+                <input class="new" id="scientificName" name="scientificName" placeholder="Scientific name"></input><br>
 
                 <label for="waterFrequency">Water frequency(days between watering):</label>
-                <input class="new" id="waterFreq" name="waterFrequency" placeholder="water frequency"
+                <input class="new" id="waterFreq" name="waterFrequency" placeholder="How often is it watered?"
                     required></input><br>
 
                 <label for="notes">Notes:</label>
-                <textarea class="new" id="notes" name="notes" placeholder="notes"></textarea><br>
+                <textarea class="new" id="notes" name="notes" placeholder="Anything you'd like to add?"></textarea><br>
 
                 <input class="new" id="trefleId" name="trefleId" type="hidden"></input>
                 <input class="new" id="treflePhoto" name="treflePhoto" type="hidden"></input>
@@ -31,7 +31,7 @@
 
         <div class="cell medium-9 small-12">
             <label for="searchBox">Search:</label>
-            <input class="new" id="searchBox" placeholder="Enter Your Search">
+            <input class="new" id="searchBox" placeholder="Enter a plant">
 
             <button id="searchBtn" class="btn">Search for a plant!</button>
             <div class="scroll" id="resultsBox">
