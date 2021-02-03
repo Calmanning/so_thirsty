@@ -133,6 +133,7 @@ $(document).ready(function () {
 
             $("#selectedNotice").text(`${data.data.common_name} is selected.`).append([
                 $("<br>"),
+                $("<br>"),
                 $("<a>").addClass("clearSelection").text("clear selection")
             ])
         });
