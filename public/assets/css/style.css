@@ -39,7 +39,15 @@ h3 {
   padding-top: 100px;
 }
 
-
+#overlay{
+  height: 100vh;
+  width: 100vw;
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(255,255,255,0.7);
+}
 .footer {
   
   width: 100%;
@@ -66,7 +74,6 @@ h3 {
   .top-bar.topbar-sticky-shrink{
     background-color: rgb(173, 187, 162) ;
     color: white;
-    
   }
 
   .register{
@@ -277,6 +284,13 @@ i{
   background-color: rgb(260, 236, 146);
 }
 
+.logo{
+  height: 40px;
+  position: absolute;
+  top: 0;
+  left: -25px;
+}
+
 .top-bar{
   padding: 10px !important;
   background-color: rgb(0, 75, 89) !important;
@@ -289,6 +303,7 @@ i{
 .top-bar-left, .top-bar ul, .top-bar a{
   background-color: rgb(0, 75, 89) !important;
   color: white !important;
+  margin-left: 20px;
 }
 
 .top-bar-right{
