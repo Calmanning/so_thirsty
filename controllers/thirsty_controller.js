@@ -46,7 +46,6 @@ router.post("/signin", function (req, res) {
                     userName: data.userName
                 }
                 res.redirect("/" + req.session.user.userName)
-                // res.redirect("/"+ req.userName)
             }
             else {
                 res.status(401).json({ msg: "incorrect password" });
@@ -114,7 +113,6 @@ router.post("/api/plant", ensureAuthenticated, async function (req, res) {
         lastWatered: moment(),
         trefleId: req.body.trefleId
     }).then(async function (data) {
-        // console.log(`insert plant data: `, data);
         if (req.body.treflePhoto) {
             const photoData = await addPhoto(data.id, req.body.treflePhoto);
             data.photo = photoData;
@@ -138,7 +136,6 @@ router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
         dataToSend.userName = req.session.user.userName;
         dataToSend.name = req.session.user.userName;
         dataToSend.dataValues.createdAt = moment(dataToSend.createdAt).format('MM/DD/YYYY');
-        // console.log("plant-data", dataToSend);       
         res.render("plant-profile", dataToSend);
     })
 })
@@ -226,7 +223,6 @@ router.get("/:user/plant/:plant/addphoto", ensureAuthenticated, function (req, r
             id: req.params.plant
         }
     }).then(data => {
-        // console.log('plant data: ', data);
         data.userName = req.session.user.userName;
         data.name = req.session.user.userName;
         res.render("addphoto", data);
@@ -236,8 +232,6 @@ router.get("/:user/plant/:plant/addphoto", ensureAuthenticated, function (req, r
 
 //Adding a plant photo
 router.post("/api/plant/img", ensureAuthenticated, async function (req, res) {
-    // console.log('hello from post /api/uploadimg');
-
     try {
         const file = req.body.data;
 
@@ -259,8 +253,6 @@ router.post("/api/plant/img", ensureAuthenticated, async function (req, res) {
         console.log(err);
         return res.status(500).json(err)
     }
-
-    // const data = await addPhoto(req.params.plant, req.body.image)
 })
 
 // Delete a photo
@@ -297,7 +289,6 @@ router.delete("/api/photo/delete/:id", ensureAuthenticated, async (req, res) => 
 });
 
 async function addPhoto(id, url) {
-    // console.log(`addPhoto(${id}, ${url}) fires`);
     const data = await db.Photo.create({
         PlantId: id,
         url: url
@@ -397,10 +388,6 @@ router.get("/caretaker/:key", (req, res) => {
             data.key = req.params.key;
             data.Plants = data.dataValues.User.Plants;
 
-            // console.log(`==================================================`);
-            // console.log(`caretaker data: `, data);
-            // console.log(`++++++++++++++++++++++++++++++++++++++++++++++++++++`);
-            // console.log('data.Plants: ', data.Plants);            
             let dataToSend = helpers.addWatered(data);
             dataToSend.dataValues.userName = dataToSend.dataValues.User.userName;
             res.render("caretaker.handlebars", dataToSend.dataValues);
@@ -426,7 +413,6 @@ router.get("/caretaker/:key/plant/:id", (req, res) => {
             include: [db.Photo, db.User]
         }).then(plant => {
 
-            // plant.data.name = data.name;
             plant.data = { name: data.dataValues.name, key: req.params.key }
             const dataToSend = helpers.addWateredSingle(plant);
             dataToSend.key = req.params.key;
@@ -553,10 +539,7 @@ router.get("/:user", ensureAuthenticated, function (req, res) {
             ]
 
         }).then(data => {
-            // console.log('db data: ', data.dataValues);
             const dataToSend = helpers.addWatered(data.dataValues)
-            // console.log(`=============================`);
-            // console.log('regular user data: ', dataToSend);
 
             res.render("index", dataToSend)
         })
@@ -579,11 +562,11 @@ function ensureAuthenticated(req, res, next) {
 }
 
 function getDigit() {
-    var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-    var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-    var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    const lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-    var possibleDigits = [];
+    const possibleDigits = [];
 
     possibleDigits = possibleDigits.concat(lowerCase);
 
@@ -596,11 +579,11 @@ function getDigit() {
 
 function generatePassword() {
 
-    var password = "";
+    const password = "";
 
-    for (var i = 0; i < 15; i++) {
+    for (let i = 0; i < 15; i++) {
 
-        var tempDigit = getDigit();
+        const tempDigit = getDigit();
 
         password = password.concat(tempDigit);
     }
