@@ -9,6 +9,7 @@
             <li><a href="/addplant">New Plant <i class="fas fa-seedling"></i></a></li>
             {{else}}
             {{/if}}
+            <li><a href="/community">Community</a></li>
         </ul>
 
         {{!-- the mobile view --}}
@@ -22,8 +23,10 @@
                     <li><a href="/addplant">New Plant <i class="fas fa-seedling"></i></a></li>
                     <li><a href="/signout"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
                     {{else}}
-
+                        <li><a href="/">Sign Up</a></li>
+                        <li><a href="/signin">Sign In</a></li>
                     {{/if}}
+                    <li><a href="/community">Community</a></li>
                 </ul>
             </li>
         </ul>
@@ -37,11 +40,11 @@
             <li><a href="/"><i class="fas fa-user"></i></i> {{userName}}</a></li>
             <li><a href="/signout"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
             {{else}}
-            {{#if data.name}}
-            <li><a href="/caretaker/{{data.key}}">{{data.name}}</a></li>
-            {{/if}}
-            <li><a href="/">Sign Up</a></li>
-            <li><a href="/signin">Sign In</a></li>
+                {{#if data.name}}
+                    <li><a href="/caretaker/{{data.key}}">{{data.name}}</a></li>
+                {{/if}}
+                <li><a href="/">Sign Up</a></li>
+                <li><a href="/signin">Sign In</a></li>
             {{/if}}
         </ul>
     </div>

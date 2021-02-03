@@ -1,34 +1,9 @@
 {{>navbar}}
 
 <div class="grid-container grid-container-margin">
-  <div class="grid-x grid-x-margin">
 
-    <div class="cell medium-12">
-      <div class="grid-container grid-container-margin">
-        <div class="grid-x grid-x-margin">
-          
-          {{#each Users}}
-            
-            <h1>{{dataValues.userName}}</h1>
-          {{#each dataValues.Plants}}
-          <h3>
-              {{dataValues.nickname}}
-          </h3>
-          <h3>
-              {{dataValues.commonName}}
-          </h3>
-          <h3>
-              {{dataValues.scientificName}}
-          </h3>          
-          <h3>
-              {{dataValues.waterFrequency}}
-          </h3>
-            
-          {{/each}}        
-          
-          {{/each}}
-        </div>
-      </div>
-    </div>
-  </div>
+    {{#each Plants}}
+    {{>mini-plant-info-block}}
+    {{/each}}
+    
 </div>

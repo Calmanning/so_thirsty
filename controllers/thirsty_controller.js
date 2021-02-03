@@ -452,21 +452,22 @@ router.delete("/api/caretaker/:id", (req, res) => {
 // =========================================================================
 
 router.get("/community", (req, res) => {
-    
-    db.User.findAll({
-        where: {
-            public: true
-        },
+
+    db.Plant.findAll({
         include: [
-            { model: db.Plant, include: [db.Photo]}
-        ]
-    }).then(data => {
-        console.log("====================================================================");
-        console.log(`community data: `, data);
-        res.render("community", {Users: data});
+            db.User, db.Photo
+        ]}
+    ).then(data => {
+        const dataToSend = [];
+        data.forEach(plant => {           
+            if(plant.dataValues.User.dataValues.public){
+                dataToSend.push(plant)
+            }
+        });
+        res.render("community", {Plants: dataToSend});
     })    
 
-})
+});
 
 // =======================================================================
 // Home page catch all route
