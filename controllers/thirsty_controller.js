@@ -336,8 +336,8 @@ router.get("/api/searchById/:id", ensureAuthenticated, function (req, res) {
 // =========================================================================
 
 // Route to let user invite caretaker
-router.get("/invite", ensureAuthenticated, (req, res)=>{
-    res.render("invite")
+router.get("/invite", ensureAuthenticated, (req, res)=>{    
+    res.render("invite", {userName: req.session.user.userName})
 })
 
 router.post("/invite", ensureAuthenticated, (req, res) => {
@@ -478,7 +478,8 @@ router.get("/community", (req, res) => {
                 }
             });
         })
-        res.render("community", {Plants: dataToSend});
+        const userName = req.session.user ? req.session.user.userName : "";
+        res.render("community", {Plants: dataToSend, userName: userName});
     })    
 
 });
@@ -516,7 +517,19 @@ router.put("/api/user/setPrivate/:id", ensureAuthenticated, (req, res) => {
 // =======================================================================
 
 router.get("/aboutus", (req, res)=> {
-    res.render("about.handlebars")
+    if(req.session.user){
+        db.User.findOne({
+            where: {
+                id: req.session.user.id
+            }
+        }).then(data => {
+            console.log(data);
+            const dataToSend = data.dataValues;
+            return res.render("about.handlebars",dataToSend)
+        })
+    }else{
+        return res.render("about")
+    }    
 })
 
 // =======================================================================
