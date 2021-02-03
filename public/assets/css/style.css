@@ -24,19 +24,14 @@ a {
   color: white!important;
 }
 
-title {
-  font-family: 'Bubbler One', sans-serif!important;
-  color: rgb(104,123,136)!important;
-}
-
 h1 {
   font-family: 'Bubbler One', sans-serif!important;
-  color: rgb(104,123,136)!important;
+  color: rgb(0, 75, 89)!important;
 }
 
 h3 {
   font-family: 'Bubbler One', sans-serif!important;
-  color: rgb(104,123,136)!important;
+  color: rgb(0, 75, 89)!important;
 }
 
 #pageContainer{ 
@@ -92,12 +87,12 @@ h3 {
  .hello {
     text-align: center;
     font-weight: bold;
-    color: rgb(104,123,136)
+    color: rgb(0, 75, 89);
   }
 
   .card-section {
     border-radius: 3px;
-    border: solid 2px  rgb(104,123,136);
+    border: solid 2px  rgb(0, 75, 89);
     text-align: center;
     margin: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -106,7 +101,7 @@ h3 {
 
   .caregiver-card-section {
     border-radius: 3px;
-    border: solid 2px  rgb(104,123,136);
+    border: solid 2px  rgb(0, 75, 89);
     text-align: center;
     margin: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -116,7 +111,7 @@ h3 {
 
   .caretakers {
     background: rgb(204, 221, 191);
-    border: solid 2px  rgb(104,123,136);
+    border: solid 2px  rgb(0, 75, 89);
     padding: 20px 20px 20px 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
@@ -128,15 +123,15 @@ h3 {
 
   .btn {
     border-radius: 3px;
-    border: solid 2px rgb(104,123,136);
+    border: solid 2px rgb(0, 75, 89);
     padding: 4px;
-    background-color: rgb(168, 197, 215);
-    color: rgb(93, 100, 87);
+    background-color: rgb(112, 187, 203);
+    color: rgb(0, 75, 89);
     box-shadow: 1px 1px 1px;
     margin: 10px;
   }
 
-  .btn:hover {background-color: #99b49a}
+  .btn:hover {background-color: rbg(182, 217,119)}
 
   .btn:active {
     background-color: #697a6a;
@@ -265,8 +260,8 @@ i{
 
 .btn-group button {
   background-color: rgb(204, 221, 191);
-  border: solid 2px rgb(104,123,136);
-  color: rgb(93, 100, 87);
+  border: solid 2px rgb(0, 75, 89);
+  color: rgb(0, 75, 89);
   border-radius: 3px;
   padding: 10px 24px;
   /* cursor: pointer; */
