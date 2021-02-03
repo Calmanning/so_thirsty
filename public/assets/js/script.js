@@ -38,7 +38,7 @@ $(document).ready(function () {
     // Register user
     $("#newUser").on("submit", function (event) {
         event.preventDefault();
-        if (userName.val() && password.val() && confirmPass.val()) {
+        if (userName.val() && password.val() && confirmPass.val() === password.val() && password.val().length > 7) {
             console.log("testing on script.js. the user name: " + userName)
             $.ajax({
                 method: "POST",
@@ -50,8 +50,50 @@ $(document).ready(function () {
                 }
             }).then(function () {
                 window.location.href = "/" + userName.val()
-            });
-        };
+            }).fail(function (error) {
+                console.log(error);
+                Toastify({
+                    text: "User name is unavailable",
+                    duration: 3000,
+                    destination: "https://github.com/apvarun/toastify-js",
+                    newWindow: true,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: 'center', // `left`, `center` or `right`
+                    backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    onClick: function () {
+                    }
+                }).showToast();
+            })
+        } else {
+            var message = ""
+            if (!userName.val()) {
+                message += "User name is required\n"
+            }
+            if (!password.val()) {
+                message += "Password is required\n"
+            }
+            if (!confirmPass.val() != password.val()) {
+                message += "Passwords do not match\n"
+            }
+            if (password.val().length < 8) {
+                message += "Minimum password length is 8 characters\n"
+            }
+            Toastify({
+                text: message,
+                duration: 3000,
+                destination: "https://github.com/apvarun/toastify-js",
+                newWindow: true,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: 'center', // `left`, `center` or `right`
+                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                onClick: function () {
+                }
+            }).showToast();
+        }
     });
 
 
@@ -336,20 +378,6 @@ const filterObj = objToFilter => {
     return returnString;
 }
 
-Toastify({
-    text: "Minimum password character length is 8",
-    duration: 3000,
-    destination: "https://github.com/apvarun/toastify-js",
-    newWindow: true,
-    close: true,
-    gravity: "top", // `top` or `bottom`
-    position: 'left', // `left`, `center` or `right`
-    backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-    stopOnFocus: true, // Prevents dismissing of toast on hover
-    onClick: function () {
-
-    } // Callback after click
-}).showToast();
 
 // ==========================================================
 // add temp user functions
