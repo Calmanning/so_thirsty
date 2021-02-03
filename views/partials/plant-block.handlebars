@@ -1,31 +1,38 @@
-
 <div class="cell large-4 medium-6 small-12 plant-card">
     <div class="card-section">
         {{#if @root.key}}
-            <a href="/caretaker/{{@root.key}}/plant/{{{dataValues.id}}}">
-        {{else}}
-            <a href="/{{@root.userName}}/plant/{{{dataValues.id}}}">
-        {{/if}}
-        
-            <h4><strong>{{dataValues.nickname}}</strong></h4>
-        </a>
-        {{#if @root.key}}
-            <a href="/caretaker/{{@root.key}}/plant/{{{dataValues.id}}}">
-        {{else}}
-            <a href="/{{@root.userName}}/plant/{{{dataValues.id}}}">
-        {{/if}}
-        
-            {{#if Photos}}
-            {{#Photos.[0]}}
-            <img src={{dataValues.url}} {{#if ../dataValues.isWatered}}class="img is-watered"
-                {{else}}class="img not-watered" {{/if}}>
-            {{/Photos.[0]}}
+        <a href="/caretaker/{{@root.key}}/plant/{{{dataValues.id}}}">
             {{else}}
-            <img src="/assets/images/Potted Plant1.jpg" {{#if dataValues.isWatered}}class="img is-watered"
-                {{else}}class="img not-watered" {{/if}}>
-            {{/if}}
-        </a>
-        <button class="wateredBtn btn" value={{dataValues.id}}>Just watered!</button>
-        <button class="removeBtn btn" value={{dataValues.id}}><i class="far fa-trash-alt"></i> Remove Plant</button>
+            <a href="/{{@root.userName}}/plant/{{{dataValues.id}}}">
+                {{/if}}
+
+                <h4><strong>{{dataValues.nickname}}</strong></h4>
+            </a>
+            {{#if @root.key}}
+            <a href="/caretaker/{{@root.key}}/plant/{{{dataValues.id}}}">
+                {{else}}
+                <a href="/{{@root.userName}}/plant/{{{dataValues.id}}}">
+                    {{/if}}
+
+                    {{#if Photos}}
+                    {{#Photos.[0]}}
+                    <img src={{dataValues.url}} {{#if ../dataValues.isWatered}}class="img is-watered"
+                        {{else}}class="img not-watered" {{/if}}>
+                    {{/Photos.[0]}}
+                    {{else}}
+                    <img src="/assets/images/Potted Plant1.jpg" {{#if dataValues.isWatered}}class="img is-watered"
+                        {{else}}class="img not-watered" {{/if}}>
+                    {{/if}}
+                </a>
+                <button class="wateredBtn btn" value={{dataValues.id}}>Just watered!</button>
+                {{#if name}}
+                <button class="removeBtn btn" value={{dataValues.id}}><i class="far fa-trash-alt"></i> Remove
+                    Plant</button>
+                {{else}}
+                <button class="removeBtn btn" style="display: none" value={{dataValues.id}}>
+                    <i class="far fa-trash-alt"></i>
+                    Remove Plant
+                </button>
+                {{/if}}
     </div>
 </div>
