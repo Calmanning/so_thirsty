@@ -25,14 +25,9 @@
                     {{/if}}
                 </a>
                 <button class="wateredBtn btn" value={{dataValues.id}}>Just watered!</button>
-                {{#if name}}
+                {{#unless @root.key}}
                 <button class="removeBtn btn" value={{dataValues.id}}><i class="far fa-trash-alt"></i> Remove
                     Plant</button>
-                {{else}}
-                <button class="removeBtn btn" style="display: none" value={{dataValues.id}}>
-                    <i class="far fa-trash-alt"></i>
-                    Remove Plant
-                </button>
-                {{/if}}
+                {{/unless}}
     </div>
 </div>
