@@ -465,6 +465,14 @@ router.get("/community", (req, res) => {
                 dataToSend.push(plant)
             }
         });
+        dataToSend.sort((a, b) => {
+            if(a.createdAt > b.createdAt){
+                return -1
+            }else{
+                return 1
+            }
+
+        })
         res.render("community", {Plants: dataToSend});
     })    
 
