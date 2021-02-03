@@ -231,7 +231,7 @@ $(document).ready(function () {
         const id = $(this).val() || $(this).attr("data-id");
         console.log($(this));
         console.log("button...uhhhh 'click' " + id);
-        
+
         $.ajax({
             method: "PUT",
             url: "/:user/water/" + id
@@ -268,33 +268,33 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on("click", ".deletePhoto", function(e){
+    $(document).on("click", ".deletePhoto", function (e) {
         // alert("/api/photo/delete/" + $(this).data("id"));
         $.ajax({
             url: "/api/photo/delete/" + $(this).data("id"),
             method: "DELETE"
-         }).then(function(response){
+        }).then(function (response) {
             // console.log(`photo deleted`);
             location.reload();
-         }).fail(function(err){
-             console.log(err);
-         })
+        }).fail(function (err) {
+            console.log(err);
+        })
     })
 
-    $("#setPublic").click(function(){
+    $("#setPublic").click(function () {
         $.ajax({
             url: "/api/user/setPublic/" + $(this).data("id"),
             method: "PUT"
-        }).then(function(){
+        }).then(function () {
             location.reload()
         })
     })
 
-    $("#setPrivate").click(function(){
+    $("#setPrivate").click(function () {
         $.ajax({
             url: "/api/user/setPrivate/" + $(this).data("id"),
             method: "PUT"
-        }).then(function(){
+        }).then(function () {
             location.reload()
         })
     })
@@ -335,6 +335,21 @@ const filterObj = objToFilter => {
     returnString = returnString.substring(2, returnString.length - 1)
     return returnString;
 }
+
+Toastify({
+    text: "Minimum password character length is 8",
+    duration: 3000,
+    destination: "https://github.com/apvarun/toastify-js",
+    newWindow: true,
+    close: true,
+    gravity: "top", // `top` or `bottom`
+    position: 'left', // `left`, `center` or `right`
+    backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    onClick: function () {
+
+    } // Callback after click
+}).showToast();
 
 // ==========================================================
 // add temp user functions
