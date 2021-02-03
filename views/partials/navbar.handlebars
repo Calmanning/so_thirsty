@@ -1,0 +1,60 @@
+<div class="top-bar">
+    <div class="top-bar-left">
+
+        {{!-- Desktop-view of the nav bar --}}
+        <ul class="dropdown menu desktop-view" data-dropdown-menu>
+            <li class="menu-text">
+                <a href="/">
+                    <img src="/assets/images/logo.png" class="logo" alt="so thirsty logo">
+                </a>
+            </li>
+            <li><a href="/"><i class="fas fa-home"></i> Home </a></li>
+            {{#if name}}
+            <li><a href="/addplant"><i class="fas fa-seedling"></i> New Plant</a></li>
+            {{else}}
+            {{/if}}
+            <li><a href="/community"><i class="fas fa-users"></i> Community</a></li>
+        </ul>
+
+        {{!-- the mobile view --}}
+        <ul class="menu top-bar mobile-view" data-dropdown-menu>
+            <li class="menu-text">
+                <a href="/">
+                    <img src="/assets/images/logo.png" class="logo" alt="so thirsty logo">
+                </a>
+            </li>
+            <li class="has-submenu">
+                <a href="#0"><i class="fas fa-bars"></i></a>
+                <ul class="submenu menu" data-submenu>
+                    {{#if name}}
+                    <li><a href="/"><i class="fas fa-user"></i></i> {{userName}}/Home</a></li>
+                    <li><a href="/addplant"><i class="fas fa-seedling"></i> New Plant </a></li>
+                    <li><a href="/signout"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
+                    {{else}}
+                        <li><a href="/">Sign Up</a></li>
+                        <li><a href="/signin">Sign In</a></li>
+                    {{/if}}
+                    <li><a href="/community"><i class="fas fa-users"></i> Community</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    {{!-- right side of the nav for desktop-view only--}}
+    <div class="top-bar-right">
+        <ul class="dropdown menu desktop-view" data-dropdown-menu>
+            {{#if name}}
+
+            <li><a href="/"><i class="fas fa-user"></i></i> {{userName}}</a></li>
+            <li><a href="/signout"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
+            {{else}}
+                {{#if data.name}}
+                    <li><a href="/caretaker/{{data.key}}">{{data.name}}</a></li>
+                {{/if}}
+                <li><a href="/">Sign Up</a></li>
+                <li><a href="/signin">Sign In</a></li>
+            {{/if}}
+        </ul>
+    </div>
+
+</div> {{!-- end of the "top-bar" class div--}}

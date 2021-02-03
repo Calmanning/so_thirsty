@@ -1,0 +1,26 @@
+<div class="cell medium-3 imageThumbnail">
+    <img src="{{dataValues.url}}" style="width: 100%" alt="" {{#if @root.dataValues.isWatered}}class="img is-watered"
+        {{else}}class="img not-watered" {{/if}}>
+
+    <div class="imageMobileOptions">
+        <i class="fas fa-expand viewPhoto fa-2x" data-open="view{{dataValues.id}}Modal"></i>
+
+        <i class="far fa-trash-alt deletePhoto fa-2x" data-id={{dataValues.id}}></i>
+    </div>
+
+    <i class="fas fa-expand viewPhoto fa-2x hiddenButton" data-open="view{{dataValues.id}}Modal"></i>
+
+    <div class=" reveal" id="view{{dataValues.id}}Modal" data-reveal>
+
+        <img src="{{dataValues.url}}" alt="">
+
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    {{#unless @root.key}}
+    <i class="far fa-trash-alt deletePhoto fa-2x hiddenButton" data-id={{dataValues.id}}></i>
+    {{/unless}}
+
+</div>

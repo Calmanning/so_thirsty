@@ -1,0 +1,130 @@
+{{>navbar}}
+
+<div class="grid-container grid-container-margin">
+  <div class="grid-x grid-x-margin">
+
+    <div class="cell medium-2" style="text-align: center;">
+      {{#if dataValues.isWatered}}
+        <img src="/assets/images/wateringcan.png" style="width: 90%; cursor: pointer;" class="wateredBtn"
+        data-id={{{dataValues.id}}} title="Water Me!">
+      {{else}}
+        <img src="/assets/images/red_can_transparent.png" style="width: 90%; cursor: pointer;" class="wateredBtn"
+        data-id={{{dataValues.id}}} title="Water Me!">
+      {{/if}}
+    </div>
+    <div class="cell medium-10" style="padding-left: 25px;">
+      <h1>{{dataValues.nickname}}</h1>
+      <h3>{{#if dataValues.isWatered}}I have enough water. {{else}}I need water! {{/if}}</h3>
+    </div>
+  </div>
+
+  <div class="grid-x grid-x-margin">
+    <div class="cell medium-3">
+      {{#if dataValues.Photos.[0].dataValues.url}}
+      <img src="{{dataValues.Photos.[0].dataValues.url}}" style="width: 100" alt="" {{#if
+        dataValues.isWatered}}class="is-watered" {{else}}class="img not-watered" {{/if}}>
+      {{else}}
+      <img src="/assets/images/Potted Plant1.jpg" {{#if dataValues.isWatered}}class="img is-watered"
+        {{else}}class="img not-watered" {{/if}}>
+      {{/if}}
+    </div>
+    <div class="cell medium-9" style="padding-left: 25px;">
+      <p>
+        <strong>Nickname: </strong><span id="nicknameText">{{dataValues.nickname}}</span>
+        <input class="hiddenElement" id="nickname" name="nickname" value="{{dataValues.nickname}}">
+        <button class="btn hiddenElement" id="saveName" value={{dataValues.id}}>Save</button>
+        <i class="far fa-edit editNickname"></i>
+      </p>
+      <p>
+        <strong>Common Name: </strong> {{dataValues.commonName}}
+      </p>
+      <p>
+        <strong>Scientific Name: </strong>{{dataValues.scientificName}}
+      </p>
+      <p>
+        <strong>Last Watered: </strong>{{dataValues.lastWatered}}
+      </p>
+      <p>
+        <strong>Water every {{dataValues.waterFrequency}} days.</strong>
+
+        <span class="hiddenElement" id="hideInput">
+          <input type="number" id="waterDays" name="watering" value={{dataValues.waterFrequency}}>
+          <button class="btn hiddenElement" id="saveWater" value={{dataValues.id}}>Save</button>
+        </span>
+
+
+        <i class="far fa-edit editWater"></i>
+      </p>
+      <p>
+        <strong>Next water Due: </strong>{{dataValues.waterDue}}
+      </p>
+      <p>
+        <strong>Notes &amp; Care: </strong>
+        {{dataValues.notes}}
+        <textarea class="hiddenElement" id="plantText" name="notes" rows="4" cols="50">
+          {{dataValues.notes}}
+        </textarea>
+        <button class="btn hiddenElement" id="saveNotes" value={{dataValues.id}}>Save</button>
+        <i class="far fa-edit editNotes"></i>
+      </p>
+      <p>
+        <strong>Created: </strong> {{dataValues.createdAt}}
+      </p>
+      <button class="btn hiddenElement" id="saveWater" value={{dataValues.id}}>Save</button>
+    </div>
+  </div>
+</div>
+</div>
+
+{{#if dataValues.Photos}}
+
+<div class="grid-container grid-container-margin">
+  <div class="grid-x grid-x-margin">
+
+    {{#each dataValues.Photos}}
+    {{>photo-block this}}
+    {{/each}}
+    <div class="cell medium-3 imageThumbnail">
+      <a href="/{{{dataValues.User.dataValues.userName}}}/plant/{{{dataValues.id}}}/addphoto">
+        <i class="fas fa-cloud-upload-alt fa-9x" title="Upload a photo!"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+{{else}}
+
+<div class="grid-container grid-container-margin">
+
+  <div class="grid-x grid-x-margin">
+    <div class="cell medium-12">
+      <h3>
+        You don't have any photos yet. <br>
+        Add more <a href="/{{{dataValues.User.dataValues.userName}}}/plant/{{{dataValues.id}}}/addphoto">here</a>!
+      </h3>
+    </div>
+  </div>
+  <div class="grid-x grid-x-margin">
+
+    <div class="cell medium-3 imageThumbnail">
+      <img src="/assets/images/Potted Plant1.jpg" {{#if dataValues.isWatered}}class="img is-watered"
+        {{else}}class="img not-watered" {{/if}}>
+    </div>
+    <div class="cell medium-3 imageThumbnail">
+      <a href="/{{{dataValues.User.dataValues.userName}}}/plant/{{{dataValues.id}}}/addphoto">
+        <i class="fas fa-cloud-upload-alt fa-9x" title="Upload a photo!"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+{{/if}}
+
+<button class="btn delete-btn" data-open="deleteBtnModal"><i class="far fa-trash-alt"></i> Remove this plant?</button>
+
+<div class="reveal" id="deleteBtnModal" data-reveal>
+  <h5>WAIT JUST ONE MINUTE!</h5>
+  <p>Are you sure you want to remove this plant from your profile?</p>
+  <button class="btn delete-btn" id="deleteBtn" value={{dataValues.id}}><i class="far fa-trash-alt"></i> Yes, remove
+    it!</button>
+</div>

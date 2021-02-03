@@ -1,0 +1,69 @@
+{{>navbar}}
+<callout class="hello">
+  <h1>Hello {{{name}}}!</h1>
+</callout>
+
+<div class="grid-container grid-container-margin">
+  <div class="grid-x grid-x-margin">
+    <div class="grid-y">
+      <div class="cell medium-3">
+        {{#each Plants}}
+        {{>plant-button this}}
+        {{/each}}
+      </div>
+    </div>
+
+    <div class="cell medium-9">
+      <div class="grid-container grid-container-margin">
+        <div class="grid-x grid-x-margin">
+          {{#if Plants}}
+          {{#each Plants}}
+          {{>plant-block this}}
+          {{/each}}
+          {{else}}
+          <div>
+            <p>Oh! There aren't any Plants here. But why wait to cultivate!</p>
+            <a href="/addplant"><button class="btn">Add Your First Plant!</button></a>
+          </div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+
+<div class="grid-container grid-container-margin caretakers">
+  <div class="cell hello">
+    {{#if public}}
+    <h1>
+      <a id="setPrivate" data-id={{id}}>Hide my plants</a>
+    </h1>    
+    {{else}}
+    <h1>
+      <a id="setPublic" data-id={{id}}>Share my plants!</a>
+    </h1>    
+    {{/if}}
+  </div>
+</div>
+
+
+<hr>
+
+<div class="grid-container grid-container-margin caretakers">
+  <div class="cell hello">
+    <h3>Caretakers</h3>
+  </div>
+  <div class="grid-x grid-x-margin">
+    {{#each Caretakers}}
+    <div class="cell medium-3 small-12">
+      <div class="caregiver-card-section">
+        {{dataValues.name}} <br> <button class="deleteCaretaker btn" value={{dataValues.id}}>Remove</button>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  <div class="cell hello">
+    <a href="/invite"><button class="btn">Invite a Caretaker <i class="fas fa-envelope"></i></button></a>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+{{>navbar}}
+
+<h1>Welcome, {{{name}}} - Viewing {{{User.dataValues.name}}}'s Plants</h1><br>
+
+<div class="grid-container grid-container-margin">
+  <div class="grid-x grid-x-margin">
+    <div class="grid-y">
+      <div class="cell medium-3">
+         {{#each User.Plants}}         
+        {{>plant-button this}}
+        {{/each}}
+      </div>
+    </div>
+
+    <div class="cell medium-9">
+      <div class="grid-container grid-container-margin">
+        <div class="grid-x grid-x-margin">
+           {{#each User.Plants}}
+          {{>plant-block this}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
