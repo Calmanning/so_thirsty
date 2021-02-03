@@ -22,7 +22,6 @@ $(document).ready(function () {
     // Edit and Save buttons
     const waterBtn = $("#waterBtn");
     const deleteBtn = $("#deleteBtn");
-    const saveName = $("#saveName");
     const saveNotes = $("#saveNotes");
     const editNotes = $(".editNotes");
     const plantText = $("#plantText");
