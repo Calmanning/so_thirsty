@@ -22,7 +22,7 @@
 
   a {
     font-family: 'Bubbler One', sans-serif!important;
-    color: white!important;
+    color: white;
   }
 
   h1 {
@@ -38,6 +38,12 @@
     padding-top: 100px;
   }
 
+.footer-li {
+  color: white;
+  display: inline-flex;
+  padding: 0px 50px 0px 50px;
+}
+
   #overlay{
     height: 100vh;
     width: 100vw;
@@ -47,6 +53,7 @@
     left: 0;
     background-color: rgba(255,255,255,0.7);
   }
+  
   .footer {
     width: 100%;
     background-color: rgb(0, 75, 89) ;
@@ -405,6 +412,14 @@ i{
   color: rgb(0, 75, 89);
 }
 
+.aboutContact{
+  color:white
+}
+
+#setPrivate{
+  color: rgb(0, 75, 89);
+}
+
 @media (max-width: 762px) {
   /* For mobile phones: */
   .desktop-view{
@@ -417,7 +432,7 @@ i{
 }
 
 @media (min-width: 762px) {
-  /* For mobile phones: */
+  /* For larger/desktop screen: */
   .mobile-view{
     display: none !important;
   }
