@@ -1,6 +1,6 @@
 {{>navbar}}
 <callout class="hello">
-<h1>Hello {{{name}}}!</h1>
+  <h1>Hello {{{name}}}!</h1>
 </callout>
 
 <div class="grid-container grid-container-margin">
@@ -29,6 +29,21 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+<hr>
+
+<div class="grid-container grid-container-margin caretakers">
+  <div class="cell hello">
+    {{#if public}}
+    <h1>
+      <a id="setPrivate" data-id={{id}}>Hide my plants</a>
+    </h1>    
+    {{else}}
+    <h1>
+      <a id="setPublic" data-id={{id}}>Share my plants!</a>
+    </h1>    
+    {{/if}}
   </div>
 </div>
 
