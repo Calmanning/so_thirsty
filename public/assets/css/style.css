@@ -442,6 +442,14 @@ i{
     margin: 0;
     width: 100%;
   }
+  .backgroundMain {
+    background-image: url('/assets/images/thirsty_background.svg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+  }
+
 }
 
 @media (min-width: 762px) {
@@ -453,5 +461,6 @@ i{
   .imageMobileOptions{
     display: none !important;
   }
+  
 
 }

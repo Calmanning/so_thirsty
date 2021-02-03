@@ -27,8 +27,7 @@
     $("#photoBtn").click((e) => {
         e.preventDefault();
         const file = $("#photoInput").prop('files')[0];
-        console.log(file)
-
+        
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = () => {
@@ -38,8 +37,7 @@
 
     $("#photoInput").on("change", () => {
         const file = $("#photoInput").prop('files')[0];
-        console.log(file)
-
+        
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = () => {
@@ -50,8 +48,7 @@
 
     const uploadPhoto = file => {
 
-        //console.log('reader result in uploadPhoto()')
-        $.post("/api/plant/img", {
+            $.post("/api/plant/img", {
             data: file,
             id: $("#hdnId").val()
         }).then(response => {
