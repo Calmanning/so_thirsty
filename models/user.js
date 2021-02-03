@@ -8,6 +8,11 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false
     },
     name: DataTypes.STRING,
+    public: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,

@@ -447,6 +447,56 @@ router.delete("/api/caretaker/:id", (req, res) => {
     })
 })
 
+// =========================================================================
+// Community routes
+// =========================================================================
+
+router.get("/community", (req, res) => {
+
+    db.Plant.findAll({
+        include: [
+            db.User, db.Photo
+        ]}
+    ).then(data => {
+        const dataToSend = [];
+        data.forEach(plant => {           
+            if(plant.dataValues.User.dataValues.public){
+                dataToSend.push(plant)
+            }
+        });
+        res.render("community", {Plants: dataToSend});
+    })    
+
+});
+
+router.put("/api/user/setPublic/:id", ensureAuthenticated, (req, res) => {
+    db.User.update(
+        {
+            public: true
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }).then(data => {
+            res.json({ msg: "user privacy set to public" })
+        })
+});
+
+router.put("/api/user/setPrivate/:id", ensureAuthenticated, (req, res) => {
+    db.User.update(
+        {
+            public: false
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }).then(data => {
+            res.json({ msg: "user privacy set to public" })
+        })
+});
+
 // =======================================================================
 // Home page catch all route
 // =======================================================================

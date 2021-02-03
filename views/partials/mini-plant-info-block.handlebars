@@ -1,0 +1,27 @@
+<div class="grid-x grid-x-margin">
+    <div class="cell medium-3">
+        <img src={{Photos.[0].dataValues.url}} style="width: 150px" alt="">
+    </div>
+    <div class="cell medium-9">
+        <p>
+            <strong>Owner: </strong>
+            {{dataValues.User.dataValues.userName}}
+        </p>
+        <p>
+            <strong>Nickname</strong>
+            {{dataValues.nickname}}
+        </p>
+        <p>
+            <strong>Common Name</strong>
+            {{dataValues.commonName}}
+        </p>
+        <p>
+            <strong>Scientific Name</strong>
+            {{dataValues.scientificName}}
+        </p>
+        <p>
+            <strong>Water every {{dataValues.waterFrequency}} days</strong>
+        </p>
+
+    </div>
+</div>

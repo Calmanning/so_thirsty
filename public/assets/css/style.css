@@ -315,6 +315,10 @@ i{
   .mobile-view{
     display: none !important;
   }
+
+  .imageMobileOptions{
+    display: none !important;
+  }
 }
 .translucent-form-overlay {
   margin: 0 auto;
