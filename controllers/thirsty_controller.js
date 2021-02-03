@@ -456,7 +456,11 @@ router.get("/community", (req, res) => {
     db.Plant.findAll({
         include: [
             db.User, db.Photo
-        ]}
+        ],
+        order: [
+            [ db.Photo, 'createdAt', 'DESC' ]
+        ]
+    }
     ).then(data => {
         const dataToSend = [];
         data.forEach(plant => {           
@@ -464,11 +468,15 @@ router.get("/community", (req, res) => {
                 dataToSend.push(plant)
             }
         });
-        dataToSend = dataToSend.sort((a, b)=>{
-            if(a.createdAt<b.createdAt){
-                return -1;
-            }
-            return 1;
+        
+        dataToSend.forEach(plant => {
+            plant.dataValues.Photos.sort((a, b) => {
+                if(a.dataValues.createdAt > b.dataValues.createdAt){
+                    return -1
+                }else{
+                    return 1
+                }
+            });
         })
         res.render("community", {Plants: dataToSend});
     })    
