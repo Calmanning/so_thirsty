@@ -411,8 +411,6 @@ i{
 .fa-cloud-upload-alt{
   color: rgb(0, 75, 89);
 }
-<<<<<<< HEAD
-=======
 
 .aboutContact{
   color:white
@@ -431,6 +429,10 @@ i{
   .btn-group button{
     display: none;
   }
+
+  .fa-bars{
+    margin-right: 35px;
+  }
 }
 
 @media (min-width: 762px) {
@@ -443,4 +445,3 @@ i{
     display: none !important;
   }
 }
->>>>>>> c895b7dc50dea867d21331c2eaa4f2d8b14f2b23

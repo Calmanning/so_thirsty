@@ -20,12 +20,12 @@ require('dotenv').config()
 
 // sign in 
 router.get("/signin", function (req, res) {
-    if(req.session.user){
+    if (req.session.user) {
         res.redirect("/" + req.session.user.userName)
     }
-    else{
-        res.render("signin",  {layout: "newUser"});
-    }    
+    else {
+        res.render("signin", { layout: "newUser" });
+    }
 })
 
 // sign in
@@ -57,11 +57,11 @@ router.post("/signin", function (req, res) {
 
 //home page/register
 router.get("/", function (req, res) {
-    if(req.session.user){
+    if (req.session.user) {
         res.redirect("/" + req.session.user.userName)
     }
-    else{
-        res.render("register", {layout: "newUser"});
+    else {
+        res.render("register", { layout: "newUser" });
     }
 })
 
@@ -72,7 +72,7 @@ router.post("/api/user", function (req, res) {
         name: req.body.name,
         password: req.body.password
     }).then(function (data) {
-        if(bcrypt.compareSync(req.body.password, data.password)) {
+        if (bcrypt.compareSync(req.body.password, data.password)) {
             req.session.user = {
                 id: data.id,
                 name: data.name,
@@ -80,8 +80,10 @@ router.post("/api/user", function (req, res) {
             }
         }
         res.redirect("/" + req.session.user.userName)
-    })
-})
+    }).catch(function (error) {
+        res.status(500).json(error)
+    });
+});
 
 // Sign out
 router.get("/signout", (req, res) => {
@@ -95,13 +97,13 @@ router.get("/signout", (req, res) => {
 // =======================================================================
 
 // add plant
-router.get("/addplant", ensureAuthenticated, function (req, res) {    
+router.get("/addplant", ensureAuthenticated, function (req, res) {
     res.render("new-plant", req.session.user);
 })
 
 //CREATE a new plant
 router.post("/api/plant", ensureAuthenticated, async function (req, res) {
-    
+
     db.Plant.create({
         UserId: req.session.user.id,
         commonName: req.body.commonName,
@@ -128,43 +130,43 @@ router.get("/:user/plant/:plant", ensureAuthenticated, function (req, res) {
             id: req.params.plant
         },
         include: [db.Photo, db.User],
-        
-  order: [
-    [ db.Photo, 'id', 'DESC' ]]
-    }).then(function (data) { 
+
+        order: [
+            [db.Photo, 'id', 'DESC']]
+    }).then(function (data) {
         let dataToSend = helpers.addWateredSingle(data);
         dataToSend.userName = req.session.user.userName;
         dataToSend.name = req.session.user.userName;
-        dataToSend.dataValues.createdAt = moment(dataToSend.createdAt).format('MM/DD/YYYY'); 
+        dataToSend.dataValues.createdAt = moment(dataToSend.createdAt).format('MM/DD/YYYY');
         // console.log("plant-data", dataToSend);       
         res.render("plant-profile", dataToSend);
     })
 })
 
 //UPDATE a Plant's name and notes
-router.put("/:user/plant/:plant/", function(req, res) {
+router.put("/:user/plant/:plant/", function (req, res) {
     db.Plant.update(req.body,
         {
             where: {
-                id:req.params.plant
+                id: req.params.plant
             }
         }).
         then(updatedPlant => {
-            res.render("plant-profile", updatedPlant)        
+            res.render("plant-profile", updatedPlant)
         })
 
-    })
+})
 
 //UPDATE a plants watered status on USER HOME PAGE
 router.put("/:user/water/:plant", (req, res) => {
-    let time = moment(); 
+    let time = moment();
     console.log("time " + time)
     db.Plant.update({
         lastWatered: time
-        },
+    },
         {
             where: {
-                id:req.params.plant
+                id: req.params.plant
             }
         }).
         then(waterDate => {
@@ -174,14 +176,14 @@ router.put("/:user/water/:plant", (req, res) => {
 })
 //UPDATE a plants watered status on PLANT-Profile page
 router.put("/:user/plant/:plant/water", (req, res) => {
-    let time = moment(); 
+    let time = moment();
     console.log("time " + time)
     db.Plant.update({
         lastWatered: time
-        },
+    },
         {
             where: {
-                id:req.params.plant
+                id: req.params.plant
             }
         }).
         then(waterDate => {
@@ -192,7 +194,7 @@ router.put("/:user/plant/:plant/water", (req, res) => {
 
 //DELETE a plant
 router.delete("/api/:user/plant/:plant", ensureAuthenticated, function (req, res) {
-    
+
     db.Plant.destroy({
         where: {
             id: req.params.plant
@@ -204,7 +206,7 @@ router.delete("/api/:user/plant/:plant", ensureAuthenticated, function (req, res
 
 //DELETE a plant call from "/:user" page
 router.delete("/api/:user/dead/:plant", ensureAuthenticated, function (req, res) {
-    
+
     db.Plant.destroy({
         where: {
             id: req.params.plant
@@ -218,9 +220,9 @@ router.delete("/api/:user/dead/:plant", ensureAuthenticated, function (req, res)
 // =======================================================================
 
 // get photo to upload
-router.get("/:user/plant/:plant/addphoto", ensureAuthenticated, function(req, res){
+router.get("/:user/plant/:plant/addphoto", ensureAuthenticated, function (req, res) {
     db.Plant.findOne({
-        where:{
+        where: {
             id: req.params.plant
         }
     }).then(data => {
@@ -229,14 +231,14 @@ router.get("/:user/plant/:plant/addphoto", ensureAuthenticated, function(req, re
         data.name = req.session.user.userName;
         res.render("addphoto", data);
     })
-    
+
 })
 
 //Adding a plant photo
 router.post("/api/plant/img", ensureAuthenticated, async function (req, res) {
     // console.log('hello from post /api/uploadimg');
 
-    try{
+    try {
         const file = req.body.data;
 
         cloudinary.config({
@@ -245,15 +247,15 @@ router.post("/api/plant/img", ensureAuthenticated, async function (req, res) {
             api_secret: process.env.CLOUDINARY_API_SECRET
         });
 
-        const uploadedResponse = await cloudinary.uploader.upload(file);        
+        const uploadedResponse = await cloudinary.uploader.upload(file);
 
         console.log('uploadedResponse: ', uploadedResponse);
 
         console.log(await addPhoto(req.body.id, uploadedResponse.url))
 
         console.log(`attempting to redirect to /${req.session.user.userName}/plant/${req.body.id}`);
-        return res.json({href: `/${req.session.user.userName}/plant/${req.body.id}`});
-    }catch(err){
+        return res.json({ href: `/${req.session.user.userName}/plant/${req.body.id}` });
+    } catch (err) {
         console.log(err);
         return res.status(500).json(err)
     }
@@ -273,15 +275,15 @@ router.delete("/api/photo/delete/:id", ensureAuthenticated, async (req, res) => 
         where: {
             id: req.params.id
         }
-    }).then(async data=> {
+    }).then(async data => {
         const arr = data.url.split("/");
-        let id = arr[arr.length-1];
-        id = id.substring(0, id.length-4);
+        let id = arr[arr.length - 1];
+        id = id.substring(0, id.length - 4);
         console.log(`attempting to delete: `, id);
-        try{
+        try {
             const uploadedResponse = await cloudinary.uploader.destroy(id)
             console.log(uploadedResponse);
-        }catch{
+        } catch {
             console.log(`image not found on cloudinary`);
         }
         db.Photo.destroy({
@@ -289,7 +291,7 @@ router.delete("/api/photo/delete/:id", ensureAuthenticated, async (req, res) => 
                 id: req.params.id
             }
         }).then(deleteData => {
-            res.json({msg: "image deleted"})
+            res.json({ msg: "image deleted" })
         })
     })
 });
@@ -341,7 +343,7 @@ router.get("/invite", ensureAuthenticated, (req, res)=>{
 })
 
 router.post("/invite", ensureAuthenticated, (req, res) => {
-    
+
     const key = generatePassword();
 
     // save user in db
@@ -355,27 +357,27 @@ router.post("/invite", ensureAuthenticated, (req, res) => {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-              user: 'sothirstyproject@gmail.com',
-              pass: process.env.GMAIL_PASSWORD
+                user: 'sothirstyproject@gmail.com',
+                pass: process.env.GMAIL_PASSWORD
             }
-          });
-          
-          const mailOptions = {
+        });
+
+        const mailOptions = {
             from: 'sothirstyproject@gmail.com',
             to: req.body.email,
             subject: `${req.session.user.name} would like to invite you to view their plants at SoThirstyProject!`,
             text: `So Thirsty is a web app that helps users care for their plants. Users can add plants, search for information about them, set watering schedules and more! ${req.session.user.name} wants to show you their plant profile to help you care for their plants. visit https://sothirstyproject.herokuapp.com/caretaker/${key} to get started. Also consider signing up for an account of your own at https://sothirstyproject.herokuapp.com/- The So Thirsty Team`
-          };
-          
-          transporter.sendMail(mailOptions, function(error, info){
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
-              console.log(error);
-              res.status(500).json(error)
+                console.log(error);
+                res.status(500).json(error)
             } else {
-              console.log('Email sent: ' + info.response);
-              res.redirect("/")
+                console.log('Email sent: ' + info.response);
+                res.redirect("/")
             }
-          });
+        });
 
 
     });
@@ -388,10 +390,10 @@ router.get("/caretaker/:key", (req, res) => {
             key: req.params.key
         },
         include: [
-            { model: db.User, include: [{model: db.Plant, include: [db.Photo]}] }
+            { model: db.User, include: [{ model: db.Plant, include: [db.Photo] }] }
         ]
     }).then(data => {
-        if(data){
+        if (data) {
             data.key = req.params.key;
             data.Plants = data.dataValues.User.Plants;
 
@@ -402,7 +404,7 @@ router.get("/caretaker/:key", (req, res) => {
             let dataToSend = helpers.addWatered(data);
             dataToSend.dataValues.userName = dataToSend.dataValues.User.userName;
             res.render("caretaker.handlebars", dataToSend.dataValues);
-        }else{
+        } else {
             res.render("unauthorized")
         }
     })
@@ -414,7 +416,7 @@ router.get("/caretaker/:key/plant/:id", (req, res) => {
             key: req.params.key
         },
         include: [
-            { model: db.User, include: [{model: db.Plant, include: [db.Photo]}] }
+            { model: db.User, include: [{ model: db.Plant, include: [db.Photo] }] }
         ]
     }).then(data => {
         db.Plant.findOne({
@@ -423,9 +425,9 @@ router.get("/caretaker/:key/plant/:id", (req, res) => {
             },
             include: [db.Photo, db.User]
         }).then(plant => {
-            
+
             // plant.data.name = data.name;
-            plant.data = {name: data.dataValues.name, key: req.params.key}
+            plant.data = { name: data.dataValues.name, key: req.params.key }
             const dataToSend = helpers.addWateredSingle(plant);
             dataToSend.key = req.params.key;
             res.render("caretaker-plant", dataToSend);
@@ -440,7 +442,7 @@ router.delete("/api/caretaker/:id", (req, res) => {
             id: req.params.id
         }
     }).then(data => {
-        res.json({msg: "caretaker deleted"})
+        res.json({ msg: "caretaker deleted" })
     }).catch(err => {
         console.log(err);
         res.status(500).json(err)
@@ -463,8 +465,8 @@ router.get("/community", (req, res) => {
     }
     ).then(data => {
         const dataToSend = [];
-        data.forEach(plant => {           
-            if(plant.dataValues.User.dataValues.public){
+        data.forEach(plant => {
+            if (plant.dataValues.User.dataValues.public) {
                 dataToSend.push(plant)
             }
         });
@@ -603,7 +605,7 @@ function generatePassword() {
         password = password.concat(tempDigit);
     }
 
-    return password;    
+    return password;
 }
 
 module.exports = router;
