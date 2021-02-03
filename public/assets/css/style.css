@@ -26,12 +26,12 @@ a {
 
 h1 {
   font-family: 'Bubbler One', sans-serif!important;
-  color: rgb(0, 75, 89)!important;
+  /* color: rgb(0, 75, 89)!important; */
 }
 
 h3 {
   font-family: 'Bubbler One', sans-serif!important;
-  color: rgb(0, 75, 89)!important;
+  /* color: rgb(0, 75, 89)!important; */
 }
 
 #pageContainer{ 
@@ -341,7 +341,7 @@ i{
   width: 100%;
   background-color: rgba(54, 54, 54, 0.8);
   padding: 20px;
-  color: #fefefe;
+  color: #fefefe !important;
 }
 
 .translucent-form-overlay .columns.row {
