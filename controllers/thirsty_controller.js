@@ -234,8 +234,9 @@ router.get("/:user/plant/:plant/addphoto", ensureAuthenticated, function(req, re
 
 //Adding a plant photo
 router.post("/api/plant/img", ensureAuthenticated, async function (req, res) {
-    // console.log('hello from post /api/uploadimg');
-
+    console.log(`=============================================================================================================`);
+    console.log('hello from post /api/uploadimg');
+    console.log(req);
     try{
         const file = req.body.data;
 
