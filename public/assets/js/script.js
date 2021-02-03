@@ -2,44 +2,43 @@
 
 // Client js api calls
 $(document).ready(function () {
-    var name = $("#name")
-    var userName = $("#userName");
-    var password = $("#password");
-    var confirmPass = $("#confirmPassword");
+    const name = $("#name")
+    const userName = $("#userName");
+    const password = $("#password");
+    const confirmPass = $("#confirmPassword");
     // Text boxes in new plant page
-    var nickname = $("#nickname");
-    var commonName = $("#commonName");
-    var scientificName = $("#scientificName");
-    var waterFreq = $("#waterFreq");
-    var conditions = $("#conditions");
-    var plantNotes = $("#plantNotes");
-    var searchBox = $("#searchBox");
-    var searchBtn = $("#searchBtn");
-    var resultsBox = $("#resultsBox");
-    var saveName = $("#saveName");
-    var trefleId = $("#trefleId");
-    var treflePhoto = $("#treflePhoto");
+    const nickname = $("#nickname");
+    const commonName = $("#commonName");
+    const scientificName = $("#scientificName");
+    const waterFreq = $("#waterFreq");
+    const conditions = $("#conditions");
+    const plantNotes = $("#plantNotes");
+    const searchBox = $("#searchBox");
+    const searchBtn = $("#searchBtn");
+    const resultsBox = $("#resultsBox");
+    const saveName = $("#saveName");
+    const trefleId = $("#trefleId");
+    const treflePhoto = $("#treflePhoto");
     // Edit and Save buttons
-    var waterBtn = $("#waterBtn");
-    var deleteBtn = $("#deleteBtn");
-    var saveName = $("#saveName");
-    var saveNotes = $("#saveNotes");
-    var editNotes = $(".editNotes");
-    var plantText = $("#plantText");
-    var editNickname = $(".editNickname");
-    var nicknameText = $("#nicknameText");
-    var editWater = $(".editWater");
-    var saveWater = $("#saveWater");
-    var waterUpdate = $("#waterUpdate");
-    var waterLevel = $("#waterLevel");
-    var hideInput = $("#hideInput");
+    const waterBtn = $("#waterBtn");
+    const deleteBtn = $("#deleteBtn");
+    const saveName = $("#saveName");
+    const saveNotes = $("#saveNotes");
+    const editNotes = $(".editNotes");
+    const plantText = $("#plantText");
+    const editNickname = $(".editNickname");
+    const nicknameText = $("#nicknameText");
+    const editWater = $(".editWater");
+    const saveWater = $("#saveWater");
+    const waterUpdate = $("#waterUpdate");
+    const waterLevel = $("#waterLevel");
+    const hideInput = $("#hideInput");
 
 
     // Register user
     $("#newUser").on("submit", function (event) {
         event.preventDefault();
         if (userName.val() && password.val() && confirmPass.val() === password.val() && password.val().length > 7) {
-            console.log("testing on script.js. the user name: " + userName)
             $.ajax({
                 method: "POST",
                 url: "/api/user",
@@ -58,16 +57,16 @@ $(document).ready(function () {
                     destination: "https://github.com/apvarun/toastify-js",
                     newWindow: true,
                     close: true,
-                    gravity: "top", // `top` or `bottom`
-                    position: 'center', // `left`, `center` or `right`
+                    gravity: "top",
+                    position: 'center',
                     backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    stopOnFocus: true,
                     onClick: function () {
                     }
                 }).showToast();
             })
         } else {
-            var message = ""
+            const message = ""
             if (!userName.val()) {
                 message += "User name is required\n"
             }
@@ -86,10 +85,10 @@ $(document).ready(function () {
                 destination: "https://github.com/apvarun/toastify-js",
                 newWindow: true,
                 close: true,
-                gravity: "top", // `top` or `bottom`
-                position: 'center', // `left`, `center` or `right`
+                gravity: "top",
+                position: 'center',
                 backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-                stopOnFocus: true, // Prevents dismissing of toast on hover
+                stopOnFocus: true,
                 onClick: function () {
                 }
             }).showToast();
@@ -111,7 +110,7 @@ $(document).ready(function () {
             console.log(data);
             for (let i = 0; i < data.data.length; i++) {
 
-                var container = $("<div>").addClass("grid-x grid-margin-x align-center");
+                const container = $("<div>").addClass("grid-x grid-margin-x align-center");
 
                 $("<div>").addClass("cell medium-3").append(
                     $("<button>").addClass("btn").text("Select this plant").attr("data-id", data.data[i].id).appendTo(container).addClass("resultsButton"))
@@ -128,16 +127,6 @@ $(document).ready(function () {
                     $("<h5>").text("Scientific Name").appendTo(container),
                     $("<p>").text(data.data[i].scientific_name)])
                     .appendTo(container);
-
-                // $("<div>").addClass("cell medium-2").append([
-                //     $("<h5>").text("Genus").appendTo(container),
-                //     $("<p>").text(data.data[i].genus)])
-                // .appendTo(container);
-
-                // $("<div>").addClass("cell medium-2").append([
-                //     $("<h5>").text("Family").appendTo(container),
-                //     $("<p>").text(data.data[i].family)])
-                // .appendTo(container);
 
                 const synonyms = $("<p>");
                 for (let j = 0; j < data.data[i].synonyms.length; j++) {
@@ -259,7 +248,7 @@ $(document).ready(function () {
     // DELETE plant from profile
     deleteBtn.on("click", function (event) {
         event.stopPropagation();
-        var id = $(this).val();
+        const id = $(this).val();
         $.ajax({
             method: "DELETE",
             url: "/api/:user/plant/" + id
@@ -286,7 +275,7 @@ $(document).ready(function () {
     //DELETE plant call from "/:user" page
     $(document).on("click", ".removeBtn", function (event) {
         event.stopPropagation();
-        var id = $(this).val();
+        const id = $(this).val();
         alert("/api/:user/dead/" + id)
         console.log(`delete plant event listener fires: `, $(this));
         $.ajax({
@@ -302,7 +291,7 @@ $(document).ready(function () {
 
         event.stopPropagation();
 
-        var id = $(this).val();
+        const id = $(this).val();
         $.ajax({
             method: "DELETE",
             url: "/api/caretaker/" + id
@@ -362,7 +351,7 @@ const filterObj = objToFilter => {
 
     let newObj = {}
     const iterate = (obj, parent = "") => {
-        for (var property in obj) {
+        for (let property in obj) {
             if (obj.hasOwnProperty(property)) {
                 if (typeof obj[property] != "object") {
                     newObj[parent + property] = obj[property];
@@ -378,9 +367,3 @@ const filterObj = objToFilter => {
     returnString = returnString.substring(2, returnString.length - 1)
     return returnString;
 }
-
-
-// ==========================================================
-// add temp user functions
-// ==========================================================
-
