@@ -426,3 +426,10 @@ i{
   right: 15px;
   top: 13px;
 }
+
+.about-us {
+  text-align: center;
+  margin: 0 25% 15% 25% ;
+  font-weight: bold;
+  color: rgb(0, 75, 89)
+}
