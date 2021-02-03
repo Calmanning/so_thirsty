@@ -1,8 +1,17 @@
 <div class="grid-x grid-x-margin plant-card card-section">
     <div class="cell medium-3 ">
         {{#if dataValues.Photos.[0].dataValues.url}}
-        <img src="{{dataValues.Photos.[0].dataValues.url}}" style="width: 100" alt="" {{#if
-            dataValues.isWatered}}class="is-watered" {{else}}class="img not-watered" {{/if}}>
+        <img src="{{dataValues.Photos.[0].dataValues.url}}" style="width: 100" alt="">
+
+        <div class=" reveal" id="view{{dataValues.id}}Modal" data-reveal>
+
+            <img src="{{dataValues.url}}" alt="">
+
+            <button class="close-button" data-close aria-label="Close modal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
         {{else}}
         <img src="/assets/images/Potted Plant1.jpg" {{#if dataValues.isWatered}}class="img is-watered"
             {{else}}class="img not-watered" {{/if}}>

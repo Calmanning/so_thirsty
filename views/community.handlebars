@@ -1,4 +1,12 @@
-{{>navbar}}
+{{#if userName}}
+
+    {{>nav-user this}}
+
+{{else}}
+
+    {{>nav-visitor}}
+
+{{/if}}
 
 <div class="grid-container grid-container-margin">
 

@@ -338,8 +338,8 @@ router.get("/api/searchById/:id", ensureAuthenticated, function (req, res) {
 // =========================================================================
 
 // Route to let user invite caretaker
-router.get("/invite", ensureAuthenticated, (req, res) => {
-    res.render("invite")
+router.get("/invite", ensureAuthenticated, (req, res)=>{    
+    res.render("invite", {userName: req.session.user.userName})
 })
 
 router.post("/invite", ensureAuthenticated, (req, res) => {
@@ -458,6 +458,9 @@ router.get("/community", (req, res) => {
     db.Plant.findAll({
         include: [
             db.User, db.Photo
+        ],
+        order: [
+            [ db.Photo, 'createdAt', 'DESC' ]
         ]
     }
     ).then(data => {
@@ -467,8 +470,19 @@ router.get("/community", (req, res) => {
                 dataToSend.push(plant)
             }
         });
-        res.render("community", { Plants: dataToSend });
-    })
+        
+        dataToSend.forEach(plant => {
+            plant.dataValues.Photos.sort((a, b) => {
+                if(a.dataValues.createdAt > b.dataValues.createdAt){
+                    return -1
+                }else{
+                    return 1
+                }
+            });
+        })
+        const userName = req.session.user ? req.session.user.userName : "";
+        res.render("community", {Plants: dataToSend, userName: userName});
+    })    
 
 });
 
@@ -504,8 +518,20 @@ router.put("/api/user/setPrivate/:id", ensureAuthenticated, (req, res) => {
 // Nav route to About page
 // =======================================================================
 
-router.get("/aboutus", (req, res) => {
-    res.render("about.handlebars")
+router.get("/aboutus", (req, res)=> {
+    if(req.session.user){
+        db.User.findOne({
+            where: {
+                id: req.session.user.id
+            }
+        }).then(data => {
+            console.log(data);
+            const dataToSend = data.dataValues;
+            return res.render("about.handlebars",dataToSend)
+        })
+    }else{
+        return res.render("about")
+    }    
 })
 
 // =======================================================================
@@ -520,7 +546,10 @@ router.get("/:user", ensureAuthenticated, function (req, res) {
                 userName: req.session.user.userName
             },
             include: [
-                { model: db.Plant, include: [db.Photo] }, db.Caretaker
+                { model: db.Plant, include: [db.Photo]}, db.Caretaker
+            ],
+            order: [
+                [ db.Plant, db.Photo, 'createdAt', 'DESC' ]
             ]
 
         }).then(data => {

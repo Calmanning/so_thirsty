@@ -433,6 +433,15 @@ i{
   .fa-bars{
     margin-right: 35px;
   }
+
+  .translucent-form-overlay{
+    margin: 0;
+  }
+
+  .register{
+    margin: 0;
+    width: 100%;
+  }
 }
 
 @media (min-width: 762px) {
@@ -444,5 +453,5 @@ i{
   .imageMobileOptions{
     display: none !important;
   }
-  
+
 }
