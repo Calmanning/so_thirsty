@@ -1,4 +1,12 @@
-{{>navbar}}
+{{#if userName}}
+
+    {{>nav-user this}}
+
+{{else}}
+
+    {{>nav-visitor}}
+
+{{/if}}
 
 <callout class="hello">
 <h2>Life's a Garden, Dig it!</h2>
