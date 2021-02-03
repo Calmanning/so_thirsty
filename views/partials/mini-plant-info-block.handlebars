@@ -1,8 +1,15 @@
-<div class="grid-x grid-x-margin">
-    <div class="cell medium-3">
-        <img src={{Photos.[0].dataValues.url}} style="width: 150px" alt="">
+<div class="grid-x grid-x-margin plant-card card-section">
+    <div class="cell medium-3 ">
+        {{#if dataValues.Photos.[0].dataValues.url}}
+        <img src="{{dataValues.Photos.[0].dataValues.url}}" style="width: 100" alt="" {{#if
+            dataValues.isWatered}}class="is-watered" {{else}}class="img not-watered" {{/if}}>
+        {{else}}
+        <img src="/assets/images/Potted Plant1.jpg" {{#if dataValues.isWatered}}class="img is-watered"
+            {{else}}class="img not-watered" {{/if}}>
+        {{/if}}
     </div>
-    <div class="cell medium-9">
+
+    <div class="cell medium-6" style="padding-left: 25px;">
         <p>
             <strong>Owner: </strong>
             {{dataValues.User.dataValues.userName}}
@@ -22,6 +29,5 @@
         <p>
             <strong>Water every {{dataValues.waterFrequency}} days</strong>
         </p>
-
     </div>
 </div>
