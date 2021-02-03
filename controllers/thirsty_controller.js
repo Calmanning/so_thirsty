@@ -364,7 +364,7 @@ router.post("/invite", ensureAuthenticated, (req, res) => {
             from: 'sothirstyproject@gmail.com',
             to: req.body.email,
             subject: `${req.session.user.name} would like to invite you to view their plants at SoThirstyProject!`,
-            text: `So Thirsty is a web app that helps users care for their plants. Users can add plants, search for information about them, set watering schedules and more! ${req.session.user.name} wants to show you their plant profile to help you care for their plants. visit http://localhost:3000/caretaker/${key} to get started. Also consider signing up for an account of your own at http://localhost:3000 - The So Thirsty Team`
+            text: `So Thirsty is a web app that helps users care for their plants. Users can add plants, search for information about them, set watering schedules and more! ${req.session.user.name} wants to show you their plant profile to help you care for their plants. visit https://sothirsty.herokuapp.com/caretaker/${key} to get started. Also consider signing up for an account of your own at https://sothirsty.herokuapp.com/- The So Thirsty Team`
           };
           
           transporter.sendMail(mailOptions, function(error, info){
@@ -445,6 +445,64 @@ router.delete("/api/caretaker/:id", (req, res) => {
         console.log(err);
         res.status(500).json(err)
     })
+})
+
+// =========================================================================
+// Community routes
+// =========================================================================
+
+router.get("/community", (req, res) => {
+
+    db.Plant.findAll({
+        include: [
+            db.User, db.Photo
+        ]}
+    ).then(data => {
+        const dataToSend = [];
+        data.forEach(plant => {           
+            if(plant.dataValues.User.dataValues.public){
+                dataToSend.push(plant)
+            }
+        });
+        res.render("community", {Plants: dataToSend});
+    })    
+
+});
+
+router.put("/api/user/setPublic/:id", ensureAuthenticated, (req, res) => {
+    db.User.update(
+        {
+            public: true
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }).then(data => {
+            res.json({ msg: "user privacy set to public" })
+        })
+});
+
+router.put("/api/user/setPrivate/:id", ensureAuthenticated, (req, res) => {
+    db.User.update(
+        {
+            public: false
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }).then(data => {
+            res.json({ msg: "user privacy set to public" })
+        })
+});
+
+// =======================================================================
+// Nav route to About page
+// =======================================================================
+
+router.get("/aboutus", (req, res)=> {
+    res.render("about.handlebars")
 })
 
 // =======================================================================

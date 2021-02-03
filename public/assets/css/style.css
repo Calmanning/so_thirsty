@@ -24,19 +24,14 @@ a {
   color: white!important;
 }
 
-title {
-  font-family: 'Bubbler One', sans-serif!important;
-  color: rgb(104,123,136)!important;
-}
-
 h1 {
   font-family: 'Bubbler One', sans-serif!important;
-  color: rgb(104,123,136)!important;
+  /* color: rgb(0, 75, 89)!important; */
 }
 
 h3 {
   font-family: 'Bubbler One', sans-serif!important;
-  color: rgb(104,123,136)!important;
+  /* color: rgb(0, 75, 89)!important; */
 }
 
 #pageContainer{ 
@@ -44,7 +39,15 @@ h3 {
   padding-top: 100px;
 }
 
-
+#overlay{
+  height: 100vh;
+  width: 100vw;
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(255,255,255,0.7);
+}
 .footer {
   width: 100%;
   background-color: rgb(0, 75, 89) ;
@@ -70,7 +73,6 @@ h3 {
   .top-bar.topbar-sticky-shrink{
     background-color: rgb(173, 187, 162) ;
     color: white;
-    
   }
 
   .register{
@@ -91,12 +93,12 @@ h3 {
  .hello {
     text-align: center;
     font-weight: bold;
-    color: rgb(104,123,136)
+    color: rgb(0, 75, 89);
   }
 
   .card-section {
     border-radius: 3px;
-    border: solid 2px  rgb(104,123,136);
+    border: solid 2px  rgb(0, 75, 89);
     text-align: center;
     margin: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -105,7 +107,7 @@ h3 {
 
   .caregiver-card-section {
     border-radius: 3px;
-    border: solid 2px  rgb(104,123,136);
+    border: solid 2px  rgb(0, 75, 89);
     text-align: center;
     margin: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -115,7 +117,7 @@ h3 {
 
   .caretakers {
     background: rgb(204, 221, 191);
-    border: solid 2px  rgb(104,123,136);
+    border: solid 2px  rgb(0, 75, 89);
     padding: 20px 20px 20px 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
@@ -127,15 +129,15 @@ h3 {
 
   .btn {
     border-radius: 3px;
-    border: solid 2px rgb(104,123,136);
+    border: solid 2px rgb(0, 75, 89);
     padding: 4px;
-    background-color: rgb(168, 197, 215);
-    color: rgb(93, 100, 87);
+    background-color: rgb(112, 187, 203);
+    color: rgb(0, 75, 89);
     box-shadow: 1px 1px 1px;
     margin: 10px;
   }
 
-  .btn:hover {background-color: #99b49a}
+  .btn:hover {background-color: #B6D977}
 
   .btn:active {
     background-color: #697a6a;
@@ -264,8 +266,8 @@ i{
 
 .btn-group button {
   background-color: rgb(204, 221, 191);
-  border: solid 2px rgb(104,123,136);
-  color: rgb(93, 100, 87);
+  border: solid 2px rgb(0, 75, 89);
+  color: rgb(0, 75, 89);
   border-radius: 3px;
   padding: 10px 24px;
   /* cursor: pointer; */
@@ -281,6 +283,13 @@ i{
   background-color: rgb(260, 236, 146);
 }
 
+.logo{
+  height: 40px;
+  position: absolute;
+  top: 0;
+  left: -25px;
+}
+
 .top-bar{
   padding: 10px !important;
   background-color: rgb(0, 75, 89) !important;
@@ -293,6 +302,7 @@ i{
 .top-bar-left, .top-bar ul, .top-bar a{
   background-color: rgb(0, 75, 89) !important;
   color: white !important;
+  margin-left: 20px;
 }
 
 .top-bar-right{
@@ -319,6 +329,10 @@ i{
   .mobile-view{
     display: none !important;
   }
+
+  .imageMobileOptions{
+    display: none !important;
+  }
 }
 .translucent-form-overlay {
   margin: 0 auto;
@@ -326,7 +340,7 @@ i{
   width: 100%;
   background-color: rgba(54, 54, 54, 0.8);
   padding: 20px;
-  color: #fefefe;
+  color: #fefefe !important;
 }
 
 .translucent-form-overlay .columns.row {
@@ -410,4 +424,11 @@ i{
 .imageMobileOptions .deletePhoto{
   right: 15px;
   top: 13px;
+}
+
+.about-us {
+  text-align: center;
+  margin: 0 25% 15% 25% ;
+  font-weight: bold;
+  color: rgb(0, 75, 89)
 }
