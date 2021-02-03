@@ -3,7 +3,11 @@
 
         {{!-- Desktop-view of the nav bar --}}
         <ul class="dropdown menu desktop-view" data-dropdown-menu>
-            <li class="menu-text">So Thirsty!</li>
+            <li class="menu-text">
+                <a href="/">
+                    <img src="/assets/images/logo.png" class="logo" alt="so thirsty logo">
+                </a>
+            </li>
             <li><a href="/">Home <i class="fas fa-home"></i></a></li>
             {{#if name}}
             <li><a href="/addplant">New Plant <i class="fas fa-seedling"></i></a></li>
@@ -14,7 +18,11 @@
 
         {{!-- the mobile view --}}
         <ul class="menu top-bar mobile-view" data-dropdown-menu>
-            <li class="menu-text">So Thirsty!</li>
+            <li class="menu-text">
+                <a href="/">
+                    <img src="/assets/images/logo.png" class="logo" alt="so thirsty logo">
+                </a>
+            </li>
             <li class="has-submenu">
                 <a href="#0"><i class="fas fa-bars"></i></a>
                 <ul class="submenu menu" data-submenu>
