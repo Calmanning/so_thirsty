@@ -46,9 +46,10 @@ h3 {
 
 
 .footer {
-  
   width: 100%;
   background-color: rgb(173, 187, 162) ;
+  border-top: solid;
+  border-top-color: rgb(70, 70, 70);
   color: rgb(104,123,136);
   display: flex;
 }
@@ -284,6 +285,8 @@ i{
 .top-bar{
   padding: 10px !important;
   background-color: rgb(173, 187, 162) !important;
+  border-bottom: solid;
+  border-bottom-color: rgb(70, 70, 70);
   position: fixed;
   top: 0;
   width: 100%;
