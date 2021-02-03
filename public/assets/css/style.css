@@ -90,30 +90,35 @@ h3 {
 
  .hello {
     text-align: center;
+    font-weight: bold;
+    color: rgb(104,123,136)
   }
 
   .card-section {
     border-radius: 3px;
-    border: solid 2px rgb(173, 187, 162);
+    border: solid 2px  rgb(104,123,136);
     text-align: center;
     margin: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background: rgb(173, 187, 162, 0.5);
+    background: rgb(204, 221, 191);
   }
 
   .caregiver-card-section {
     border-radius: 3px;
-    border: solid 2px rgb(173, 187, 162);
+    border: solid 2px  rgb(104,123,136);
     text-align: center;
     margin: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background: rgb(173, 187, 162, 0.1);
+    background: rgb(260, 236, 146, 0.8);
+
   }
 
   .caretakers {
-    background: rgb(173, 187, 162, 0.5);
+    background: rgb(204, 221, 191);
+    border: solid 2px  rgb(104,123,136);
     padding: 20px 20px 20px 20px;
-    
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
   }
 
   .grid-container {
@@ -124,7 +129,7 @@ h3 {
     border-radius: 3px;
     border: solid 2px rgb(104,123,136);
     padding: 4px;
-    background-color: rgb(173, 187, 162, 0.2);
+    background-color: rgb(168, 197, 215);
     color: rgb(93, 100, 87);
     box-shadow: 1px 1px 1px;
     margin: 10px;
@@ -147,10 +152,10 @@ h3 {
     margin: 10px;
   }
 
-  .watered-btn:hover {background-color: rgb(252, 240, 106)}
+  .watered-btn:hover {background-color: rgb(260, 236, 146)}
 
   .watered-btn:active {
-    background-color: rgb(252, 240, 106);
+    background-color: rgb(260, 236, 146);
     box-shadow: 3px 3px 3px #666;
   }
 
@@ -258,7 +263,7 @@ i{
 }
 
 .btn-group button {
-  background-color: rgb(173, 187, 162, 0.2);
+  background-color: rgb(204, 221, 191);
   border: solid 2px rgb(104,123,136);
   color: rgb(93, 100, 87);
   border-radius: 3px;
@@ -273,7 +278,7 @@ i{
 }
 
 .btn-group button:hover {
-  background-color: rgb(252, 240, 106);
+  background-color: rgb(260, 236, 146);
 }
 
 .top-bar{
@@ -302,6 +307,10 @@ i{
   /* For mobile phones: */
   .desktop-view{
     display: none !important;
+  }
+
+  .btn-group button{
+    display: none;
   }
 }
 
