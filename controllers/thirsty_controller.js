@@ -469,6 +469,34 @@ router.get("/community", (req, res) => {
 
 });
 
+router.put("/api/user/setPublic/:id", ensureAuthenticated, (req, res) => {
+    db.User.update(
+        {
+            public: true
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }).then(data => {
+            res.json({ msg: "user privacy set to public" })
+        })
+});
+
+router.put("/api/user/setPrivate/:id", ensureAuthenticated, (req, res) => {
+    db.User.update(
+        {
+            public: false
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }).then(data => {
+            res.json({ msg: "user privacy set to public" })
+        })
+});
+
 // =======================================================================
 // Home page catch all route
 // =======================================================================

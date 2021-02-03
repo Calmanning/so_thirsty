@@ -281,6 +281,24 @@ $(document).ready(function () {
          })
     })
 
+    $("#setPublic").click(function(){
+        $.ajax({
+            url: "/api/user/setPublic/" + $(this).data("id"),
+            method: "PUT"
+        }).then(function(){
+            location.reload()
+        })
+    })
+
+    $("#setPrivate").click(function(){
+        $.ajax({
+            url: "/api/user/setPrivate/" + $(this).data("id"),
+            method: "PUT"
+        }).then(function(){
+            location.reload()
+        })
+    })
+
 }); //end of the document ready
 
 frequencyMap = precipitation => {
