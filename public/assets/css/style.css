@@ -429,6 +429,10 @@ i{
   .btn-group button{
     display: none;
   }
+
+  .fa-bars{
+    margin-right: 35px;
+  }
 }
 
 @media (min-width: 762px) {
@@ -440,4 +444,6 @@ i{
   .imageMobileOptions{
     display: none !important;
   }
+
+  
 }
