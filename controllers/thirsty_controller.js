@@ -518,6 +518,9 @@ router.get("/:user", ensureAuthenticated, function (req, res) {
             },
             include: [
                 { model: db.Plant, include: [db.Photo]}, db.Caretaker
+            ],
+            order: [
+                [ db.Plant, db.Photo, 'createdAt', 'DESC' ]
             ]
 
         }).then(data => {
