@@ -2,10 +2,6 @@
 <div class="grid-container grid-container-padded">
     <div class="grid-x grid-margin-x align-center">
         <div class="grid-y grid-margin-y">
-
-
-
-            
             <div class="translucent-form-overlay">
                 <h1>Welcome back!</h1>
                 <form method="POST" action="/signin">
@@ -13,6 +9,7 @@
                     <input name="userName"><br>
                     <label for="password">password</label>
                     <input type="password" name="password">
+                    {{msg}}
                     <input type="submit" value="Sign in" class="btn primary">
                 </form>
             </div>
