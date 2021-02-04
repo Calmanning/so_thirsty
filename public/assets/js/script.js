@@ -1,5 +1,3 @@
-// const { search } = require("../../../controllers/thirsty_controller");
-
 // Client js api calls
 $(document).ready(function () {
     const name = $("#name")
@@ -275,7 +273,6 @@ $(document).ready(function () {
     $(document).on("click", ".removeBtn", function (event) {
         event.stopPropagation();
         const id = $(this).val();
-        alert("/api/:user/dead/" + id)
         console.log(`delete plant event listener fires: `, $(this));
         $.ajax({
             method: "DELETE",
@@ -300,12 +297,10 @@ $(document).ready(function () {
     });
 
     $(document).on("click", ".deletePhoto", function (e) {
-        // alert("/api/photo/delete/" + $(this).data("id"));
         $.ajax({
             url: "/api/photo/delete/" + $(this).data("id"),
             method: "DELETE"
         }).then(function (response) {
-            // console.log(`photo deleted`);
             location.reload();
         }).fail(function (err) {
             console.log(err);

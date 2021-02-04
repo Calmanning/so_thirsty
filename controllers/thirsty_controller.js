@@ -36,7 +36,7 @@ router.post("/signin", function (req, res) {
         }
     }).then(function (data) {
         if (!data) {
-            res.status(404).json({ msg: "No user found" })
+            res.render("signin", { msg: "incorrect user/password" });
         } else {
             if (bcrypt.compareSync(req.body.password, data.password)) {
                 console.log(`attempting to set req.session.user`, data);
@@ -48,7 +48,7 @@ router.post("/signin", function (req, res) {
                 res.redirect("/" + req.session.user.userName)
             }
             else {
-                res.status(401).json({ msg: "incorrect password" });
+                res.render("signin", { msg: "incorrect user/password" });
             }
         }
     })
