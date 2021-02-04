@@ -386,7 +386,7 @@ router.get("/caretaker/:key", (req, res) => {
     }).then(data => {
         if (data) {
             data.key = req.params.key;
-            data.Plants = data.dataValues.User.Plants;
+            data.Plants = data.dataValues.User.Plants;                    
 
             let dataToSend = helpers.addWatered(data);
             dataToSend.dataValues.userName = dataToSend.dataValues.User.userName;
@@ -416,8 +416,9 @@ router.get("/caretaker/:key/plant/:id", (req, res) => {
             plant.data = { name: data.dataValues.name, key: req.params.key }
             const dataToSend = helpers.addWateredSingle(plant);
             dataToSend.key = req.params.key;
-            res.render("caretaker-plant", dataToSend);
+            dataToSend.dataValues.createdAt = moment(dataToSend.dataValues.createdAt).format('MM/DD/YYYY');
 
+            res.render("caretaker-plant", dataToSend);
         })
     })
 })
