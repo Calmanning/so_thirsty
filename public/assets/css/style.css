@@ -420,6 +420,12 @@ i{
   color: rgb(0, 75, 89);
 }
 
+@media (max-width: 1200px) {
+  .btn-group button{
+    display: none;
+  }
+}
+
 @media (max-width: 762px) {
   /* For mobile phones: */
   .desktop-view{
