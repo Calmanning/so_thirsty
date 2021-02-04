@@ -63,7 +63,7 @@ $(document).ready(function () {
                 }).showToast();
             })
         } else {
-            const message = ""
+            let message = ""
             if (!userName.val()) {
                 message += "User name is required\n"
             }
